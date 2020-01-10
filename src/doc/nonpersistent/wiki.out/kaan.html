@@ -1,0 +1,65 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:html="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>
+      kaan – OpenCT
+    </title><style type="text/css">
+           @import url(trac.css);
+          </style></head><body><div id="content" class="wiki">
+      <div class="wikipage searchable">
+        
+          <h1 id="KobilKaanProfessionalandTelesecB1">Kobil Kaan Professional and Telesec B1</h1>
+<p>
+The kaan driver might support Kobil Kaan Professional and Telesec B1 drivers.
+</p>
+<p>
+FIXME: "Telesec B1"? "Siemens B1"? please clarify, I'm confused.
+</p>
+<h2 id="Testresults">Test results</h2>
+<p>
+If you have tested one of these readers, please add a report here.
+</p>
+<p>
+Kobil Kaan Professional works with 
+</p>
+<pre class="wiki" xml:space="preserve">reader kaan {
+        driver = kaan;
+        device = serial:/dev/ttyUSB0;
+};
+</pre><p>
+in /etc/openct.conf 
+</p>
+<p>
+Telesec B1 works with
+</p>
+<pre class="wiki" xml:space="preserve">reader sni_b1 {
+       driver = b1;
+       device = /dev/tts/1;
+};
+</pre><p>
+but only memory cards are tested to work at this point (OpenCT 0.6.0).
+</p>
+<p>
+OpenSC 0.6.7 will have an improved b1 driver thanks to Lorenz Knauer.
+But there is one remaining issue:
+</p>
+<pre class="wiki" xml:space="preserve">I can only get cards to work with FI=DI=1 (etu=372). The B1 reader does not
+change the ICC communication etu after receiving the ATR.
+So I could not get my OpenPGP card to work. 
+I get the ATR, but no access to any of the commands.
+
+The problem is that changing the protocol with 80 60 01 00 03 22 01 02 (T=1)
+works,
+but changing FI and DI with "80 60 01 00 06 23 01 01 24 01 03" does not
+work. Instead it gives SW12 = 6A 80.
+</pre><h2 id="Alternative">Alternative</h2>
+<p>
+Kobil Kann readers with a usb interface should work with the generic <a class="wiki" href="ccid.html" shape="rect">USB CCID</a> driver.
+</p>
+<h2 id="Links">Links</h2>
+<p>
+<a class="ext-link" href="http://www.kobil.de/e/index.php?s=smartcard" shape="rect"><span class="icon"> </span>http://www.kobil.de/e/index.php?s=smartcard</a> Manufacturer, but only the new usb readers on this site.
+</p>
+
+        
+        
+      </div>
+    </div><div class="footer"><hr></hr><p><a href="index.html">Back to Index</a></p></div></body></html>

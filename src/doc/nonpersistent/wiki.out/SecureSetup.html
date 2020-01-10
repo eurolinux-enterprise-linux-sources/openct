@@ -1,0 +1,66 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:html="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>
+      SecureSetup – OpenCT
+    </title><style type="text/css">
+           @import url(trac.css);
+          </style></head><body><div id="content" class="wiki">
+      <div class="wikipage searchable">
+        
+          <h1 id="SecureSetup">Secure Setup</h1>
+<p>
+OpenCT was designed to be secure and allow system administrators to restrict access to smart card readers.
+You have the option to 
+</p>
+<ul><li>install openct so it can be used by everyone.
+</li><li>limit access to openct to some group.
+</li><li>limit access to openct to some user.
+</li></ul><p>
+The access control is done via setting permissions on /var/run/openct directory.
+</p>
+<p>
+Not that in all setups the first user to access a reader will lock that reader, and no other user will be able
+to access the reader till it is unlocked.
+</p>
+<p>
+FIXME: how does locking work? does locking work for processes/connections and the build in module limit access
+to the user (all processes) even without a lock command? Is root able to bypass this security?
+</p>
+<h2 id="OpenCTforeveryone">OpenCT for everyone</h2>
+<p>
+Access control to smart card readers supported by openct is managed using the ownership, group and permissions
+on the directory /var/run/openct/. Here are example commands how to setup smart card access open for everyone.
+This is also the default.
+</p>
+<p>
+Note however that recently some distributions have started using a so called "tmpfs" on /var/run/. The effect
+is that all files and directories are gone after a reboot, and thus need to be re-created during each system
+boot and permissions need to be setup properly. Therefore it is best to execute the following commands once,
+and also edit the openct init script /etc/init.d/openct so it executes the same commands each time the directory
+is re-created.
+</p>
+<pre class="wiki" xml:space="preserve">chown root:root /var/run/openct/
+chmod 0755 /var/run/openct
+</pre><p>
+Note: this setup is used in the <a class="wiki" href="QuickStart.html" shape="rect">QuickStart</a> documentation.
+</p>
+<h2 id="OpenCTrestrictedtosomegroup">OpenCT restricted to some group</h2>
+<p>
+This example will restrict access to the scard group. This is the default setup on debian systems.
+You need to add each user that is allowed to use smart cards to the scard system group. Remember
+that adding someone to a group needs that user to logout and login again to get the effect.
+</p>
+<pre class="wiki" xml:space="preserve">chown root:scard /var/run/openct
+chmod 0750 /var/run/openct
+</pre><h2 id="OpenCTrestrictedtosomeuser">OpenCT restricted to some user</h2>
+<p>
+If you use openct with pc/sc-lite, then only pcscd needs to be able to access openct, and all users/application
+can use it via pc/sc-lite. In this case the restriction to one user is fine. pcscd usualy runs as root.
+Applications and tools might however print warnings if they cannot access the openct directory.
+</p>
+<pre class="wiki" xml:space="preserve">chown someuser /var/run/openct
+chmod 0700 /var/run/openct
+</pre>
+        
+        
+      </div>
+    </div><div class="footer"><hr></hr><p><a href="index.html">Back to Index</a></p></div></body></html>

@@ -1,0 +1,48 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:html="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>
+      wbeiuu – OpenCT
+    </title><style type="text/css">
+           @import url(trac.css);
+          </style></head><body><div id="content" class="wiki">
+      <div class="wikipage searchable">
+        
+          <h1 id="WBElectronicsInfinityUSBUnlimited">WB Electronics' Infinity USB Unlimited</h1>
+<p>
+There is a native openct driver - under development - and there is a driver for the linux kernel
+that can be combined with the OpenCT "phoenix" driver.
+</p>
+<h2 id="LinuxKerneldriver">Linux Kernel driver</h2>
+<p>
+A driver for the linux kernel is available at <a class="ext-link" href="http://eczema.ecze.com/iuu_phoenix.html" shape="rect"><span class="icon"> </span>http://eczema.ecze.com/iuu_phoenix.html</a>
+This driver has been tested and reported as working fine. Compile the kernel module
+and install it and then use 
+</p>
+<pre class="wiki" xml:space="preserve">insmod iuu_phoenix.ko cdmode=1
+</pre><p>
+to load the module. Now you have an extra serial port and can use OpenCT phoenix driver
+with this serial port. Edit openct.conf and add this section:
+</p>
+<pre class="wiki" xml:space="preserve">reader iuu {
+        driver = phoenix;
+        device = serial:/dev/ttyUSB0;
+};
+</pre><p>
+and restart openct with
+</p>
+<pre class="wiki" xml:space="preserve">/etc/init.d/openct restart
+</pre><p>
+and you are all set.
+</p>
+<h2 id="NativeOpenCTdriver">Native OpenCT driver</h2>
+<p>
+The native openct driver "wbeiuu" is under development and not working so far :-(
+</p>
+<h2 id="TestResults">Test Results</h2>
+<p>
+Alain Degreffe reported the kernel driver plus openct working fine. (OpenCT 0.6.11) 2007-08-08
+</p>
+
+        
+        
+      </div>
+    </div><div class="footer"><hr></hr><p><a href="index.html">Back to Index</a></p></div></body></html>

@@ -1,0 +1,52 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:html="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>
+      cardman – OpenCT
+    </title><style type="text/css">
+           @import url(trac.css);
+          </style></head><body><div id="content" class="wiki">
+      <div class="wikipage searchable">
+        
+          <h1 id="OmnikeyCardman">Omnikey Cardman</h1>
+<p>
+The cardman driver might support OMNIKEY CardMan 2020/6020/6120 devices, but
+it is not yet complete, and the original author has stopped working on it.
+</p>
+<p>
+The cm4000 driver supports OMNIKEY CardMan 4000. It is available in OpenCT 0.6.5 and later.
+You'll still need the kernel driver for this card, either the one from OMNIKEY.  An updated version of that driver will be merged into the mainline kernel for 2.6.15.
+</p>
+<p>
+CardMan 4040 starts in OpenCT 0.6.6. It works with both the omnikey kernel driver as well as with
+the new open source kernel driver (included in linux kernel 2.6.15). Unfortunalty there is a bug in the
+kernel driver, so you might need kernel 2.6.16.17 or 2.6.17 to get it to work.
+</p>
+<p>
+Both cm4000 and cm4040 latest kernel drivers can be downloaded from <a class="ext-link" href="http://svn.gnumonks.org/trunk/omnikey_cardman/new/kernel/" shape="rect"><span class="icon"> </span>http://svn.gnumonks.org/trunk/omnikey_cardman/new/kernel/</a>
+</p>
+<p>
+If you have any problems with cm4000, 4040, 3121 or 5121, please contact Harald Welte &lt;laforge@…&gt;.
+</p>
+<h2 id="Testresults">Test results</h2>
+<p>
+If you have tested one of these readers, please add a report here.
+</p>
+<ul><li>CardMan 2020 on Fedora Core 3 and 4 with OpenCT 0.6.5 and earlier versions: failure
+</li><li>CardMan 4000 on Fedora Core 4test2 with OpenCT 0.6.5rc1: failure (well, it does read the ATR, see above).
+</li><li>CardMan 4000 on Debian unstable (ppc): working
+</li><li>CardMan 4000 on Debian unstable (x86_64): working
+</li><li>CardMan 4000 on Debian unstable (i386): working (tested with gnupg, pcscd, OpenCT 0.6.6 and the OpenPGP card)
+</li><li>CardMan 4040 on Debian unstable (x86_64,i386): working
+</li><li>CardMan 4040 on Fedora Core 5 (i386): working (need to uncomment the cm4040 part in /etc/openct.conf and a sudo mknod -m 666 /lib/udev/devices/cmx0 c 253 0)
+</li><li>CardMan 3121 on Debian unstable (x86_64): working (ifd-ccid)
+</li><li>CardMan 3121 on Ubuntu 7.10 (x86): working (ifd-ccid from <a class="ext-link" href="http://omnikey.aaitg.com/index.php?id=69" shape="rect"><span class="icon"> </span>http://omnikey.aaitg.com/index.php?id=69</a>)
+</li><li>CardMan 5121 on Debian unstable (x86_64): working (ifd-ccid, only the contact-based interface)
+</li><li>CardMan 6020 on Fedora Core 3 and 4test2 with OpenCT 0.6.5rc1: failure.
+</li></ul><h2 id="Alternative">Alternative</h2>
+<p>
+Some recent OMNIKEY USB readers (like 3021, 3121, 5121) work with the generic <a class="wiki" href="ccid.html" shape="rect">USB CCID</a> driver.
+</p>
+
+        
+        
+      </div>
+    </div><div class="footer"><hr></hr><p><a href="index.html">Back to Index</a></p></div></body></html>

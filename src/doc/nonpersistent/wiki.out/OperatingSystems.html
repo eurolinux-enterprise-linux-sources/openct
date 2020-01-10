@@ -1,0 +1,231 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:html="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>
+      OperatingSystems – OpenCT
+    </title><style type="text/css">
+           @import url(trac.css);
+          </style></head><body><div id="content" class="wiki">
+      <div class="wikipage searchable">
+        
+          <h1 id="OperatingSystems:GeneralNotes">Operating Systems: General Notes</h1>
+<p>
+Serial readers should work fine on all operating systems. USB needs hotplug support, so that you can plugin
+some new USB device, and if it is a smart card reader, OpenCT needs to be notified. Unfortunatly hotplug on
+Linux is currently moving from hotplug to udev or hald, so we document all three systems. FreeBSD has
+devd and no idea about all other systems. Readers in PCMCIA and PC-Card format are experimental
+and only supported under Linux so far, tested only with the udev setup (but adapting the setup should be easy).
+</p>
+<h2 id="Linux">Linux</h2>
+<p>
+The current recommended setup is using hal on linux. This way hal will notify openct if a new device is found.
+You do not need to compile OpenCT with libusb on linux, it should work well without.
+</p>
+<p>
+For users prefering a setup with mdev, udev or the old hotplug, we still keep those in our documentation.
+</p>
+<h3 id="haldsetup">hald setup</h3>
+<p>
+Hald needs a fdi config file and an addon script it runs when something in the fdi config file matches. To install these files. It is recommended to use separate information and policy fdi files. Installation path for the addon is distro specific and there is no simple way to determine it (see <a class="ext-link" href="http://bugs.freedesktop.org/show_bug.cgi?id=15768" shape="rect"><span class="icon"> </span>http://bugs.freedesktop.org/show_bug.cgi?id=15768</a>). It may be /usr/bin, /usr/sbin, /usr/libexec, /usr/libexec/hal, /usr/lib/hal, /usr/lib64/hal, /usr/lib32/hal.
+</p>
+<p>
+openct daemon needs correct permissions for your smart card device. If your openct daemon is running as root, you don't have to care about it. Otherwise you have to edit etc/openct.hald and properly set chown and eventually chmod.
+</p>
+<pre class="wiki" xml:space="preserve">mkdir -p /usr/share/hal/fdi/information/10freedesktop/
+cp etc/openct.fdi /usr/share/hal/fdi/information/10freedesktop/10-usb-openct.fdi
+cp openct-policy.fdi /usr/share/hal/fdi/policy/10osvendor/10-usb-openct.fdi 
+cp etc/openct.hald /usr/lib/hal/hald-addon-openct # distro dependent
+chmod 0755 /usr/lib/hal/hald-addon-openct # needs to be executable
+</pre><p>
+If you are using hal, don't install udev rules.
+</p>
+<h4 id="Directaccesstodevicenodes">Direct access to device nodes</h4>
+<p>
+If required, there are three possible types of policies for direct access to device nodes:
+* Only root can access.
+* Use standard UNIX UID/GID permissions by editing of etc/openct.fdi.
+* Use UNIX ACL for grating access. Latest hal and openct snapshots support smart-card-reader <a class="missing wiki" shape="rect">PolicyKit?</a> policy. With such version of hal, direct access is permitted for local users with active terminal.
+</p>
+<p>
+OpenCT allows those to access smart card via the daemon, that can access the openct socket directory,
+usualy /var/run/openct. So you can limit access to that directory to a group or a single user if you want.
+Several distributions do this by default and limit access to the "scard" group.
+</p>
+<p>
+==== Incompatibilities =====
+</p>
+<p>
+Different distributions need different setup. Here are most important differences:
+* Modern distributions use /dev/bus/usb, older distributions use /proc/bus/usb. You have to check, that your hal provide valid device nodes to the addon.
+* In older HAL versions USB is "bus", not "subsystem". You have to edit FDI files.
+* Device permissions are set in a different way in older distributions (e. g. using resmgr).
+</p>
+<p>
+PCMCIA and PC-Card readers are not yet supported via hald, advice and patches are very welcome.
+</p>
+<p>
+Hald documentation is available online at <a class="ext-link" href="http://people.freedesktop.org/~david/hal-spec/hal-spec.html" shape="rect"><span class="icon"> </span>http://people.freedesktop.org/~david/hal-spec/hal-spec.html</a>
+</p>
+<h4 id="Disablingopenctaddon">Disabling openct addon</h4>
+<p>
+If you want to disable openct addon without uninstallation of openct, you can copy etc/openct-disable.fdi to /etc/hal/fdi/policy/.
+</p>
+<h3 id="mdevsetup">mdev setup</h3>
+<p>
+mdev is provided by busybox to handle hotplug events as udev replacement. It is handy for initramfs configurations.
+</p>
+<p>
+In order to setup configuration:
+</p>
+<ul><li>Configure busybox with CONFIG_MDEV, CONFIG_FEATURE_MDEV_CONF, CONFIG_FEATURE_MDEV_EXEC.
+</li><li>Copy etc/openct_usb.mdev from build output to your initramfs at /lib/mdev/openct_usb.
+</li><li>Create /etc/mdev.conf at your initramfs with the following content:
+<pre class="wiki" xml:space="preserve">.* 0:0 0660 /lib/mdev/openct_usb
+</pre></li><li>For simple installation, copy the following files into your initramfs, and all dependencies.
+<pre class="wiki" xml:space="preserve">/usr/sbin/openct-control
+/usr/sbin/ifdhandler
+/etc/openct.conf
+</pre></li></ul><h3 id="udevSetup">udev Setup</h3>
+<p>
+Serial support needs nothing special (only the serial driver for your
+serial device), but USB support on Linux has a few requirements:
+</p>
+<ul><li>libusb needed during compilation and runtime.
+</li><li>CONFIG_HOTPLUG so the kernel can let us know if you plug in a reader or token.
+</li><li>udev needs to be installed. This comes with your distribution, and you are advised
+not to install or update it yourself.
+</li></ul><p>
+OpenCT before 0.6.13 also needs:
+</p>
+<ul><li>CONFIG_USB_DEVICEFS so we can talk to USB devices from userspace. 
+</li><li>mount usbfs (kernel 2.4: usbdevfs) at /proc/bus/usb, to do that put this line into your /etc/fstab:
+<pre class="wiki" xml:space="preserve">usbfs           /proc/bus/usb   usbfs   defaults                0       0
+</pre>(replace "usbfs" with "usbdevfs" for Linux kernel 2.4.* - will work on kernel 2.6.* too)
+</li></ul><p>
+Also the udev files need to be installed (see <a class="wiki" href="QuickStart.html" shape="rect">QuickStart</a> for full installation instructions):
+</p>
+<pre class="wiki" xml:space="preserve"># cp etc/openct.udev /etc/udev/rules.d/50-openct.rules
+# cp etc/openct_usb /lib/udev/openct_usb
+# cp etc/openct_pcmcia /lib/udev/openct_pcmcia
+# cp etc/openct_serial /lib/udev/openct_serial
+</pre><p>
+Some common problems with udev:
+</p>
+<ul><li>kernel versions and udev rules do not fit. Several kernels required new udev versions, so updating
+the kernel without udev will not work. Updating udev is something you shouldn't do yourself, best
+use the distribution udev. As a result you cannot update the kernel or need to update your whole
+distribution.
+</li><li>For a long time every distribution had usbfs mounted on /proc/bus/usb. Some stopped doing that and
+thus broke OpenCT. This is fixed in OpenCT 0.6.13+. Note: OpenSuse uses hal for connecting Linux kernel
+and OpenCT and thus should work without usbfs mounted on /proc/bus/usb.
+</li><li>Ubuntu 7.04 ("feisty") and maybe also older versions had usbfs mounted on /proc/bus/usb/.usbfs and
+a bind mount from /dev/bus/usb to /proc/bus/usb. This broken OpenCT as the device we wanted to open
+was always created too late. OpenCT 0.6.12 has added a work around for this. Ubuntu 7.10 will drop this
+practice (but maybe not have /proc/bus/usb at all).
+</li><li>Linux Kernel 2.6.22 has changes to the USB code that result in some uevents missing PRODUCT and TYPE
+and DEVICE information. This will be fixed in 2.6.23 and 2.6.22.5. Please update your kernel.
+</li><li>Linux Kernel 2.6.22+ has a new option CONFIG_USB_DEVICE_CLASS, which is marked deprecated. As long as
+it is on everything is fine. But if turned off there could be problems. This option doesn't harm OpenCT
+per se, but might break your udev code to generate /dev/bus/usb/xxx/yyy devices. As a result libusb
+will not find any device (because /dev/bus/usb exists it doesn't look at /proc/bus/usb even if that one
+is fine), and thus also our coldplug code run by "/etc/init.d/openct start" breaks.
+</li><li>People could compile their kernel without the CONFIG_USB_DEVICEFS option. This option was only needed for
+usbfs, and some might think with /dev/bus/usb it is no longer needed to have usbfs on /proc/bus/usb. But
+without this option the kernel also doesn't add the DEVICE information to the kernel events, and thus
+OpenCT can be notified by udev about new devices, but will not have the name of the new device and thus
+cannot process this information. OpenCT 0.6.13+ can work without CONFIG_USB_DEVICEFS.
+</li><li>udev has a mechanism as alternative to DEVICE, it is called DEVNAME. But it only works with the proper udev
+rules and on many distributions those are not in place, resulting in DEVNAME like /dev/2-1.7 - something
+OpenCT can't work with. A proper udev rules looks like this:
+<pre class="wiki" xml:space="preserve">  SUBSYSTEM=="usb", ACTION=="add", ENV{DEVTYPE}=="usb_device", \
+    NAME="bus/usb/$env{BUSNUM}/$env{DEVNUM}", MODE="0644"
+</pre>OpenCT 0.6.13+ has this rule and a modified script so we can construct the device name from udev information
+stored from a previous event and read by udevinfo later.
+</li></ul><h3 id="HotplugSetup">Hotplug Setup</h3>
+<p>
+Serial support needs nothing special (only the serial driver for your
+serial device), but USB support on Linux has a few requirements:
+</p>
+<ul><li>libusb needed during compilation and runtime.
+</li><li>CONFIG_HOTPLUG so the kernel can let us know if you plugin a reader or token.
+</li><li>hotplug utilities will be called by the kernel and run openct.
+</li><li>CONFIG_USB_DEVICEFS so we can talk to USB devices from userspace.
+</li><li>mount usbfs (kernel 2.4: usbdevfs) at /proc/bus/usb, to do that put this line into your /etc/fstab:
+<pre class="wiki" xml:space="preserve">usbfs           /proc/bus/usb   usbfs   defaults                0       0
+</pre>(replace "usbfs" with "usbdevfs" for Linux kernel 2.4.* - will work on kernel 2.6.* too)
+</li></ul><p>
+Also the hotplug files need to be installed (see <a class="wiki" href="QuickStart.html" shape="rect">QuickStart</a> for full installation instructions):
+</p>
+<pre class="wiki" xml:space="preserve"># cp etc/openct.usermap /etc/hotplug/usb/openct.usermap
+# cp etc/openct_usb /etc/hotplug/usb/openct
+</pre><h2 id="FreeBSD">FreeBSD</h2>
+<p>
+On FreeBSD
+</p>
+<ol><li>Install from ports
+<ul><li>security/openct
+</li><li>security/opensc
+</li></ul></li><li>add to /etc/devd.conf or /usr/local/etc/devd/openct.conf (with appropriate device ids):
+<pre class="wiki" xml:space="preserve"># Aladdin eToken PRO USB crypto token
+attach 100 {
+        device-name "ugen[0-9]+";
+        match "vendor" "0x0529";
+        match "product" "0x0514";
+        action "/usr/local/sbin/openct-control attach usb:529/514 usb /dev/$device-name";
+};
+detach 100 {
+        device-name "ugen[0-9]+";
+        match "vendor" "0x0529";
+        match "product" "0x0514";
+        action "/usr/bin/pkill -fx '/usr/local/sbin/ifdhandler -H [a-z0-9]+ usb /dev/$device-name'";
+};
+</pre></li><li>reload devd config
+<pre class="wiki" xml:space="preserve">/etc/rc.d/devd restart
+</pre></li></ol><p>
+List of issues for FreeBSD:
+</p>
+<ul><li>the above has only examples for one vendor/product each.
+We could include example files for either or both in openct with all devices listed.
+</li></ul><h2 id="OpenBSD">OpenBSD</h2>
+<pre class="wiki" xml:space="preserve">install from ports
+cd /usr/ports/security/openct
+make install clean
+cd /usr/ports/security/opensc
+make install clean
+</pre><p>
+Erase and key generation works so far, but OpenSSL does not: the OpenSSL shell 
+exits after the engine load command for some unknown reason. Note you need to specify
+the engine shared object file as *.so.0.0 (on Linux it is simply *.so).
+</p>
+<p>
+Also OpenBSD has a hotplugd, but so far it does not support USB devices. So you need to
+run 
+</p>
+<pre class="wiki" xml:space="preserve">openct-control shutdown
+openct-control init
+</pre><p>
+every time you add or remove a USB crypto token.
+</p>
+<p>
+Now OpenBSD Current (2005-07-20) passes all OpenSC regression tests with an Aladdin eToken PRO.
+</p>
+<p>
+Other tokens however did not work, these problems need to be investigated, as well as how to
+get it to work without UGEN_DEBUG.
+</p>
+<h2 id="otherBSD">other BSD</h2>
+<p>
+OpenCT should work, but this wasn't tested for sometime. Latest OpenCT seems to not find libusb,
+we are working on it.
+</p>
+<h2 id="Solaris">Solaris</h2>
+<p>
+Latest OpenCT supports Solaris fine and was tested to work.
+</p>
+<h2 id="Sunray">Sunray</h2>
+<p>
+Sunray including client/server architecture was added to OpenCT (in version 0.6.5).
+</p>
+
+        
+        
+      </div>
+    </div><div class="footer"><hr></hr><p><a href="index.html">Back to Index</a></p></div></body></html>

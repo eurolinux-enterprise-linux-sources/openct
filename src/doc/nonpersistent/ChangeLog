@@ -1,0 +1,5455 @@
+2010-01-07 09:52  aj
+
+	* releases/openct-0.6.19: new release 0.6.19
+	* trunk/NEWS, trunk/configure.ac, trunk/etc/openct.udev.in: create
+	  new release.
+
+2009-11-25 16:36  aj
+
+	* trunk/NEWS, trunk/etc/openct.udev.in, trunk/etc/openct_usb.in:
+	  latest udev rules, thanks to the ubuntu developers.
+
+2009-11-24 15:49  s
+
+	* trunk/src/ifd/ifd-rutoken.c: Modify Rutoken S binary interfaces
+	  by Aktiv Co. (accordance with
+	  http://www.opensc-project.org/opensc/changeset/3865) (Rutoken
+	  S+OpenCT+PCSC-Lite+rdesktop works now)
+
+2009-11-09 11:58  s
+
+	* trunk/etc/Info.plist, trunk/etc/openct.conf.in,
+	  trunk/etc/openct.fdi, trunk/etc/openct.udev.in,
+	  trunk/etc/openct.usermap: add uaToken S
+
+2009-11-04 15:45  aj
+
+	* trunk/src/ifd/atr.c: Enable cards without TDx entries to work -
+	  e.g. RSA SecureID 800. Patch by Andrey Jivsov
+
+2009-09-25 07:50  aj
+
+	* trunk/NEWS, trunk/configure.ac: trunk is now pre 0.6.19
+
+2009-09-25 07:49  aj
+
+	* trunk/NEWS, trunk/configure.ac: new release 0.6.18
+
+2009-09-24 14:53  s
+
+	* trunk/etc/Info.plist: corrected Info.plist according to
+	  openct.conf
+
+2009-09-24 13:40  s
+
+	* trunk/etc/Info.plist: add the ID for Rutoken S and Rutoken ECP
+	  to Info.plist
+
+2009-08-27 09:51  aj
+
+	* trunk/src/ifd/sys-bsd.c: abort if retries reach 0 or something
+	  other than EIO was returned.
+
+2009-08-18 08:38  aj
+
+	* trunk/NEWS, trunk/etc/openct.fdi,
+	  trunk/etc/openct.udev.modalias.in: Add support for Rutoken S by
+	  Aktiv Co. / Aleksey Samsonov
+
+2009-08-18 08:21  aj
+
+	* trunk/NEWS, trunk/src/ifd/sys-bsd.c: Apply fix by Emmanuel
+	  Dreyfus (Enhanced to limit the loop to 5 tries)
+
+2009-07-29 06:59  aj
+
+	* trunk/configure.ac: trunk is now post-release.
+
+2009-07-29 06:58  aj
+
+	* trunk/NEWS, trunk/configure.ac: Prepare new release.
+
+2009-07-22 12:21  aj
+
+	* trunk/src/ifd/sys-linux.c: Aktiv Co./Aleksey Samsonov: corrected
+	  comment in src/ifd/sys-linux.c
+
+2009-07-16 13:32  ludovic.rousseau
+
+	* trunk/etc/openct.conf.in: add support for Aktiv Rutoken ECP
+	  using the CCID driver Thanks to Aleksey Samsonov for the patch
+	  http://www.opensc-project.org/pipermail/opensc-devel/2009-July/012315.html
+
+2009-07-16 11:55  ludovic.rousseau
+
+	* trunk/src/ifd/ifd-ccid.c: ccid_open_usb(): do not complain if
+	  card initialization features are missing for an ICCD device
+	  Thanks to Aleksey Samsonov for the patch
+	  http://www.opensc-project.org/pipermail/opensc-devel/2009-July/012313.html
+
+2009-05-29 12:29  alonbl
+
+	* trunk/configure.ac, trunk/doc/Makefile.am: Make build work again
+	  after last api-doc change.
+
+2009-05-16 18:24  alonbl
+
+	* trunk/src/ifd/internal.h: Fix implicit declarations in OpenCT by
+	  Arfrever Frehtes Taifersar Arahesis. I'm attaching the patch
+	  which fixes the following compiler warnings in OpenCT:
+	  ifdhandler.c: In function &#8216;ifdhandler_error&#8217;: ifdhandler.c:299:
+	  warning: implicit declaration of function &#8216;ifd_error&#8217;
+	  ifdhandler.c: In function &#8216;ifdhandler_event&#8217;: ifdhandler.c:313:
+	  warning: implicit declaration of function &#8216;ifd_event&#8217;
+
+2009-05-04 11:23  aj
+
+	* trunk/NEWS, trunk/configure.ac: prepare new release.
+	* trunk/src/ifd/ifd-rutoken.c: Change debug level in rutoken to 6.
+
+2009-04-29 09:31  aj
+
+	* trunk/doc/Makefile.am: fix api doc generation / including it in
+	  the tar.gz distribution in generated form (copied from wiki
+	  code).
+
+2009-04-29 07:54  aj
+
+	* trunk/etc/init-script.in: merge changes from debian.
+
+2009-04-14 15:47  aj
+
+	* trunk/etc/openct.hald.in: comment out owner, group and
+	  permission changes for now.
+
+2009-04-14 15:44  aj
+
+	* trunk/etc/openct.hald.in: Stanislav Brabec: - Uses
+	  HAL_PROP_SMART_CARD_READER_DEVICE_FILE defined in FDI patches
+	  above instead of guessing the device node name. - Restricts
+	  access to the group. Requires a change in Makefiles to replace
+	  @USER@ and @GROUP@ - Removes deprecated access to /proc/bus/usb.
+
+2009-04-14 15:42  aj
+
+	* trunk/etc/openct.fdi: enhance fdi (got something wrong while
+	  manualy applying changed)
+
+2009-04-14 15:38  aj
+
+	* trunk/etc/Makefile.am, trunk/etc/openct-disable.fdi: add example
+	  file that can be used to disable openct.
+
+2009-04-14 15:37  aj
+
+	* trunk/etc/Makefile.am, trunk/etc/openct-policy.fdi,
+	  trunk/openct-policy.fdi: oops,wrong directory. add to makefile.
+
+2009-04-14 15:34  aj
+
+	* trunk/openct-policy.fdi: Stanislav Brabec: split selector and
+	  policy, this new file contains the new policy rule.
+
+2009-04-14 15:33  aj
+
+	* trunk/etc/openct.fdi: Stanislav Brabec:Defines a common rule.
+
+2009-04-14 15:31  aj
+
+	* trunk/etc/openct.fdi: Stanislav Brabec: Simplification of rules:
+	  Define one key, then define everything else only once.
+
+2009-04-14 15:28  aj
+
+	* trunk/etc/openct.fdi: Stanislav Brabec: Defines a rule matching
+	  all CCID readers.
+
+2009-04-14 15:26  aj
+
+	* trunk/etc/openct.fdi: Stanislav Brabec: Fixes syntax for the new
+	  HAL.
+
+2009-04-02 16:45  alonbl
+
+	* trunk/src/ct/status.c: Fix openst status lock By Stanislav
+	  Brabec.
+
+2009-03-30 17:39  alonbl
+
+	* trunk/configure.ac, trunk/src/ifd/sys-bsd.c: FreeBSD patches
+	  with libusb support By Andrew Thompson.
+	  http://www.opensc-project.org/pipermail/opensc-devel/2009-March/011997.html
+	  --- Hi, Here is a patch to add libusb support to ifd/sys-bsd.c,
+	  this will be needed for FreeBSD 8.0 onwards. I have verified
+	  with unifdef that the source is unchanged when ENABLE_LIBUSB
+	  isnt defined.
+	  http://people.freebsd.org/~thompsa/patch-src_ifd_sys-bsd.c
+	  cheers, Andrew
+
+2009-02-11 21:03  alonbl
+
+	* trunk/src/ifd/device.c, trunk/src/ifd/ifd-ccid.c,
+	  trunk/src/ifd/ifd-etoken.c, trunk/src/ifd/ifd-etoken64.c,
+	  trunk/src/ifd/ifd-rutoken.c, trunk/src/ifd/ifdhandler.c,
+	  trunk/src/ifd/internal.h, trunk/src/ifd/reader.c,
+	  trunk/src/ifd/sys-bsd.c, trunk/src/ifd/sys-linux.c,
+	  trunk/src/ifd/sys-null.c, trunk/src/ifd/sys-osx.c,
+	  trunk/src/ifd/sys-solaris.c, trunk/src/ifd/sys-sunray.c,
+	  trunk/src/ifd/usb.c, trunk/src/include/openct/device.h,
+	  trunk/src/include/openct/driver.h,
+	  trunk/src/include/openct/ifd.h: Allow driver to specify events
+	  to poll
+
+2009-02-06 13:32  ludovic.rousseau
+
+	* trunk/src/ifd/ifd-ccid.c: give priority to pcsc-lite for CCID
+	  devices
+
+2009-02-04 19:38  alonbl
+
+	* trunk/src/ifd/usb-descriptors.c: Revert r942, reopen bug #15
+	  http://www.opensc-project.org/pipermail/opensc-devel/2009-February/011781.html
+
+2009-02-03 06:54  alonbl
+
+	* trunk/src/ifd/ifd-ccid.c: Cleanup suggested by Andrey Jivsov
+
+2009-02-02 18:49  alonbl
+
+	* trunk/etc/openct.conf.in: USB fix went into stable
+
+2009-02-02 18:48  alonbl
+
+	* trunk/etc/openct.conf.in, trunk/src/ifd/ifd-cm4000.c,
+	  trunk/src/ifd/pcmcia.c: Revert 1131
+
+2009-02-02 18:31  alonbl
+
+	* trunk/etc/openct.conf.in, trunk/src/ifd/ifd-cm4000.c,
+	  trunk/src/ifd/pcmcia.c: USB fix went into stable
+
+2009-02-02 09:48  alonbl
+
+	* trunk/configure.ac: Fix type, thanks to Aktiv Co. Aleksey
+	  Samsonov
+
+2009-01-29 22:51  alonbl
+
+	* trunk/src/ifd/ifd-ccid.c: Fix for O2 Micro CCID SC Reader Buggy
+	  O2 Micro CCID SC Reader has zero extra len at interface level
+	  but not endpoint descriptor. Patch the interface level field and
+	  proceed. ProdID 7762 reader is in Dell Latitude D620 and 7772 is
+	  in D630. By Andrey Jivsov
+	  http://www.opensc-project.org/pipermail/opensc-devel/2009-January/011745.html
+
+2009-01-29 15:10  alonbl
+
+	* trunk/src/ifd/ifd-rutoken.c: Rutoken now support event
+	  interface, by Aktiv Co. Aleksey Samsonov
+
+2009-01-26 13:54  ludovic.rousseau
+
+	* trunk/src/ifd/proto-t1.c: use #defined named NAD, PCB, LEN and
+	  DATA instead of hard coded numbers
+
+2009-01-26 10:51  ludovic.rousseau
+
+	* trunk/src/ifd/internal.h: ifd_driver_register() and
+	  ifd_driver_get() are already declared in include/openct/driver.h
+	  internal.h:148: warning: redundant redeclaration of
+	  'ifd_driver_register' ../../src/include/openct/driver.h:378:
+	  warning: previous declaration of 'ifd_driver_register' was here
+	  internal.h:149: warning: redundant redeclaration of
+	  'ifd_driver_get' ../../src/include/openct/driver.h:379: warning:
+	  previous declaration of 'ifd_driver_get' was here
+
+2009-01-26 10:45  ludovic.rousseau
+
+	* trunk/src/include/openct/server.h: define ct_mainloop_leave()
+	  arguments
+
+2009-01-23 08:39  alonbl
+
+	* trunk/configure.ac: Use ( instead of { to be make friendly
+
+2009-01-22 14:22  alonbl
+
+	* trunk/configure.ac: Finally remove eval stuff from autoconf
+
+2009-01-21 17:29  alonbl
+
+	* trunk/configure.ac: Fix default ifdhandler path
+
+2009-01-21 06:03  alonbl
+
+	* trunk/src/ifd/ifd-etoken.c, trunk/src/ifd/ifd-etoken64.c: Remove
+	  warnings, thanks to Ludovic
+
+2009-01-19 13:41  alonbl
+
+	* trunk/configure.ac: Add PACKAGE_SUFFIX
+
+2009-01-03 11:54  alonbl
+
+	* trunk/NEWS: Update news
+
+2009-01-03 11:36  alonbl
+
+	* trunk/src/ifd/ifd-etoken64.c: Modify etoken64 driver to use the
+	  event interface
+
+2009-01-03 11:35  alonbl
+
+	* trunk/src/ifd/ifd-etoken.c: Modify etoken driver to use the
+	  event interface
+	* trunk/src/ifd/ifd-ccid.c: Modify ccid driver to use the event
+	  interface
+	* trunk/etc/openct.conf.in, trunk/src/ct/mainloop.c,
+	  trunk/src/ifd/device.c, trunk/src/ifd/ifdhandler.c,
+	  trunk/src/ifd/internal.h, trunk/src/ifd/process.c,
+	  trunk/src/ifd/reader.c, trunk/src/ifd/sys-bsd.c,
+	  trunk/src/ifd/sys-linux.c, trunk/src/ifd/sys-null.c,
+	  trunk/src/ifd/sys-osx.c, trunk/src/ifd/sys-solaris.c,
+	  trunk/src/ifd/sys-sunray.c, trunk/src/ifd/usb.c,
+	  trunk/src/ifd/utils.c, trunk/src/include/openct/device.h,
+	  trunk/src/include/openct/driver.h,
+	  trunk/src/include/openct/ifd.h,
+	  trunk/src/include/openct/socket.h: Support event mode for
+	  drivers Current implementation forces poll loop every one second
+	  or so, this consume CPU and power. This changeset adds the
+	  ability for a driver to provide file descriptor for event
+	  handling, removing the need to poll. Only Linux USB interface
+	  was modified to use this new interface. All other environments
+	  will fall-back into the poll mode. New driver methods:
+	  before_command Executed before command, makes it easy to remove
+	  event capture. after_command Execute after command, makes it
+	  easy to add event capture. get_eventfd Get an event fd out of
+	  the driver, if unsupported -1 should be returned, this fall-back
+	  into the poll mode. event Event method to call with th evntfd is
+	  signaled. before_command Execute whatever needed before
+	  executing a command. Useful if driver need to turn off event
+	  capture. after_command Execute whatever needed before blocking.
+	  Useful if driver need to turn on event capture. New device
+	  methods: get_eventfd Gets eventfd if available. New USB methods:
+	  ifd_usb_get_eventfd Get event fd to poll for events.
+	  ifd_usb_capture_event None blocking capture. New CT socket
+	  methods: error Called with POLLERR is received. New
+	  configuration file options: force_poll Force polling, default is
+	  true (as correct behavior), until Linux kernel will resolve its
+	  issues. New command-line options: ifdhandler -p Force polling.
+	  Linux specific notes: This enable safe detection of device
+	  removal and allow USB drivers to stop polling device, even if
+	  they do not have interrupt interface. As OpenCT uses
+	  /dev/bus/usb namespace if exists, and this feature worked only
+	  on usbfs prior to linux-2.6.28, it will not work with older
+	  kernels. linux-2.6.28 has a bug that cause the signal not to be
+	  sent if kernel is configured without CONFIG_USB_DEVICEFS, see
+	  [1]. linux-2.6.29 is expected to solve this issue. Even if ccid
+	  driver works correctly, as it uses interrupt endpoint, by
+	  default polling will be forced. [1]
+	  http://marc.info/?t=123075926900001&r=1&w=2 M
+	  src/ifd/ifdhandler.c M src/ifd/utils.c M src/ifd/process.c M
+	  src/ifd/sys-osx.c M src/ifd/sys-null.c M src/ifd/device.c M
+	  src/ifd/internal.h M src/ifd/usb.c M src/ifd/reader.c M
+	  src/ifd/sys-linux.c M src/ifd/sys-bsd.c M src/ifd/sys-solaris.c
+	  M src/ifd/sys-sunray.c M src/include/openct/driver.h M
+	  src/include/openct/device.h M src/include/openct/ifd.h M
+	  src/include/openct/socket.h M src/ct/mainloop.c M
+	  etc/openct.conf.in
+
+2009-01-03 11:11  alonbl
+
+	* trunk/src/ifd/ifd-ccid.c: Handle no card error from get slot
+	  status
+	* trunk/src/ifd/ifd-ccid.c: Avoid changing the altsetting if there
+	  is only one In this state it somewhat safe to skip. If
+	  altsetting is changed the ifdhandler cannot communicate with the
+	  reader next time it executes unless usb reset is issued. By
+	  Chaskiel Grundman.
+
+2009-01-03 11:08  alonbl
+
+	* trunk/src/ifd/ifd-ccid.c: Some more debug info
+	* trunk/src/ifd/sys-linux.c: Reduce warnings
+
+2009-01-02 14:00  alonbl
+
+	* trunk/etc/openct.udev.in: Do not execute ifdhandler more than
+	  one time (udev) udev adds usb device and usb interfaces, for
+	  devices that are detected by vendor and product, run the
+	  openct_usb only for the device.
+
+2009-01-01 21:11  alonbl
+
+	* trunk/doc/Makefile.am: Remove space
+
+2009-01-01 21:06  alonbl
+
+	* trunk/doc/Makefile.am, trunk/doc/nonpersistent/Makefile.am: Fix
+	  doc build issues 1. VPATH issue. 2. Parallel build issue,
+	  suggested by Ludovic Rousseau.
+
+2008-12-31 20:37  alonbl
+
+	* trunk/src/ifd/ifd-rutoken.c: Remove newlines from debug at
+	  rutoken
+
+2008-12-23 19:54  alonbl
+
+	* trunk/etc/openct_usb.in: Support newest udev
+
+2008-12-19 20:45  alonbl
+
+	* trunk/src/ifd/ifd-cyberjack.c: Fix memory leak in
+	  OpenCT/src/ifd/ifd-cyberjack.c By Ludovic Rousseau with some
+	  modifications.
+	  http://www.opensc-project.org/pipermail/opensc-devel/2008-December/011502.html
+
+2008-12-18 19:36  alonbl
+
+	* trunk/src/ifd/proto-t1.c: Fix T1 abort handling Copy fix from
+	  rousseau's ccid driver.
+	  http://svn.debian.org/viewsvn/pcsclite/trunk/Drivers/ccid/src/openct/proto-t1.c?rev=2916&r1=2152&r2=2916
+
+2008-11-21 11:29  martin
+
+	* trunk/src/ifd/ifd-epass3k.c: Comment format change
+
+2008-11-21 11:26  martin
+
+	* trunk/etc/openct.conf.in, trunk/etc/openct.fdi,
+	  trunk/etc/openct.udev.in, trunk/etc/openct.udev.modalias.in,
+	  trunk/etc/openct.usermap, trunk/src/ifd/Makefile.am,
+	  trunk/src/ifd/ifd-epass3k.c, trunk/src/ifd/init.c,
+	  trunk/src/ifd/internal.h: ePass3000 driver by EnterSafe
+	  <jingmin@FTsafe.com>
+
+2008-09-30 22:38  alonbl
+
+	* trunk/etc/openct_usb.mdev.in: Properly handle kernel without usb
+	  filesystem at all
+
+2008-09-20 15:41  alonbl
+
+	* trunk/configure.ac: Handle svn checkout detection correctly when
+	  srcdir is different
+
+2008-09-20 15:38  alonbl
+
+	* trunk/Makefile.am, trunk/configure.ac: Revert last changes
+
+2008-09-20 14:38  aj
+
+	* trunk/Makefile.am, trunk/configure.ac: fix packaged detection
+	  logic.
+
+2008-09-20 14:16  aj
+
+	* trunk/Makefile.am: hmm, maybe this works better?
+
+2008-09-20 14:12  aj
+
+	* trunk/Makefile.am: trying to include pakcaged file in EXTRA_DIST
+	  - maybe this fixes the logic?
+
+2008-09-19 06:52  alonbl
+
+	* trunk/doc/nonpersistent/Makefile.am: Don't remove external files
+	  on distclean
+
+2008-08-11 12:46  ludovic.rousseau
+
+	* trunk/src/tools/openct-control.c: mgr_shutdown(): do not return
+	  an error code if shutdown fails because of a non existant status
+	  file (because openct was not running for example) Closes Debian
+	  bug #494385 "prerm doesn't work if openct isn't running"
+
+2008-08-09 17:19  aj
+
+	* trunk/etc/openct.fdi, trunk/etc/openct.udev.in,
+	  trunk/etc/openct.udev.modalias.in, trunk/etc/openct.usermap: is
+	  it 04e6:0003 or 04e6:e003? to be on the safe side: list both.
+	  bug 256055 in launchpad.
+
+2008-07-31 12:43  aj
+
+	* trunk/doc/nonpersistent/export-wiki.sh: update export script.
+
+2008-07-31 11:58  aj
+
+	* trunk/configure.ac: update configure verison.
+
+2008-07-31 11:56  aj
+
+	* trunk/NEWS: Update NEWS file.
+
+2008-07-30 14:05  alonbl
+
+	* trunk/NEWS: Update NEWS
+
+2008-07-21 14:37  aj
+
+	* trunk/src/ifd/ifd-eutron.c: Chaskiel Grundman: This uncovered an
+	  issue in openct. namely, that eutron_recv doesn't wait long
+	  enough. (my device sent a wtx request after 23 loops, but we
+	  abort after 20). Also, eutron_recv returns short writes to its
+	  caller, even though t1_xcv cannot deal with that at all. This
+	  patch fixes those things, as well as changes a memcpy of
+	  overlapping memory areas to a memmove.
+
+2008-07-14 20:12  aj
+
+	* trunk/etc/Info.plist, trunk/etc/openct.conf.in,
+	  trunk/etc/openct.fdi, trunk/etc/openct.udev.in,
+	  trunk/etc/openct.udev.modalias.in, trunk/etc/openct.usermap: Add
+	  two readers reported by Johannes Deisenhofer.
+
+2008-07-10 18:54  aj
+
+	* trunk/etc/openct.udev.modalias.in: Vasiliy Nechaev found this
+	  bug: the string must end with an asterisk.
+
+2008-06-11 10:14  alonbl
+
+	* trunk/configure.ac: Detect libtool-1 or libtool-2 at runtime
+
+2008-06-09 08:32  alonbl
+
+	* trunk/Makefile.am: More aclocal->m4
+
+2008-06-09 08:31  alonbl
+
+	* trunk/Makefile.am: More aclocal->m4
+
+2008-06-09 07:37  alonbl
+
+	* trunk/configure.ac: Turn on GNU extensions for
+	  ct_socket_getcreds::SO_PEERCRED, bug #30, thanks to vapier
+
+2008-06-05 20:33  alonbl
+
+	* trunk/configure.ac: OpenCT will never run on Windows...
+
+2008-06-05 20:17  alonbl
+
+	* trunk/m4/acx_pthread.m4, trunk/m4/lib-ld.m4,
+	  trunk/m4/lib-link.m4, trunk/m4/lib-prefix.m4: Remove m4 files
+	  that are not used
+	* trunk/Makefile.am, trunk/configure.ac, trunk/m4/Makefile.am:
+	  Prepare for libtool-2
+
+2008-06-05 19:56  alonbl
+
+	* trunk/Makefile.am, trunk/aclocal, trunk/configure.ac, trunk/m4:
+	  Rename aclocal->m4 to be more standard
+
+2008-05-29 08:01  alonbl
+
+	* trunk/etc/Makefile.am: openct.udev.compat is not generated
+	  Thanks to David Imhoff
+
+2008-05-29 07:56  alonbl
+
+	* trunk/configure.ac: Warn about missing libusb only in Linux By
+	  David Imhoff
+
+2008-05-22 13:27  alonbl
+
+	* trunk/src/ct/libopenct.pc.in: Cleanup pkg-config file
+
+2008-05-22 13:07  alonbl
+
+	* trunk/src/ifd/sys-bsd.c: Fix OpenBSD issues. fixes sys-bsd.c to
+	  use the correct device filenames on OpenBSD. An earlier patch
+	  already fixed this for the control endpoint, but this caused the
+	  other endpoints to be accessed under '/dev/ugenX.00.E'. This
+	  patch causes the correct filenames to be used for all endpoints.
+	  Also, Fix BSD support of USB devices. By David Imhoff and Hasso
+	  Tepper.
+
+2008-05-17 19:51  alonbl
+
+	* trunk/etc/Makefile.am: Cleanup etc/Makefile.am
+
+2008-05-17 18:45  alonbl
+
+	* trunk/NEWS, trunk/etc/Makefile.am, trunk/etc/openct.udev.compat,
+	  trunk/etc/openct.udev.in, trunk/etc/openct.udev.modalias.in:
+	  Move out compatibility udev rule into its own rule, update NEWS
+	  to alert packagers
+
+2008-05-17 07:51  alonbl
+
+	* trunk/src/ifd/sys-linux.c: Support linux mini-coldplug by CCID
+	  interface class
+
+2008-05-17 06:46  alonbl
+
+	* trunk/etc/init-script.in, trunk/src/ct/status.c,
+	  trunk/src/include/openct/openct.h,
+	  trunk/src/tools/openct-control.c: Delete status on shutdown
+
+2008-05-14 18:09  alonbl
+
+	* trunk/configure.ac: Fixup configure help strings
+
+2008-05-14 18:04  alonbl
+
+	* trunk/configure.ac: Relax libusb warning
+
+2008-05-14 18:02  alonbl
+
+	* trunk/configure.ac, trunk/etc/Makefile.am,
+	  trunk/etc/openct.conf.in: Add --enable-non-privileged,
+	  --with-daemon-user, --with-daemon-groups to ease packagers.
+
+2008-05-14 16:47  alonbl
+
+	* trunk/configure.ac, trunk/etc/Makefile.am,
+	  trunk/etc/init-script.in, trunk/etc/openct.conf.in,
+	  trunk/etc/openct.hald.in, trunk/etc/openct.udev,
+	  trunk/etc/openct.udev.in, trunk/etc/openct.udev.modalias,
+	  trunk/etc/openct.udev.modalias.in, trunk/etc/openct_pcmcia.in,
+	  trunk/etc/openct_serial.in, trunk/etc/openct_usb.in,
+	  trunk/etc/openct_usb.mdev.in, trunk/etc/reader.conf.in: Fixup
+	  etc substitutions
+
+2008-05-14 15:22  alonbl
+
+	* trunk/etc/openct.conf.in, trunk/src/ct/status.c,
+	  trunk/src/ifd/init.c, trunk/src/ifd/utils.c,
+	  trunk/src/include/openct/openct.h,
+	  trunk/src/tools/openct-control.c: Non privileged operation As
+	  OpenCT is a security component, it best to use least privileged
+	  mode, and udev allows this now. The attached patch allows users
+	  to run the ifdhandler as none root user. The configuration file
+	  was modified, not the ifdhandler is a node in the following
+	  format: # # Path to ifdhandler ifdhandler { program =
+	  SBINDIR/ifdhandler; # user = openctd; # groups = { # usb, # };
+	  }; I believe this place is correct, but if people want to keep
+	  backward compatibility I guess this can be splitted, and keep
+	  current ifdhandler key. The openct-control running from init.d
+	  script or udev rule script will fork the ifdhandler using the
+	  specified user and set the context to the specified groups.
+	  There may be more than one group as there are more than one
+	  device type. It also set the /var/run/openct/status owner to the
+	  specified user. M src/tools/openct-control.c M src/ifd/utils.c M
+	  src/ifd/init.c M src/include/openct/openct.h M src/ct/status.c M
+	  etc/openct.conf.in
+
+2008-05-11 10:48  alonbl
+
+	* trunk/etc/Makefile.am: Install openct configuration, don't
+	  distribute generated files
+
+2008-05-08 07:14  alonbl
+
+	* trunk/src/ifd/ifd-ccid.c: Opps, BCD->hex
+
+2008-05-07 22:01  alonbl
+
+	* trunk/etc/openct_usb.mdev.in, trunk/src/ifd/sys-linux.c: Linux -
+	  Allow minimal usb coldplug using sysfs Drop libusb requirement
+	  for most of cases. Scan one level of /sys/bus/usb/devices,
+	  search for valid and known usb devices.
+
+2008-05-07 19:46  alonbl
+
+	* trunk/etc/openct.conf.in: Add ASEKey CCID support
+
+2008-05-07 19:45  alonbl
+
+	* trunk/src/ifd/ifd-ccid.c: Support CCID 1.10 and fix pts and
+	  parameter setting in the proper order By: Chaskiel Grundman I
+	  have apparently been sitting on a patch that does pts and
+	  parameter setting in the proper order for most of a year. (the
+	  problem you have seems to be that the existing code changes the
+	  baud rate before doing pts, so the card responds at the old baud
+	  rate) I do not know why I did not submit this patch earlier. I
+	  do know that I have not really tested it recently
+
+2008-05-07 19:10  alonbl
+
+	* trunk/etc/Makefile.am: Trivial clean
+
+2008-05-07 19:09  alonbl
+
+	* trunk/etc/Makefile.am, trunk/etc/openct_usb.mdev.in: Add mdev
+	  support script
+
+2008-04-25 13:05  alonbl
+
+	* trunk/configure.ac: Remove duplicate doc
+
+2008-04-25 12:22  alonbl
+
+	* trunk/src/ct/status.c: Fixup SEGV, by Aktiv Co. Aleksey Samsonov
+
+2008-04-20 12:54  ludovic.rousseau
+
+	* trunk/src/tools/openct-control.c: typo in comment: devide ->
+	  device
+
+2008-04-18 20:39  alonbl
+
+	* trunk/bootstrap: Add --force to autoreconf
+
+2008-04-17 10:58  alonbl
+
+	* trunk/src/ifd/ifd-ccid.c: Print better message for unknown ccid,
+	  including missing version element
+
+2008-04-04 22:28  alonbl
+
+	* trunk, trunk/Makefile.am, trunk/aclocal,
+	  trunk/aclocal/Makefile.am,
+	  trunk/aclocal/ac_compile_check_sizeof.m4,
+	  trunk/aclocal/ac_create_stdint_h.m4, trunk/aclocal/pkg.m4,
+	  trunk/configure.ac, trunk/doc, trunk/doc/Makefile.am,
+	  trunk/doc/changelog.sh, trunk/doc/doxygen-footer.html,
+	  trunk/doc/doxygen.conf.in, trunk/doc/export-wiki.sh,
+	  trunk/doc/export-wiki.xsl, trunk/doc/generate-api.sh,
+	  trunk/doc/nonpersistent, trunk/doc/nonpersistent/Makefile.am,
+	  trunk/doc/nonpersistent/export-wiki.sh,
+	  trunk/doc/nonpersistent/export-wiki.xsl,
+	  trunk/doc/nonpersistent/svn2cl.xsl, trunk/doc/opensc-logo.gif,
+	  trunk/doc/svn2cl.xsl, trunk/etc, trunk/etc/Makefile.am,
+	  trunk/macos, trunk/macos/Makefile.am, trunk/solaris, trunk/src,
+	  trunk/src/Makefile.am, trunk/src/ct, trunk/src/ct/Makefile.am,
+	  trunk/src/ctapi, trunk/src/ctapi/Makefile.am, trunk/src/ifd,
+	  trunk/src/ifd/Makefile.am, trunk/src/ifd/atr.c,
+	  trunk/src/ifd/ifd-cm4000.c, trunk/src/ifd/ifd-pertosmart1030.c,
+	  trunk/src/ifd/ifd-pertosmart1038.c, trunk/src/ifd/ifd-rutoken.c,
+	  trunk/src/ifd/sys-linux.c, trunk/src/include,
+	  trunk/src/include/Makefile.am, trunk/src/include/openct,
+	  trunk/src/include/openct/Makefile.am, trunk/src/pcsc,
+	  trunk/src/pcsc/Makefile.am, trunk/src/tools,
+	  trunk/src/tools/Makefile.am, trunk/svnignore: New build system
+	  Sync with other projects. merge -r 1014:1027
+	  https://www.opensc-project.org/svn/openct/branches/alonbl/build
+	  _M . _M macos M macos/Makefile.am M configure.ac _M doc D
+	  doc/changelog.sh M doc/doxygen.conf.in D doc/export-wiki.xsl M
+	  doc/Makefile.am A doc/opensc-logo.gif D doc/generate-api.sh D
+	  doc/export-wiki.sh AM doc/nonpersistent A
+	  doc/nonpersistent/export-wiki.xsl A
+	  doc/nonpersistent/Makefile.am A doc/nonpersistent/export-wiki.sh
+	  A doc/nonpersistent/svn2cl.xsl D doc/svn2cl.xsl A
+	  doc/doxygen-footer.html _M src _M src/ctapi M
+	  src/ctapi/Makefile.am _M src/tools M src/tools/Makefile.am _M
+	  src/ifd M src/ifd/ifd-cm4000.c M src/ifd/atr.c M
+	  src/ifd/ifd-pertosmart1030.c M src/ifd/ifd-pertosmart1038.c M
+	  src/ifd/ifd-rutoken.c M src/ifd/sys-linux.c M
+	  src/ifd/Makefile.am _M src/include _M src/include/openct M
+	  src/include/openct/Makefile.am M src/include/Makefile.am _M
+	  src/ct M src/ct/Makefile.am _M src/pcsc M src/pcsc/Makefile.am M
+	  src/Makefile.am M Makefile.am A svnignore _M etc M
+	  etc/Makefile.am _M solaris _M aclocal D aclocal/pkg.m4 M
+	  aclocal/ac_create_stdint_h.m4 D
+	  aclocal/ac_compile_check_sizeof.m4 M aclocal/Makefile.am
+
+2008-03-15 20:18  ludovic.rousseau
+
+	* trunk/src/ifd/sys-osx.c: change prototype of
+	  ifd_sysdep_usb_reset() to reflect its definition from
+	  src/ifd/internal.h
+
+2008-01-10 08:35  ludovic.rousseau
+
+	* trunk/src/ifd/ifd-rutoken.c: new patch for ruToken support from
+	  Andrew V. Stepanov
+	  http://www.opensc-project.org/pipermail/opensc-devel/2008-January/010648.html
+
+2008-01-03 09:21  ludovic.rousseau
+
+	* trunk/configure.ac, trunk/src/ifd/Makefile.am: do not use
+	  AC_LIB_LINKFLAGS() since this macro is provided by gettext and
+	  we do not use gettext. Use AC_CHECK_LIB() instead
+
+2007-12-17 13:29  ludovic.rousseau
+
+	* trunk/src/ifd/ifd-rutoken.c: the entire file was duplicated
+
+2007-12-17 13:14  ludovic.rousseau
+
+	* trunk/etc/openct.conf.in, trunk/etc/openct.udev,
+	  trunk/etc/openct.usermap, trunk/src/ifd/Makefile.am,
+	  trunk/src/ifd/ifd-rutoken.c, trunk/src/ifd/init.c,
+	  trunk/src/ifd/internal.h: add support of ruToken Thanks to
+	  Andrew V. Stepanov
+	  http://www.opensc-project.org/pipermail/opensc-devel/2007-December/010617.html
+
+2007-12-07 09:58  ludovic.rousseau
+
+	* trunk/etc/openct.conf.in, trunk/etc/openct.udev,
+	  trunk/etc/openct.usermap, trunk/src/ifd/Makefile.am,
+	  trunk/src/ifd/ifd-cyberjack.c, trunk/src/ifd/init.c,
+	  trunk/src/ifd/internal.h: add cyberJack driver with pinpad
+	  support thanks to Andrey Jivsov for the patch
+	  http://www.opensc-project.org/pipermail/opensc-devel/2007-December/010610.html
+
+2007-09-27 15:00  aj
+
+	* trunk/etc/openct.conf.in: Add cardman 5321 reader - patch by
+	  gürer özen.
+
+2007-08-30 18:18  aj
+
+	* trunk/configure.ac: trunk is now post 0.6.14.
+
+2007-08-30 18:17  aj
+
+	* trunk/NEWS, trunk/configure.ac: create new version openct 0.6.14.
+
+2007-08-27 08:38  aj
+
+	* trunk/etc/openct_usb.in: fixed typo ("-u" instead of "-z") and
+	  other improvements by Kay Sievers.
+
+2007-08-23 20:13  aj
+
+	* trunk/configure.ac: trunk is now post 0.6.13.
+
+2007-08-23 20:12  aj
+
+	* trunk/NEWS: Document many provements we did in 0.6.13.
+
+2007-08-23 07:09  aj
+
+	* trunk/etc/openct.fdi, trunk/etc/openct.hald.in: update hal
+	  configuration and addon script.
+
+2007-08-22 08:20  aj
+
+	* trunk/etc/openct.udev, trunk/etc/openct.udev.modalias,
+	  trunk/etc/openct_usb.in: commit changes so this code works
+	  without CONFIG_USB_DEVICEFS.
+
+2007-08-22 07:17  aj
+
+	* trunk/etc/Makefile.am, trunk/etc/openct.fdi: add fdi file for
+	  hal.
+
+2007-08-21 09:26  aj
+
+	* trunk/NEWS: document latest changes.
+
+2007-08-21 09:22  aj
+
+	* trunk/etc/openct_usb.in: fix typo.
+
+2007-08-21 09:04  aj
+
+	* trunk/etc/openct_usb.in: simply PRODUCT regeneration.
+
+2007-08-21 08:53  aj
+
+	* trunk/etc/openct_usb.in: fix missing quotes.
+
+2007-08-21 07:06  aj
+
+	* trunk/etc/openct_usb.in: reconstruct PRODUCT from MODALIAS
+	  setting.
+
+2007-08-21 07:01  aj
+
+	* trunk/NEWS, trunk/etc/openct.conf.in, trunk/etc/openct.udev,
+	  trunk/etc/openct.udev.modalias, trunk/etc/openct.usermap,
+	  trunk/src/ifd/Makefile.am, trunk/src/ifd/init.c,
+	  trunk/src/ifd/internal.h: disable wbeiuu driver - not working
+	  yet, but kernel alternative works with phoenix driver.
+
+2007-08-21 06:55  aj
+
+	* trunk/etc/openct.udev.modalias: fix modalias rules.
+
+2007-07-11 14:45  aj
+
+	* trunk/configure.ac: trunk is now after 0.6.12.
+
+2007-07-11 14:44  aj
+
+	* trunk/NEWS: needed one more day.
+
+2007-07-10 15:33  aj
+
+	* trunk/etc/openct_usb.in: fix udev script.
+
+2007-07-10 14:45  aj
+
+	* trunk/etc/openct_usb.in: - add flexible loop to wait for device.
+	  - the loop must run in the background, otherwise udev will not
+	  create the device till the loop timed out.
+
+2007-07-10 13:02  aj
+
+	* trunk/NEWS: document latest changes.
+
+2007-07-10 13:01  aj
+
+	* trunk/doc/export-wiki.sh: update wiki export script
+
+2007-07-10 08:27  aj
+
+	* trunk/etc/Makefile.am, trunk/etc/openct.udev.modalias: add new
+	  udev rules file based on MODALIAS match for usb devices.
+
+2007-07-09 09:31  aj
+
+	* trunk/etc/openct.udev: document the sad compatiblity situation.
+
+2007-07-04 06:42  aj
+
+	* trunk/NEWS: target saturday for release.
+
+2007-07-03 14:31  aj
+
+	* trunk/configure.ac: prepare for next version.
+
+2007-07-02 09:18  aj
+
+	* trunk/NEWS: document recent changes to openct.
+
+2007-06-29 12:28  aj
+
+	* trunk/src/ifd/process.c: ct_tlv_get_int needs an unsigned int
+	  pointer as argument. closes gentoo bug
+	  https://bugs.gentoo.org/show_bug.cgi?id=162427 and out bug 24.
+
+2007-06-29 11:12  aj
+
+	* trunk/configure.ac: test for bash/ksh/sh not needed according to
+	  ticket 27. thanks to kheinz.
+
+2007-06-28 06:07  aj
+
+	* trunk/etc/openct.udev: use DRIVERS== not DRIVER== to match the
+	  whole device chain.
+
+2007-06-26 07:08  aj
+
+	* trunk/src/ifd/sys-bsd.c: fix drageonflybsd build and include
+	  needed header file, both fixes by kheinz. (closes #28).
+
+2007-06-26 07:07  aj
+
+	* trunk/src/ifd/sys-null.c: fix dragonflybsd build by kheinz
+	  (ticket #28).
+
+2007-06-21 10:31  aj
+
+	* trunk/src/ifd/ifd-ccid.c: silence a warning.
+
+2007-06-21 09:49  aj
+
+	* trunk/src/ifd/ifd-ccid.c, trunk/src/include/openct/driver.h:
+	  source buffer is unchanged, mark const to fit rest of api.
+
+2007-06-21 09:41  aj
+
+	* trunk/src/ifd/ifd-ccid.c: Chaskiel M Grundman: add ccid char
+	  support.
+	* trunk/etc/Info.plist, trunk/etc/openct.conf.in: correct usb id.
+	  Chaskiel M Grundman: Lastly, it appears that the usb id was
+	  specified incorrectly in etc/Info.plist and etc/openct.conf.
+	  b97/7761 is a usb hub. The actual smartcard devices are b97/7762
+	  (according to ccid/readers/Oz776S.txt from pcsc) and b97/7772
+	  (my new machine)
+
+2007-06-21 07:20  aj
+
+	* trunk/src/ifd/ifd-smph.c: use sleep/usleep instead of udelay
+	  (kernel only).
+
+2007-06-06 11:00  aj
+
+	* trunk/NEWS: document a change.
+
+2007-06-06 10:55  aj
+
+	* trunk/src/ifd/ifd-smph.c: add delays suggested by Alexej
+	  Wassiljew.
+
+2007-05-25 21:11  aj
+
+	* trunk/src/ifd/atr.c, trunk/src/ifd/conf.c,
+	  trunk/src/ifd/ctbcs.c, trunk/src/ifd/ifd-cardman.c,
+	  trunk/src/ifd/ifd-ccid.c, trunk/src/ifd/ifd-cm4000.c,
+	  trunk/src/ifd/ifd-egate.c, trunk/src/ifd/ifd-etoken.c,
+	  trunk/src/ifd/ifd-etoken64.c, trunk/src/ifd/ifd-eutron.c,
+	  trunk/src/ifd/ifd-gempc.c, trunk/src/ifd/ifd-ikey2k.c,
+	  trunk/src/ifd/ifd-ikey3k.c, trunk/src/ifd/ifd-smartboard.c,
+	  trunk/src/ifd/ifd-starkey.c, trunk/src/ifd/ifd-towitoko.c,
+	  trunk/src/ifd/ifd-wbeiuu.c, trunk/src/ifd/ifdhandler.c,
+	  trunk/src/ifd/ifdproxy.c, trunk/src/ifd/pcmcia-block.c,
+	  trunk/src/ifd/pcmcia.c, trunk/src/ifd/process.c,
+	  trunk/src/ifd/proto-escape.c, trunk/src/ifd/proto-gbp.c,
+	  trunk/src/ifd/proto-t0.c, trunk/src/ifd/proto-t1.c,
+	  trunk/src/ifd/reader.c, trunk/src/ifd/ria-device.c,
+	  trunk/src/ifd/ria-server.c, trunk/src/ifd/ria.c,
+	  trunk/src/ifd/sys-bsd.c, trunk/src/ifd/sys-solaris.c,
+	  trunk/src/ifd/sys-sunray.c, trunk/src/ifd/usb-descriptors.c,
+	  trunk/src/ifd/usb.c, trunk/src/ifd/utils.c: indent changes only.
+
+2007-05-25 21:05  aj
+
+	* trunk/src/ct/client.c, trunk/src/ct/socket.c,
+	  trunk/src/ct/status.c, trunk/src/pcsc/pcsc.c,
+	  trunk/src/tools/openct-control.c, trunk/src/tools/openct-tool.c:
+	  indent changes only.
+
+2007-05-25 21:00  aj
+
+	* trunk/NEWS: document latest changes.
+
+2007-05-25 20:45  aj
+
+	* trunk/etc/init-script.in, trunk/etc/openct.udev,
+	  trunk/etc/openct_usb.in: try if 100ms delay is enough to avoid
+	  race conditions.
+	* trunk/src/ifd/proto-escape.c: add missing file / contactless
+	  patch by Harald Welte.
+
+2007-05-25 19:53  aj
+
+	* trunk/src/ifd/Makefile.am, trunk/src/ifd/ifd-ccid.c,
+	  trunk/src/ifd/init.c, trunk/src/ifd/internal.h,
+	  trunk/src/include/openct/driver.h,
+	  trunk/src/include/openct/ifd.h: add patch by Harald Welte for
+	  contactless reader support.
+
+2007-05-25 19:49  aj
+
+	* trunk/etc/Info.plist, trunk/etc/openct.conf.in: add the ID for
+	  SCR3311 to openct.conf and Info.plist by Ville Skyttä /
+	  https://bugzilla.redhat.com/238962
+
+2007-05-25 12:18  aj
+
+	* trunk/src/ifd/ria-server.c: add static in both places.
+
+2007-05-25 12:15  aj
+
+	* trunk/src/ifd/ifd-wbeiuu.c: s/#ifdef 0/#if 0/
+
+2007-05-25 12:13  aj
+
+	* trunk/src/ifd/ifdhandler.c: fix typo.
+	* trunk/src/ifd/ifd-wbeiuu.c: #if 0 dead code
+
+2007-05-25 12:12  aj
+
+	* trunk/src/ifd/ifd-ccid.c: fix 0/NULL situation.
+
+2007-05-25 12:04  aj
+
+	* trunk/src/ifd/ifd-wbeiuu.c: oops, not dead code.
+
+2007-05-25 12:02  aj
+
+	* trunk/src/ifd/ifd-acr30u.c, trunk/src/ifd/ifd-ccid.c,
+	  trunk/src/ifd/ifd-wbeiuu.c, trunk/src/ifd/ifdhandler.c,
+	  trunk/src/ifd/ifdproxy.c, trunk/src/ifd/ria-device.c,
+	  trunk/src/ifd/ria-server.c, trunk/src/tools/openct-control.c,
+	  trunk/src/tools/openct-tool.c: and more static definitions.
+
+2007-05-25 11:52  aj
+
+	* trunk/src/ifd/ifd-acr30u.c, trunk/src/ifd/ifd-cardman.c,
+	  trunk/src/ifd/ifd-etoken64.c, trunk/src/ifd/ifd-gempc.c,
+	  trunk/src/ifd/ifd-kaan.c, trunk/src/ifd/ifd-pertosmart1030.c,
+	  trunk/src/ifd/ifd-smartboard.c, trunk/src/ifd/ifd-smph.c,
+	  trunk/src/ifd/ifd-towitoko.c, trunk/src/ifd/ifd-wbeiuu.c,
+	  trunk/src/ifd/proto-gbp.c, trunk/src/ifd/proto-sync.c,
+	  trunk/src/ifd/proto-t0.c, trunk/src/ifd/proto-t1.c,
+	  trunk/src/ifd/reader.c, trunk/src/ifd/ria.c,
+	  trunk/src/ifd/serial.c, trunk/src/ifd/usb-descriptors.c: work on
+	  lots of warnings, mostly things once declared with static and
+	  later without.
+
+2007-05-25 11:36  aj
+
+	* trunk/src/ifd/reader.c: include header file with declaration of
+	  this function.
+
+2007-05-25 11:35  aj
+
+	* trunk/src/ifd/init.c, trunk/src/ifd/manager.c,
+	  trunk/src/ifd/process.c: make more functions static. pass void
+	  instead of empty parameter list.
+
+2007-05-25 11:33  aj
+
+	* trunk/src/ifd/ctbcs.c: make function static, not needed outside
+	  this scope.
+
+2007-05-25 10:51  aj
+
+	* trunk/src/ifd/conf.c: fix more warnings / missing static
+	  declarations and replace 0/NULL for pointer.
+
+2007-05-25 10:45  aj
+
+	* trunk/src/ct/path.c, trunk/src/ct/socket.c,
+	  trunk/src/ct/status.c: fix more compiler warnings.
+
+2007-05-25 10:42  aj
+
+	* trunk/src/ct/client.c: kill dead code and fix missing static
+	  declaration.
+
+2007-05-25 10:33  aj
+
+	* trunk/src/ifd/sys-linux.c: first implementation of ccid
+	  detection.
+
+2007-05-25 08:40  aj
+
+	* trunk/src/ifd/usb-descriptors.c: try patch to detect cyberjack
+	  readers by Kurt Jaeger (bug #15).
+
+2007-05-25 08:38  aj
+
+	* trunk/src/ifd/init.c, trunk/src/ifd/sys-bsd.c,
+	  trunk/src/ifd/sys-linux.c, trunk/src/ifd/sys-solaris.c,
+	  trunk/src/ifd/sys-sunray.c, trunk/src/tools/openct-control.c:
+	  add fall back to ccid driver.
+
+2007-05-25 08:25  aj
+
+	* trunk/etc/Info.plist, trunk/etc/openct.usermap: update other
+	  files to latest config.
+
+2007-05-25 08:16  aj
+
+	* trunk/etc/openct.conf.in, trunk/etc/openct.udev: add aladdin
+	  etoken NG, new version.
+
+2007-05-25 08:15  aj
+
+	* trunk/src/ifd/process.c: that function need a pointer to an
+	  unsigned int, not a size_t which might be bigger on amd64. also
+	  Bug 24 and gentoo bug 162427.
+
+2007-05-25 08:11  aj
+
+	* trunk/src/pcsc/Makefile.am, trunk/src/pcsc/ifdhandler.h,
+	  trunk/src/pcsc/pcsc.c: Bug: #25 remove our own version of
+	  ifdhandler.h and use the pcsc provided one. needs to be tested
+	  if this works on all plattforms. Add patch by Ludovic.
+
+2007-03-16 20:50  aj
+
+	* trunk/etc/openct.udev: improve openct udev rules - fix match,
+	  work around fast scheduler (e.g. rsdl).
+
+2007-02-22 08:48  aj
+
+	* trunk/etc/openct.conf.in: Add omnikey 1021, thanks to Antti
+	  Andreimann.
+
+2006-12-19 21:55  aj
+
+	* trunk/src/ifd/ifd-wbeiuu.c: rename to uint*, which seems to be
+	  the normal name in use everywhere else in the code (and does not
+	  cause problems on solaris 10).
+
+2006-12-19 21:49  aj
+
+	* trunk/src/ifd/ifd-cm4000.c: disable driver except on linux.
+
+2006-12-19 21:03  aj
+
+	* trunk/aclocal/pkg.m4, trunk/src/ifd/ifd-wbeiuu.c: use
+	  ascii/utf-8.
+
+2006-12-07 10:51  aj
+
+	* trunk/src/ifd/ifd-wbeiuu.c: don't compile in an unused funciton
+	  (kill warning).
+
+2006-12-07 10:50  aj
+
+	* trunk/src/ifd/ifd-ikey2k.c, trunk/src/ifd/ifd-ikey3k.c,
+	  trunk/src/ifd/sys-linux.c: index is a function in glibc
+	  <string.h>. use a different name to avoid confusion / shadowing.
+	* trunk/src/ifd/ifd-kaan.c: remove duplicate variable definition.
+
+2006-12-07 10:47  aj
+
+	* trunk/src/ifd/ifd-ccid.c: defined twice, one is enough.
+	* trunk/src/ifd/ifd-acr30u.c, trunk/src/ifd/ifd-cardman.c: index
+	  is a funciton in glibc <string.h>. lets use a different name to
+	  avoid confusion / shadowing.
+
+2006-12-07 10:42  aj
+
+	* trunk/src/ifd/usb.c: index is a function defined in glibc
+	  <string.h>. lets use a different name to avoid confusion /
+	  shadowing.
+
+2006-12-07 10:41  aj
+
+	* trunk/src/ifd/manager.c: index is a function in glibc
+	  <strings.h>. use a different name to avoid confusion / shadowing.
+
+2006-11-23 07:57  aj
+
+	* trunk/NEWS: fix typo.
+
+2006-11-23 07:28  aj
+
+	* trunk/NEWS: update news (oops, date was wrong).
+
+2006-11-23 07:27  aj
+
+	* trunk/src/ifd/pcmcia-block.c, trunk/src/ifd/pcmcia.c: add
+	  set_params to pcmia and pcmcia-block to get cm4000/cm4040 to
+	  work again.
+
+2006-11-22 21:10  aj
+
+	* trunk/etc/openct.conf.in: sort usb id's and add 02 micro reader
+	  (used in dell notebooks).
+
+2006-11-22 08:17  aj
+
+	* trunk/NEWS, trunk/configure.ac: create new version.
+
+2006-11-14 09:39  aj
+
+	* trunk/NEWS: document latest changes.
+
+2006-11-14 09:13  aj
+
+	* trunk/src/tools/openct-control.c: typedev isn't const of course.
+
+2006-11-14 09:12  aj
+
+	* trunk/src/ifd/usb.c: remove unused variable.
+
+2006-11-14 09:11  aj
+
+	* trunk/src/ifd/sys-bsd.c, trunk/src/ifd/sys-null.c,
+	  trunk/src/ifd/sys-osx.c, trunk/src/ifd/sys-solaris.c,
+	  trunk/src/ifd/sys-sunray.c: ad mising usb_reset implementtions.
+	  unfortunatly solaris and bsd don't know how to do that, I'm told.
+
+2006-11-14 09:10  aj
+
+	* trunk/src/ifd/sys-linux.c: fix small bug.
+
+2006-11-11 17:02  aj
+
+	* trunk/NEWS, trunk/configure.ac: update version and NEWS.
+
+2006-11-05 22:47  aj
+
+	* trunk/NEWS, trunk/src/ifd/internal.h, trunk/src/ifd/sys-linux.c,
+	  trunk/src/ifd/usb.c: add usb reset patch by andrey jivsov.
+
+2006-11-05 22:45  aj
+
+	* trunk/etc/openct.udev: revert SUBSYSTEMS to BUS as most people
+	  have a udev that doesn't know about the new name.
+
+2006-11-02 07:56  aj
+
+	* trunk/src/ifd/ifd-wbeiuu.c: fix from freebsd cvs.
+
+2006-11-02 07:48  aj
+
+	* trunk/NEWS: document latest changes.
+
+2006-11-02 07:47  aj
+
+	* trunk/src/ifd/ifd-egate.c: improved reset logic for egate -
+	  improvements by Chaskiel, Bugs by Andreas :)
+
+2006-11-02 07:46  aj
+
+	* trunk/src/ifd/utils.c: include string.h in utils.c (Dann Frazier)
+	* trunk/etc/openct.udev: fix BUS="pcmcia" bug. rename BUS to
+	  SUBSYSTEMS (as does udev).
+
+2006-09-24 13:59  aj
+
+	* trunk/NEWS: and update NEWS.
+	* trunk/src/ifd/sys-bsd.c: fix bsd support, thanks to Markus
+	  Schatzl.
+
+2006-09-22 20:53  aj
+
+	* trunk/NEWS, trunk/etc/Makefile.am: ouch, stupid bug in the
+	  Makefile. Thanks to Ville for finding and fixing.
+
+2006-09-20 19:18  aj
+
+	* trunk/configure.ac: trunk now after 0.6.9 release.
+
+2006-09-20 19:17  aj
+
+	* trunk/NEWS: document latest news.
+	* trunk/etc/openct.hald.in: convert hald file to new style too.
+	* trunk/etc/openct.conf.in: add comment what this device is.
+
+2006-09-13 07:06  aj
+
+	* trunk/src/ifd/device.c, trunk/src/ifd/internal.h,
+	  trunk/src/ifd/serial.c, trunk/src/ifd/sys-bsd.c,
+	  trunk/src/ifd/sys-linux.c, trunk/src/ifd/sys-null.c,
+	  trunk/src/ifd/sys-osx.c, trunk/src/ifd/sys-solaris.c,
+	  trunk/src/ifd/sys-sunray.c: remove device guessing and identify
+	  code (no longer used / needed / was not ever used anyway).
+
+2006-09-12 23:21  aj
+
+	* trunk/NEWS, trunk/etc/openct_pcmcia.in,
+	  trunk/etc/openct_serial.in, trunk/etc/openct_usb.in,
+	  trunk/src/ifd/ifdhandler.c, trunk/src/ifd/reader.c,
+	  trunk/src/ifd/sys-bsd.c, trunk/src/ifd/sys-linux.c,
+	  trunk/src/ifd/sys-solaris.c, trunk/src/ifd/sys-sunray.c,
+	  trunk/src/ifd/utils.c, trunk/src/tools/openct-control.c: cleanup
+	  the parameters to ifdhandler and openct-control attach. include
+	  type of the device in these parameters. do not drop the type if
+	  already known. this change requires the updated hotplug files.
+
+2006-09-12 21:45  aj
+
+	* trunk/NEWS, trunk/src/ifd/ifd-acr30u.c,
+	  trunk/src/ifd/ifd-cm4000.c, trunk/src/ifd/ifd-egate.c,
+	  trunk/src/ifd/ifd-etoken.c, trunk/src/ifd/ifd-etoken64.c,
+	  trunk/src/ifd/ifd-eutron.c, trunk/src/ifd/ifd-ikey2k.c,
+	  trunk/src/ifd/ifd-ikey3k.c, trunk/src/ifd/ifd-kaan.c,
+	  trunk/src/ifd/ifd-starkey.c, trunk/src/ifd/ifd-wbeiuu.c,
+	  trunk/src/ifd/usb.c: replace global claim_interface with per
+	  driver set_parameter call.
+
+2006-09-12 21:44  aj
+
+	* trunk/etc/Makefile.am: fix typo in makefile.
+
+2006-09-12 16:23  aj
+
+	* trunk/etc/hotplug.openct.in, trunk/etc/openct_pcmcia.in,
+	  trunk/etc/openct_serial.in, trunk/etc/openct_usb.in: new scripts
+	  for udev or hotplug.
+
+2006-09-12 16:21  aj
+
+	* trunk/NEWS, trunk/etc/Makefile.am, trunk/etc/openct.conf.in,
+	  trunk/etc/openct.udev, trunk/src/ifd/ifd-ccid.c: ifd-ccid fix by
+	  Chaskiel, add more ids for ccid, move towards udev.
+
+2006-08-30 12:08  aj
+
+	* trunk/src/ifd/ifd-egate.c: add some delays for the new egate
+	  tokens.
+
+2006-07-28 19:53  nils
+
+	* trunk/src/ct/socket.c: properly initialize header_t structure
+
+2006-06-16 17:36  aj
+
+	* trunk/configure.ac: trunk is post 0.6.8.
+
+2006-06-16 17:34  aj
+
+	* trunk/src/ct/socket.c: not handling EINTR caused many real world
+	  problems. fix it.
+
+2006-06-13 07:10  aj
+
+	* trunk/src/ifd/sys-bsd.c: add workaround to get openbsd working.
+	  Thanks to Markus Schatzl for the patch.
+
+2006-05-23 06:52  aj
+
+	* trunk/src/ifd/ifd-wbeiuu.c: Updated driver by Juan Carlos
+	  Borras. Still not 100% working, but a lot closer.
+
+2006-05-15 21:40  aj
+
+	* trunk/etc/openct.conf.in: fix typo.
+
+2006-05-01 09:59  aj
+
+	* trunk/src/ct/path.c: fix OPENCT_SOCKETDIR for solaris
+
+2006-04-26 13:19  aj
+
+	* trunk/etc/openct.udev: fix udev rule for CCID smart card readers.
+
+2006-04-25 21:54  aj
+
+	* trunk/src/ifd/ifd-pertosmart1038.c: fix a potential segfault.
+	* trunk/src/ifd/ifdproxy.c: memeory leak in error handling.
+
+2006-04-25 21:53  aj
+
+	* trunk/src/ifd/ifd-eutron.c: close memory leak.
+
+2006-04-25 21:52  aj
+
+	* trunk/src/ifd/ifdhandler.c: use signed value.
+
+2006-04-25 21:51  aj
+
+	* trunk/src/ctapi/ctapi.c: remove unused value.
+
+2006-04-25 21:50  aj
+
+	* trunk/src/ct/status.c: use unsigned parameter.
+	* trunk/src/include/openct/openct.h: parameter needs to be
+	  unsigned (so we can specify -1 for "any").
+
+2006-04-25 08:54  aj
+
+	* trunk/configure.ac: this tree is for development past 0.6.7
+
+2006-04-25 08:53  aj
+
+	* trunk/configure.ac, trunk/etc/Info.plist: improved bundle
+	  handling.
+
+2006-04-25 08:10  aj
+
+	* trunk/src/ifd/ifdhandler.c: ct_format_path needs opt_reader as
+	  argument, and the resulting path needs to be used in
+	  ct_socket_listen.
+
+2006-04-24 20:57  aj
+
+	* trunk/src/ct/socket.c, trunk/src/ifd/ifdhandler.c,
+	  trunk/src/ifd/ifdproxy.c, trunk/src/ifd/ria.c,
+	  trunk/src/ifd/sys-linux.c, trunk/src/ifd/sys-solaris.c,
+	  trunk/src/ifd/sys-sunray.c, trunk/src/include/openct/socket.h:
+	  use limits.h where necessary. convert reader(int) to path in
+	  ifdhandler, not ct_socket_listen. use ct_format_path also in
+	  ifdproxy code. fix solaris compile (thanks to William Wanders).
+
+2006-04-24 20:54  aj
+
+	* trunk/src/ct/path.c, trunk/src/include/openct/path.h: last
+	  argument of ct_format_path is never changed.
+
+2006-04-24 19:49  aj
+
+	* trunk/src/ifd/ria.c: fix invalid use of ct_socket_connect,
+	  reported by ludovic rousseau.
+
+2006-04-24 09:59  ludovic.rousseau
+
+	* trunk/src/ifd/ifd-starkey.c: starkey_card_reset(): remove two
+	  unused variables
+
+2006-04-24 09:58  ludovic.rousseau
+
+	* trunk/src/ifd/ifd-pertosmart1038.c: ps_card_status(): initialize
+	  stat structure before using is to avoid a "may be used
+	  uninitialized in this function" compiler warning
+
+2006-04-24 09:54  ludovic.rousseau
+
+	* trunk/src/ifd/ifd-ccid.c: ccid_open_usb(): initialize ccid
+	  structure to avoid "may be used uninitialized in this function"
+	  compiler warnings
+
+2006-04-24 09:50  ludovic.rousseau
+
+	* trunk/src/ct/status.c: ct_status_unlock(): the function is of
+	  type void so we can't return NULL, use return instead
+
+2006-04-24 09:47  ludovic.rousseau
+
+	* trunk/src/ct/path.c: add #include <stdlib.h> so that getenv() is
+	  correctly defined (avoid 3 compiler warnings)
+
+2006-04-21 06:33  aj
+
+	* trunk/NEWS: updated news file.
+
+2006-04-20 07:31  aj
+
+	* trunk/etc/openct.conf.in, trunk/etc/openct.udev,
+	  trunk/etc/openct.usermap, trunk/src/ifd/Makefile.am,
+	  trunk/src/ifd/ifd-wbeiuu.c, trunk/src/ifd/init.c,
+	  trunk/src/ifd/internal.h: Add driver for WB Electronics'
+	  Infinity USB Unlimited card readers by Juan Carlos Borrás
+
+2006-04-19 15:42  aj
+
+	* trunk/src/ifd/internal.h, trunk/src/ifd/sys-bsd.c,
+	  trunk/src/ifd/sys-linux.c, trunk/src/ifd/sys-null.c,
+	  trunk/src/ifd/sys-osx.c, trunk/src/ifd/sys-solaris.c,
+	  trunk/src/ifd/sys-sunray.c, trunk/src/ifd/usb.c: new locking
+	  strategy: claim the control interface so only one process will
+	  be able to use any usb device at any give time.
+
+2006-04-18 16:04  aj
+
+	* trunk/etc/reader.conf.in: add reader.conf.in file as template
+	  for a pcsc-lite reader.conf file.
+
+2006-04-18 15:12  aj
+
+	* trunk/etc/Makefile.am: add example reader.conf file for
+	  pcsc-lite.
+	* trunk/etc/openct.conf.in: add id for cherry smartboard ccid
+	  readers.
+
+2006-04-18 15:11  aj
+
+	* trunk/src/ct/status.c: reverse change: enable error messages
+	  when looking for status file - no error messages confused a lot
+	  of users.
+
+2006-04-18 14:38  aj
+
+	* trunk/src/ifd/atr.c, trunk/src/ifd/atr.h,
+	  trunk/src/ifd/ifd-eutron.c, trunk/src/ifd/internal.h,
+	  trunk/src/ifd/proto-t1.c: improvements by Chaskiel Grundman to
+	  add support for more eutron versions.
+
+2006-04-18 11:11  aj
+
+	* trunk/etc/openct.udev: ouch, most lines did not end in \".
+
+2006-04-17 18:38  aj
+
+	* trunk/src/ct/client.c, trunk/src/ct/path.c,
+	  trunk/src/ct/socket.c: fix segfault (oops). improve error
+	  checking.
+
+2006-04-17 17:13  aj
+
+	* trunk/etc/hotplug.openct.in, trunk/etc/init-script.in: add more
+	  comments for better useability.
+
+2006-04-17 17:11  aj
+
+	* trunk/src/ifd/ifd-pertosmart1038.c: Carlos Henrique Bauer: adds
+	  debug messages filtering to the PertoSmart/ACR AC-1038 driver
+	  and fixes a bug for ps_get_status() not returning correctly the
+	  flag IFD_CARD_STATUS_CHANGED.
+
+2006-04-17 17:10  aj
+
+	* trunk/src/ifd/ifd-pertosmart1030.c: Carlos Henrique Bauer: add
+	  debug messages filtering to the PertoSmart/ACR AC-1030 driver.
+
+2006-04-17 16:17  aj
+
+	* trunk/src/ct/Makefile.am, trunk/src/ct/client.c,
+	  trunk/src/ct/path.c, trunk/src/ct/socket.c,
+	  trunk/src/ct/status.c, trunk/src/ifd/ifdhandler.c,
+	  trunk/src/include/openct/Makefile.am,
+	  trunk/src/include/openct/path.h,
+	  trunk/src/include/openct/socket.h: put path handling into one
+	  central place. allow setting OPENCT_SOCKETDIR environment to
+	  choose a different place.
+
+2006-04-12 08:00  aj
+
+	* trunk/src/ifd/utils.c: Andrey Jivsov found this bug: "%" is
+	  bogus, the function should return time elapsed in miliseconds...
+
+2006-03-19 22:35  aj
+
+	* trunk/src/ifd/atr.c, trunk/src/ifd/atr.h,
+	  trunk/src/ifd/ifd-ccid.c: Chaskiel Grundman: This patch fixes
+	  some broken PTS behavior that resulted from two misconceptions
+	  that I had about PTS: 1) that the PTS response from the card
+	  must be an exact reflection of the request in order to be
+	  considered successful. 7816-3 says that the card may refuse the
+	  PTS1 byte by sending a response that doesn't include PTS1. 2)
+	  that the PTS2 byte was an N (guard time) value. PTS2 is in fact
+	  a coded-value, of which only the low 2 bits are defined. The
+	  patch adds a new function, ifd_verify_pts, that validates a pts
+	  response according to the pts request that would have been sent
+	  for a given atr_info. it clears the TA1 field from the atr_info
+	  if PTS1 was refused by the card.
+
+2006-03-19 21:44  aj
+
+	* trunk/etc/openct.udev: fix typo, this needs to be one long line,
+	  not two.
+	* trunk/etc/hotplug.openct.in, trunk/etc/init-script.in,
+	  trunk/etc/openct.hald.in: init script: mkdir /var/run/openct, as
+	  some distributions use a tmpfs for /var/run and the directory
+	  can vanish over reboots. hald: we s/SBINDIR/.../, not @SBINDIR@
+	  ... hotplug: make it work with udev and /dev/bus/usb device
+	  files.
+
+2006-03-16 21:56  aj
+
+	* trunk/src/ifd/init.c: proper sorting. (only for readability)
+
+2006-03-16 21:53  aj
+
+	* trunk/configure.ac, trunk/src/ifd/sys-linux.c: openct does not
+	  compile on some plattforms with header file issues. fix this -
+	  as suggested by usb kernel good greg KH - by including all
+	  necessary definitions in the source code.
+
+2006-03-16 21:36  aj
+
+	* trunk/configure.ac: simply the revision, drop the m4 code. it
+	  didn't turn out the way I wanted it (does not contain the
+	  _repository_/_branch_ revision).
+
+2006-03-14 21:43  aj
+
+	* trunk/NEWS, trunk/src/ifd/ifd-kaan.c: improved Siemens B1 driver
+	  by Lorenz Knauer
+
+2006-02-27 22:03  aj
+
+	* trunk/src/ifd/ifd-pertosmart1030.c: a) driver not claiming a USB
+	  interface before using it. b) driver not being able to receive
+	  data from the reader. by Carlos Henrique Bauer
+
+2006-02-27 21:57  aj
+
+	* trunk/src/ifd/ifd-pertosmart1038.c: This patch fixes a problem
+	  with the pertosmart1038 driver not being able to receive data
+	  from reader. By Carlos Henrique Bauer.
+
+2006-02-27 21:55  aj
+
+	* trunk/src/ifd/sys-linux.c: fix ifd_sysdep_device_type() always
+	  failing for USB devices in Linux. Thanks to Carlos Henrique
+	  Bauer and Nicola Franchi.
+
+2006-02-15 08:46  aj
+
+	* trunk/src/ifd/ifd-ccid.c: List of problems fixed: * Fixed
+	  interface search algorithm (was buggy for interface > 0) * Fixed
+	  a double free when no suitable device descriptors are found *
+	  Enabled status polling (instead of interrupt) for USB devices
+	  that don't have an interrupt endpoint (such as this keyboard) *
+	  Do not set device configuration if the device has only one
+	  configuration available (fixes kernel warnings and EBUSY on some
+	  HCI-s on Linux). by Antti Andreimann
+
+2006-02-15 08:45  aj
+
+	* trunk/etc/openct.conf.in: add new ids reported by Antti
+	  Andreimann
+
+2006-02-09 19:45  aj
+
+	* trunk/LGPL-2.1, trunk/Makefile.am: add LGPL-2.1 to distribution
+	  tar file.
+
+2006-02-09 19:37  aj
+
+	* trunk/NEWS: clarify license change.
+
+2006-02-09 19:34  aj
+
+	* trunk/NEWS: update news for new driver.
+
+2006-02-09 19:33  aj
+
+	* trunk/src/ifd/Makefile.am, trunk/src/ifd/ifd-smph.c,
+	  trunk/src/ifd/init.c, trunk/src/ifd/internal.h: Add
+	  Phoenix/SmartMouse drier by Antoine Nguyen
+	  <nguyen.antoine@wanadoo.fr> Based on Alexandre Becoulet SCTK
+	  project (http://freshmeat.net/projects/sctk/).
+
+2006-01-22 21:13  aj
+
+	* trunk/etc/Info.plist: fix url to opensc-project for now and
+	  mention OpenCT, not OpenSC.
+
+2006-01-22 21:05  aj
+
+	* trunk/doc/README, trunk/doc/export-wiki.sh: moved to
+	  opensc-project till dns for opensc.org is back.
+
+2006-01-14 17:38  aj
+
+	* trunk/etc/Makefile.am, trunk/etc/openct.conf.in,
+	  trunk/etc/openct.hald.in, trunk/etc/openct.udev: add a script
+	  for hald and a config file for udev. add starkey token.
+
+2006-01-14 17:36  aj
+
+	* trunk/etc/openct.usermap: add starkey driver.
+	* trunk/src/ifd/Makefile.am, trunk/src/ifd/ifd-starkey.c,
+	  trunk/src/ifd/init.c: add starkey driver. doesn't work yet (but
+	  you can get an atr!).
+
+2006-01-14 17:35  aj
+
+	* trunk/src/ifd/sys-linux.c: try /dev/bus/usb/* first, fallback to
+	  /proc/bus/usb as usual.
+	* trunk/src/ifd/sys-bsd.c: at least on some bsd the file is called
+	  /dev/ugen0.00 for control transfers. strange, control transfer
+	  is no endpoint AFAIK.
+
+2005-12-26 22:57  aj
+
+	* trunk/configure.ac: add "-svn-rXXXX" with svn revision as
+	  version number. thanks to werner koch.
+
+2005-12-15 14:19  aj
+
+	* trunk/etc/openct.usermap: add line for spr 532 readers - they
+	  have at least with some firmware the wrong interface class and
+	  were thus not properly detected.
+
+2005-12-02 21:19  aj
+
+	* trunk/src/ifd/usb-descriptors.c: add some paranoia: after free
+	  change values to NULL.
+
+2005-12-02 21:18  aj
+
+	* trunk/src/ifd/ifd-pertosmart1038.c: more cleanups and better
+	  error handling.
+
+2005-12-02 21:17  aj
+
+	* trunk/src/ifd/ifd-pertosmart1030.c: fix signedness issue,
+	  improve error handling.
+
+2005-12-02 21:15  aj
+
+	* trunk/src/ifd/ifd-ccid.c: remove double free.
+
+2005-12-01 21:34  aj
+
+	* trunk/src/ifd/ifd-pertosmart1038.c: remove "const" of course.
+
+2005-12-01 21:19  aj
+
+	* trunk/src/ifd/ifd-pertosmart1038.c: declarations first, then
+	  code.
+
+2005-12-01 21:17  aj
+
+	* trunk/src/ifd/ifd-pertosmart1030.c,
+	  trunk/src/ifd/ifd-pertosmart1038.c: fix small bugs introduced in
+	  the cleanup.
+
+2005-12-01 21:00  aj
+
+	* trunk/src/ifd/ifd-pertosmart1038.c: start cleaning up this code,
+	  too.
+
+2005-12-01 20:44  aj
+
+	* trunk/src/ifd/ifd-pertosmart1030.c: more cleanups to make it
+	  more readable.
+
+2005-12-01 20:33  aj
+
+	* trunk/src/ifd/ifd-pertosmart1030.c: swap if argument, reduce
+	  empty lines, remove unneeded brace to make code easier to read
+	  and understand.
+
+2005-12-01 20:10  aj
+
+	* trunk/src/ifd/ifd-ikey2k.c: keep some dead code in case we
+	  change that define.
+
+2005-12-01 20:09  aj
+
+	* trunk/src/ifd/init.c: proper cleanup in case of an error.
+	* trunk/src/ifd/ctbcs.c: we checked it is not null. remove dead
+	  code.
+
+2005-12-01 20:08  aj
+
+	* trunk/src/ct/socket.c: check if prev is null. don't check it
+	  later, after it was already dereferenced.
+
+2005-12-01 20:05  aj
+
+	* trunk/src/ctapi/ctapi.c: remove some dead code, and handle
+	  size!=0 with an error.
+
+2005-12-01 19:59  aj
+
+	* trunk/src/ifd/ifd-pertosmart1030.c,
+	  trunk/src/ifd/ifd-pertosmart1038.c: Lident pertosmart drivers.
+	* trunk/src/ifd/ifd-acr30u.c: Lident acr30u.
+	* trunk/src/ifd/ifd-ccid.c: Lindent ifd-ccid.
+
+2005-12-01 19:58  aj
+
+	* trunk/src/ifd/ifd-cm4000.c, trunk/src/ifd/ifd-etoken.c,
+	  trunk/src/ifd/ifd-etoken64.c, trunk/src/ifd/ifd-eutron.c,
+	  trunk/src/ifd/ifd-ikey2k.c, trunk/src/ifd/ifd-ikey3k.c,
+	  trunk/src/ifd/ifd-towitoko.c, trunk/src/ifd/ifdproxy.c: small
+	  Lindent changes.
+
+2005-12-01 19:56  aj
+
+	* trunk/src/ifd/conf.c, trunk/src/ifd/driver.c,
+	  trunk/src/ifd/ifdhandler.c, trunk/src/ifd/init.c,
+	  trunk/src/ifd/pcmcia-block.c, trunk/src/ifd/proto-gbp.c,
+	  trunk/src/ifd/proto-sync.c, trunk/src/ifd/proto-t1.c,
+	  trunk/src/ifd/sys-null.c, trunk/src/ifd/sys-osx.c,
+	  trunk/src/ifd/sys-solaris.c, trunk/src/ifd/usb-descriptors.c:
+	  Lindent these files.
+
+2005-12-01 19:51  aj
+
+	* trunk/src/pcsc/pcsc.c: Lindent'ed.
+
+2005-11-01 22:56  aj
+
+	* trunk/src/ifd/sys-bsd.c, trunk/src/ifd/sys-null.c:
+	  debian/freebsd has FreeBSD_kernel defined.
+
+2005-10-13 18:49  aj
+
+	* trunk/src/ifd/ifd-pertosmart1038.c: add pertosmart 1038 driver.
+
+2005-10-13 07:04  aj
+
+	* trunk/etc/openct.conf.in, trunk/etc/openct.usermap,
+	  trunk/src/ifd/Makefile.am, trunk/src/ifd/init.c,
+	  trunk/src/ifd/internal.h: new driver by Carlos Henrique Bauer
+	  <carlos.bauer@smartcon.com.br> for ACS AC-1038 chipset
+	  (PertoSmart EMV and ACS ACR38U).
+
+2005-09-23 15:44  aj
+
+	* trunk/aclocal/Makefile.am: list all current macro packages.
+	* trunk/src/ctapi/ctapi.h, trunk/src/ifd/cardman.h,
+	  trunk/src/ifd/ifd-ccid.c, trunk/src/ifd/ifd-cm4000.c,
+	  trunk/src/ifd/ifd-kaan.c, trunk/src/ifd/ifd-pertosmart1030.c,
+	  trunk/src/ifd/ifd-towitoko.c, trunk/src/ifd/ria.h,
+	  trunk/src/tools/openct-tool.c: silence warnings about extra ","
+	  and "//" style comments.
+
+2005-09-20 20:46  aj
+
+	* trunk/src/ifd/ifd-ccid.c: - accept the "proprietary" interface
+	  class id and class descriptors tagged as proprietary for the
+	  following devices (list derived from
+	  <http://svn.debian.org/wsvn/pcsclite/trunk/Drivers/ccid/readers>)
+	  { 0x04e6, 0xe003 }, /* SCM SPR 532 */ { 0x046a, 0x003e }, /*
+	  Cherry SmartTerminal ST-2XXX */ { 0x413c, 0x2100 }, /* Dell USB
+	  Smartcard Keyboard */ { 0x04e6, 0x5120 }, /* SCM SCR331-DI (NTT)
+	  */ { 0x04e6, 0x5111 }, /* SCM SCR331-DI */ { 0x08e6, 0x1359 },
+	  /* Verisign secure storage token */ { 0x08e6, 0xACE0 }, /*
+	  Verisign secure token */ - remove the need for struct
+	  usb_ccid_descriptor to be packed - check the slot/sequence of a
+	  ccid bulk-in message before the error code. (this is not
+	  sufficient to support multi-slot readers correctly, but it's a
+	  step in the right direction)
+
+2005-09-20 07:30  aj
+
+	* trunk/aclocal/libtool.m4: including libtool.m4 was a bad idea
+	  and causes trouble.
+
+2005-09-20 07:19  aj
+
+	* trunk/src/include/openct/apdu.h,
+	  trunk/src/include/openct/device.h,
+	  trunk/src/include/openct/ifd.h,
+	  trunk/src/include/openct/openct.h: remove trailing commas.
+
+2005-09-17 09:54  aj
+
+	* trunk/src/ifd/process.c: timeout parameter is optional.
+
+2005-09-16 17:17  aj
+
+	* trunk/src/ifd/ifdhandler.c: Following patch should allow
+	  clean(er) shutdown of ifdhandler process. By Priit Randla
+
+2005-09-16 14:15  aj
+
+	* trunk/doc/changelog.sh, trunk/doc/export-wiki.sh: xsltproc
+	  without network connections.
+
+2005-09-14 09:49  ludovic.rousseau
+
+	* trunk/doc/export-wiki.sh: use -nv instead of --non-verbose since
+	  wget 1.10 now uses --no-verbose instead. Grr!
+
+2005-09-13 10:14  aj
+
+	* trunk/src/ct/client.c, trunk/src/ifd/process.c,
+	  trunk/src/include/openct/tlv.h: fix error handling, thanks to
+	  Priit for reporting the issue.
+
+2005-09-13 10:13  aj
+
+	* trunk/doc/Makefile.am: remove ChangeLog on "make
+	  maintainer-clean".
+
+2005-09-11 19:16  aj
+
+	* trunk/doc/changelog.sh: oops, too much copy&paste.
+
+2005-09-11 18:09  aj
+
+	* trunk/src/pcsc/Makefile.am: install bundle file only when
+	  activated.
+	* trunk/src/ifd/Makefile.am: configure changes caused variable
+	  names to change.
+
+2005-09-11 18:08  aj
+
+	* trunk/NEWS, trunk/configure.ac: use pkg-config for finding
+	  pcsc-lite and libusb. same pcsc code as opensc.
+	* trunk/doc/Makefile.am, trunk/doc/changelog.sh,
+	  trunk/doc/svn2cl.xsl: add svn2cl based changelog.
+
+2005-09-11 17:34  aj
+
+	* trunk/ANNOUNCE, trunk/Makefile.am: remove ANNOUNCE file - we
+	  don't use it anyway or always forget about it.
+
+2005-09-11 09:59  aj
+
+	* trunk/NEWS: updates done in 0.6.6 release.
+
+2005-09-09 12:10  aj
+
+	* trunk/src/ifd/sys-osx.c: null implementation, to be filled with
+	  mac os X specific code.
+
+2005-09-09 12:01  aj
+
+	* trunk/src/pcsc/ifdhandler.h: LPSTR is deprecated, use LPTSTR.
+	* trunk/src/ifd/ifd-pertosmart1030.c: kill two signed warnings.
+	  (ugly?)
+
+2005-09-09 12:00  aj
+
+	* trunk/src/ifd/Makefile.am, trunk/src/ifd/sys-null.c: add missing
+	  function to null sys module. create a mac os X sys module
+	  (currently also null code).
+
+2005-09-08 17:21  aj
+
+	* trunk/src/ifd/Makefile.am: we use libtool for linking, so it can
+	  calucalte the dependencies using LTLIBLTDL better. Thanks to
+	  Ralf Wildenhues.
+
+2005-09-08 17:06  aj
+
+	* trunk/configure.ac: fix AC_MSG_ERROR usage. thanks to Ralf
+	  Wildenhues.
+
+2005-09-08 17:01  aj
+
+	* trunk/src/ifd/Makefile.am, trunk/src/pcsc/Makefile.am:
+	  AC_SUBSTed variables are better used with $(..). Thanks to Ralf
+	  Wildenhues.
+
+2005-09-08 16:52  aj
+
+	* trunk/Makefile.am, trunk/bootstrap: aclocal -I aclocal/ (as
+	  suggested by Ralf Wildenhues)
+
+2005-09-05 19:12  aj
+
+	* trunk/configure.ac: fail if ltdl.h is not available.
+
+2005-09-05 19:11  aj
+
+	* trunk/aclocal/lib-ld.m4, trunk/aclocal/lib-link.m4,
+	  trunk/aclocal/lib-prefix.m4, trunk/aclocal/libtool.m4,
+	  trunk/aclocal/pkg.m4: add / update all m4 macro packages we use.
+
+2005-09-05 18:53  aj
+
+	* trunk/configure.ac: improved ltdl check.
+
+2005-09-05 18:51  aj
+
+	* trunk/ANNOUNCE, trunk/NEWS, trunk/TODO: small documentation
+	  update.
+	* trunk/src/ifd/ifd-cm4000.c, trunk/src/ifd/pcmcia-block.c:
+	  variables not used.
+
+2005-09-05 18:50  aj
+
+	* trunk/src/ifd/init.c: return 1 (error).
+
+2005-09-05 18:49  aj
+
+	* trunk/src/ifd/ifd-acr30u.c: variable not used.
+	* trunk/src/ifd/ifd-pertosmart1030.c: too much debug info.
+
+2005-09-05 18:37  aj
+
+	* trunk/etc/openct.conf.in, trunk/etc/openct.usermap:
+	  carlos.bauer: Add new USB ID (072f:8009) to pertosmart1030
+	  driver.
+
+2005-09-05 06:45  ludovic.rousseau
+
+	* trunk/doc/export-wiki.sh: make export-wiki.sh executable
+
+2005-09-04 11:31  aj
+
+	* trunk/etc/openct.conf.in: add cm4040 reader.
+
+2005-09-04 11:30  aj
+
+	* trunk/src/ifd/ifd-ccid.c: The changes to ifd-ccid.c are: 1) make
+	  usb config descriptor parsing conditional to USB 2) add
+	  initialization for PCMCIA variant 3) Only ask for 10 bytes when
+	  issuing CCID_CMD_GETSLOTSTAT (which is fixed size of 10 bytes
+	  according to ccid spec 1.00a anyway) adds support for omnikey
+	  4040 devices.
+
+2005-09-04 11:28  aj
+
+	* trunk/src/ifd/Makefile.am, trunk/src/ifd/internal.h: add pcmcia
+	  block device type.
+
+2005-09-04 11:27  aj
+
+	* trunk/src/ifd/device.c, trunk/src/ifd/pcmcia-block.c: add pcmcia
+	  block device type.
+	* trunk/src/include/openct/device.h: add pcmcia block type.
+
+2005-09-03 22:39  aj
+
+	* trunk/src/ifd/ifd-cm4000.c: Patch by Harald Welte: - cleans up
+	  some unused code from ifd-cm4000.c - adds card_status detection
+	  - fixes CM_IOCGATR ioctl on 64bit platforms (don't use numeric
+	  value)
+
+2005-09-03 10:02  aj
+
+	* trunk/src/tools/openct-tool.c: adds a new "-s" option to specify
+	  the slot number. By Harald Welte
+
+2005-09-02 16:43  aj
+
+	* trunk/Makefile.am, trunk/doc/Makefile.am: that didn't work
+	  either. new idea.
+
+2005-09-02 09:51  aj
+
+	* trunk/Makefile.am: "doc" does not work well, it is the
+	  subdirectory name.
+
+2005-09-02 09:29  aj
+
+	* trunk/Makefile.am: dist-hook: is too late, need to generate the
+	  documentation before automake "make dist" copied files around.
+
+2005-09-01 20:15  aj
+
+	* trunk/configure.ac, trunk/src/ifd/Makefile.am: use the macro
+	  (from gettext package) to link via libltdl.la. That should take
+	  care of dependencies, but maybe it does not?
+	* trunk/doc/README: add a word on regenerating those files.
+
+2005-09-01 15:17  aj
+
+	* trunk/doc/Makefile.am, trunk/doc/trac.css: proper cleanup on
+	  documentation.
+
+2005-09-01 14:59  aj
+
+	* trunk/doc/api: remove api/ subdir, to get generate-api.sh script
+	  work better.
+
+2005-09-01 13:58  aj
+
+	* trunk/Makefile.am, trunk/api, trunk/bootstrap,
+	  trunk/configure.ac, trunk/doc/AuthorsAndCredits.html,
+	  trunk/doc/ContactInfo.html, trunk/doc/DriverApi.html,
+	  trunk/doc/FilesTools.html, trunk/doc/LicenseText.html,
+	  trunk/doc/MailingLists.html, trunk/doc/Makefile.am,
+	  trunk/doc/OperatingSystems.html, trunk/doc/OverView.html,
+	  trunk/doc/QuickStart.html, trunk/doc/RemoteAccess.html,
+	  trunk/doc/ResourcesLinks.html, trunk/doc/SecureSetup.html,
+	  trunk/doc/TroubleShooting.html, trunk/doc/api,
+	  trunk/doc/cardman.html, trunk/doc/ccid.html,
+	  trunk/doc/doxygen.conf.in, trunk/doc/egate.html,
+	  trunk/doc/etoken.html, trunk/doc/eutron.html,
+	  trunk/doc/export-wiki.sh, trunk/doc/gempc.html,
+	  trunk/doc/generate-api.sh, trunk/doc/ikey2032.html,
+	  trunk/doc/ikey3000.html, trunk/doc/index.html,
+	  trunk/doc/kaan.html, trunk/doc/pertosmart1030.html,
+	  trunk/doc/smartboard.html, trunk/doc/towitoko.html,
+	  trunk/src/ifd/Makefile.am: * big documentation update. remove
+	  generated documentation from svn. * create documentation on
+	  "make dist" * do not include libltdl, instead us and require an
+	  installed one.
+
+2005-08-28 21:38  aj
+
+	* trunk/api, trunk/api/Makefile.am, trunk/api/README,
+	  trunk/api/doxygen.conf, trunk/api/html,
+	  trunk/api/html/annotated.html,
+	  trunk/api/html/apdu_8h-source.html,
+	  trunk/api/html/buffer_8h-source.html,
+	  trunk/api/html/conf_8h-source.html,
+	  trunk/api/html/device_8h-source.html,
+	  trunk/api/html/dir_000000.html, trunk/api/html/dir_000001.html,
+	  trunk/api/html/dir_000002.html, trunk/api/html/dirs.html,
+	  trunk/api/html/doxygen.css, trunk/api/html/doxygen.png,
+	  trunk/api/html/driver_8h-source.html,
+	  trunk/api/html/driver_8h.html,
+	  trunk/api/html/error_8h-source.html, trunk/api/html/files.html,
+	  trunk/api/html/functions.html,
+	  trunk/api/html/functions_vars.html,
+	  trunk/api/html/ifd_8h-source.html, trunk/api/html/index.html,
+	  trunk/api/html/logging_8h-source.html,
+	  trunk/api/html/openct_8h-source.html,
+	  trunk/api/html/protocol_8h-source.html,
+	  trunk/api/html/server_8h-source.html,
+	  trunk/api/html/socket_8h-source.html,
+	  trunk/api/html/structifd__driver__ops.html,
+	  trunk/api/html/tlv_8h-source.html: add api documentation.
+
+2005-08-28 21:08  aj
+
+	* trunk/Makefile.am, trunk/configure.ac, trunk/src/ifd/driver.c,
+	  trunk/src/include/openct/driver.h: add initial doxygen
+	  documentation by Laurent Pinchart
+
+2005-08-23 23:05  aj
+
+	* trunk/src/ifd/ifdhandler.c: oops, fix typo.
+
+2005-08-23 23:01  aj
+
+	* trunk/NEWS: comment changes in openct since 0.6.5 so far.
+
+2005-08-23 22:54  aj
+
+	* trunk/doc/DriverApi.html, trunk/doc/Makefile.am,
+	  trunk/doc/index.html: documentation update.
+
+2005-08-23 18:44  aj
+
+	* trunk/Makefile.am, trunk/bootstrap, trunk/configure.ac,
+	  trunk/src/Makefile.am, trunk/src/ifd/Makefile.am,
+	  trunk/src/ifd/init.c, trunk/src/ifd/modules.c, trunk/src/scdl:
+	  use libltdl instead of scdl.
+
+2005-08-23 18:41  aj
+
+	* trunk/src/ifd/Makefile.am: do not install libifd - only meant to
+	  use some code in two appliactions.
+
+2005-08-17 19:10  aj
+
+	* trunk/doc/MailingLists.html, trunk/doc/Makefile.am,
+	  trunk/doc/OperatingSystems.html, trunk/doc/OverView.html,
+	  trunk/doc/RecentResults.html, trunk/doc/ResourcesLinks.html,
+	  trunk/doc/SupportedReaders.html, trunk/doc/cardman.html,
+	  trunk/doc/index.html, trunk/doc/pertosmart1030.html:
+	  documentation update.
+
+2005-07-20 08:37  aj
+
+	* trunk/src/ifd/Makefile.am: also compile in acr30u driver.
+
+2005-07-19 20:38  aj
+
+	* trunk/doc/AuthorsAndCredits.html, trunk/doc/etoken.html: small
+	  updates from current wiki.
+
+2005-07-19 18:41  aj
+
+	* trunk/src/ifd/ifd-acr30u.c, trunk/src/ifd/init.c,
+	  trunk/src/ifd/internal.h: add acr30u driver by Laurent Pinchart.
+
+2005-07-19 18:39  aj
+
+	* trunk/src/ifd/device.c, trunk/src/ifd/reader.c: fix situation in
+	  case device name is NULL. patch by Laurent Pinchart.
+
+2005-07-18 22:56  aj
+
+	* trunk/doc/AuthorsAndCredits.html, trunk/doc/ContactInfo.html,
+	  trunk/doc/FilesTools.html, trunk/doc/LicenseText.html,
+	  trunk/doc/OperatingSystems.html, trunk/doc/QuickStart.html,
+	  trunk/doc/RecentResults.html, trunk/doc/RemoteAccess.html,
+	  trunk/doc/SecureSetup.html, trunk/doc/SupportedReaders.html,
+	  trunk/doc/TroubleShooting.html, trunk/doc/cardman.html,
+	  trunk/doc/ccid.html, trunk/doc/egate.html,
+	  trunk/doc/etoken.html, trunk/doc/eutron.html,
+	  trunk/doc/export-wiki.sh, trunk/doc/gempc.html,
+	  trunk/doc/ikey2032.html, trunk/doc/ikey3000.html,
+	  trunk/doc/index.html, trunk/doc/kaan.html,
+	  trunk/doc/pertosmart1030.html, trunk/doc/smartboard.html,
+	  trunk/doc/towitoko.html: replace with current wiki files.
+
+2005-07-18 22:51  aj
+
+	* trunk/etc/openct.conf.in, trunk/etc/openct.usermap: add new
+	  drivers.
+
+2005-07-18 22:50  aj
+
+	* trunk/src/ifd/Makefile.am, trunk/src/ifd/ifd-etoken64.c,
+	  trunk/src/ifd/init.c, trunk/src/ifd/internal.h: add etoken64
+	  driver.
+
+2005-07-18 22:47  aj
+
+	* trunk/src/ifd/Makefile.am, trunk/src/ifd/ifd-pertosmart1030.c,
+	  trunk/src/ifd/init.c, trunk/src/ifd/internal.h: add pertosmart
+	  ac1030 driver.
+
+2005-07-12 14:58  martin
+
+	* trunk/doc/export-wiki.sh: Use xsltproc instead of xalan.
+
+2005-06-16 19:38  aj
+
+	* trunk/etc/openct.conf.in, trunk/solaris/openct.conf-dist,
+	  trunk/src/pcsc/pcsc.c: "smart card" not "SmartCard" or
+	  "smartcard".
+
+2005-06-15 20:45  aj
+
+	* trunk/etc/hotplug.openct.in: race found in kernel usb/hotplug
+	  interaction. sleep 1 helps a lot.
+
+2005-06-03 20:28  aj
+
+	* trunk/src/ifd/atr.c, trunk/src/ifd/atr.h: accept more
+	  parameters, e.g. estonian id card.
+
+2005-05-29 19:39  aj
+
+	* trunk/src/ctapi/ctapi.c, trunk/src/ifd/conf.c,
+	  trunk/src/ifd/driver.c, trunk/src/ifd/ifd-cm4000.c,
+	  trunk/src/ifd/ifd-etoken.c, trunk/src/ifd/ifd-eutron.c,
+	  trunk/src/ifd/ifd-gempc.c, trunk/src/ifd/ifd-ikey2k.c,
+	  trunk/src/ifd/ifd-ikey3k.c, trunk/src/ifd/ifd-towitoko.c,
+	  trunk/src/ifd/internal.h, trunk/src/ifd/pcmcia.c,
+	  trunk/src/ifd/proto-gbp.c, trunk/src/ifd/proto-sync.c,
+	  trunk/src/ifd/sys-bsd.c, trunk/src/ifd/sys-linux.c,
+	  trunk/src/ifd/sys-solaris.c, trunk/src/ifd/sys-sunray.c,
+	  trunk/src/include/openct/driver.h: many small compile fixes plus
+	  code/indent improvements, silenting warnings etc.
+
+2005-05-29 17:48  aj
+
+	* trunk/src/ifd/ria.c: timeout is always at least
+	  RIA_DEFAULT_TIMEOUT, so it cannot be = 0 or < 0 ...
+
+2005-05-29 17:43  aj
+
+	* trunk/src/ctapi/ctapi.c: if (size) or if (size != NULL), but for
+	  sake of readability: please don't use if (size != (size_t *) 0)
+	  ...
+
+2005-05-29 17:35  aj
+
+	* trunk/src/tools/openct-control.c: handle out of memory.
+
+2005-05-29 17:34  aj
+
+	* trunk/src/ctapi/ctapi.c: don't access structures after freeing
+	  them.
+
+2005-05-29 17:29  aj
+
+	* trunk/src/ifd/atr.c: info structure has int TA[3], i.e. 0..2 is
+	  valid as index, 3 is not.
+
+2005-05-29 16:30  aj
+
+	* trunk/src/ifd/conf.c, trunk/src/ifd/device.c,
+	  trunk/src/ifd/driver.c, trunk/src/ifd/ifd-cardman.c,
+	  trunk/src/ifd/ifd-ccid.c, trunk/src/ifd/ifd-cm4000.c,
+	  trunk/src/ifd/ifd-gempc.c, trunk/src/ifd/ifd-kaan.c,
+	  trunk/src/ifd/locks.c, trunk/src/ifd/protocol.c,
+	  trunk/src/ifd/ria-server.c, trunk/src/ifd/ria.c,
+	  trunk/src/ifd/sys-bsd.c, trunk/src/ifd/sys-linux.c,
+	  trunk/src/ifd/sys-solaris.c, trunk/src/ifd/sys-sunray.c,
+	  trunk/src/ifd/usb-descriptors.c: add/fix/unify out of memory
+	  handling.
+
+2005-05-29 13:49  aj
+
+	* trunk/src/ifd/reader.c: one more calloc check, one more check
+	  for NULL.
+
+2005-05-29 13:45  aj
+
+	* trunk/src/ifd/ifd-eutron.c: error on a too long atr, accept more
+	  than 4 bytes as atr complete.
+
+2005-05-29 13:38  aj
+
+	* trunk/src/ifd/ifd-towitoko.c: buffer needs to be TWT_PAGESIZE +2
+	  (header, body, footer).
+
+2005-05-29 13:35  aj
+
+	* trunk/src/ifd/ifdhandler.c, trunk/src/ifd/ifdproxy.c,
+	  trunk/src/ifd/init.c: fix a few unhandled out of memory
+	  situations.
+
+2005-05-29 13:29  aj
+
+	* trunk/src/ifd/ifdhandler.c: make device argument mandatory.
+
+2005-05-29 13:15  aj
+
+	* trunk/src/ifd/ifd-cm4000.c: len was not initialized, guess this
+	  fixes it.
+
+2005-05-29 13:09  aj
+
+	* trunk/src/tools/openct-control.c, trunk/src/tools/openct-tool.c:
+	  Lindent for consistent style
+
+2005-05-29 13:08  aj
+
+	* trunk/src/scdl/scdl.c: Lindent for consistent style
+
+2005-05-29 13:06  aj
+
+	* trunk/src/pcsc/pcsc.c: Lindent for consistent style
+
+2005-05-29 13:05  aj
+
+	* trunk/src/ifd/ifd-cm4000.c, trunk/src/ifd/ifd-egate.c,
+	  trunk/src/ifd/ifd-etoken.c, trunk/src/ifd/ifd-eutron.c,
+	  trunk/src/ifd/ifd-gempc.c, trunk/src/ifd/ifd-ikey2k.c,
+	  trunk/src/ifd/ifd-ikey3k.c, trunk/src/ifd/ifd-kaan.c,
+	  trunk/src/ifd/ifd-smartboard.c, trunk/src/ifd/ifd-towitoko.c:
+	  Lindent for consistent style
+
+2005-05-29 13:02  aj
+
+	* trunk/src/ifd/serial.c: Lindent for consistent style
+
+2005-05-29 13:00  aj
+
+	* trunk/src/ifd/ifdhandler.c, trunk/src/ifd/ifdhandler.h,
+	  trunk/src/ifd/ifdproxy.c, trunk/src/ifd/init.c,
+	  trunk/src/ifd/internal.h: Lindent for consistent style
+
+2005-05-29 12:54  aj
+
+	* trunk/src/ifd/locks.c, trunk/src/ifd/manager.c,
+	  trunk/src/ifd/modules.c: Lindent for consistent style
+
+2005-05-29 12:53  aj
+
+	* trunk/src/ifd/pcmcia.c, trunk/src/ifd/process.c,
+	  trunk/src/ifd/proto-gbp.c, trunk/src/ifd/proto-sync.c,
+	  trunk/src/ifd/proto-t0.c, trunk/src/ifd/proto-t1.c,
+	  trunk/src/ifd/proto-trans.c, trunk/src/ifd/protocol.c: Lindent
+	  for consistent style
+
+2005-05-29 12:50  aj
+
+	* trunk/src/ifd/reader.c, trunk/src/ifd/ria-device.c,
+	  trunk/src/ifd/ria-server.c, trunk/src/ifd/ria.c,
+	  trunk/src/ifd/ria.h: Lindent for consistent style
+
+2005-05-29 12:48  aj
+
+	* trunk/src/ifd/sys-bsd.c, trunk/src/ifd/sys-linux.c,
+	  trunk/src/ifd/sys-null.c, trunk/src/ifd/sys-solaris.c,
+	  trunk/src/ifd/sys-sunray.c: Lindent for common style, and reduce
+	  nesting in some functions to keep the code indent'able and make
+	  it easier to read.
+
+2005-05-29 12:26  aj
+
+	* trunk/src/ifd/usb-descriptors.c,
+	  trunk/src/ifd/usb-descriptors.h, trunk/src/ifd/usb.c: Lindent
+	  for consistent style
+
+2005-05-29 12:21  aj
+
+	* trunk/src/ifd/utils.c: Lindent for consistent style
+
+2005-05-29 12:20  aj
+
+	* trunk/src/ifd/ifd-cardman.c: Lindent for consistent style
+
+2005-05-29 11:37  aj
+
+	* trunk/src/ifd/device.c, trunk/src/ifd/driver.c: Lindent for
+	  consistent style
+
+2005-05-29 11:36  aj
+
+	* trunk/src/ifd/apdu.c, trunk/src/ifd/atr.c, trunk/src/ifd/atr.h,
+	  trunk/src/ifd/cardman.h, trunk/src/ifd/checksum.c,
+	  trunk/src/ifd/conf.c, trunk/src/ifd/ctbcs.c,
+	  trunk/src/ifd/ctbcs.h: Lindent for consistent style
+
+2005-05-29 11:08  aj
+
+	* trunk/src/ctapi/ctapi.c, trunk/src/ctapi/ctapi.h: Lindent for
+	  consistent style.
+
+2005-05-29 11:05  aj
+
+	* trunk/src/ct/buffer.c, trunk/src/ct/client.c,
+	  trunk/src/ct/error.c, trunk/src/ct/mainloop.c,
+	  trunk/src/ct/socket.c, trunk/src/ct/status.c,
+	  trunk/src/ct/tlv.c: Lindent for consistent style.
+
+2005-05-16 20:40  aj
+
+	* trunk/configure.ac: change back to WIP for snapshot script.
+
+2005-05-16 20:22  aj
+
+	* trunk/NEWS, trunk/configure.ac: release openct 0.6.5 without
+	  changes.
+
+2005-05-16 20:21  aj
+
+	* trunk/doc/ccid.html: minimal documentation update.
+
+2005-05-10 20:24  aj
+
+	* trunk/configure.ac: change version string back to WIP for the
+	  nightly snapshots script.
+
+2005-05-10 20:16  aj
+
+	* trunk/Makefile.am: reflect changes in solaris/.
+
+2005-05-10 20:10  aj
+
+	* trunk/src/ifd/sys-linux.c: open is defined in fcntl.h
+
+2005-05-10 20:04  aj
+
+	* trunk/AUTHORS, trunk/ChangeLog, trunk/LICENSE,
+	  trunk/Makefile.am, trunk/NEWS, trunk/QUICKSTART, trunk/README,
+	  trunk/configure.ac: remove text documentation where it
+	  duplicates html documentation. create new release.
+
+2005-05-10 20:01  aj
+
+	* trunk/doc/AuthorsAndCredits.html, trunk/doc/FilesTools.html,
+	  trunk/doc/LicenseText.html, trunk/doc/Makefile.am,
+	  trunk/doc/OperatingSystems.html, trunk/doc/QuickStart.html,
+	  trunk/doc/README, trunk/doc/RecentResults.html,
+	  trunk/doc/RemoteAccess.html, trunk/doc/SecureSetup.html,
+	  trunk/doc/SupportedReaders.html, trunk/doc/TroubleShooting.html,
+	  trunk/doc/cardman.html, trunk/doc/ccid.html,
+	  trunk/doc/egate.html, trunk/doc/etoken.html,
+	  trunk/doc/eutron.html, trunk/doc/export-wiki.sh,
+	  trunk/doc/export-wiki.xsl, trunk/doc/gempc.html,
+	  trunk/doc/ikey2032.html, trunk/doc/ikey3000.html,
+	  trunk/doc/index.html, trunk/doc/kaan.html, trunk/doc/openct.css,
+	  trunk/doc/smartboard.html, trunk/doc/towitoko.html,
+	  trunk/doc/trac.css: add new documentation based on a wiki
+	  snapshot.
+
+2005-05-10 19:53  aj
+
+	* trunk/doc/Makefile.am, trunk/doc/README,
+	  trunk/doc/export-wiki.sh, trunk/doc/export-wiki.xsl: add new
+	  documentation based on wiki export.
+
+2005-05-10 19:51  aj
+
+	* trunk/doc/openct.html, trunk/doc/openct.xml,
+	  trunk/doc/openct.xsl: remove old xml/html documentation.
+
+2005-05-10 19:45  aj
+
+	* trunk/src/ifd/usb.c: first claim interface, then configure it.
+
+2005-05-05 22:37  aj
+
+	* trunk/solaris/Makefile, trunk/solaris/Makefile.client,
+	  trunk/solaris/Makefile.server, trunk/solaris/README,
+	  trunk/solaris/openct.conf-dist: William Wanders: client/server
+	  support for solaris sunray machines.
+
+2005-05-05 22:35  aj
+
+	* trunk/src/ifd/sys-sunray.c: William Wanders: Add support for
+	  sunray machines.
+
+2005-05-05 22:33  aj
+
+	* trunk/solaris/Makefile: William Wanders: updated support files
+	  to build and create packages for Solaris 9/10
+	* trunk/src/ifd/Makefile.am, trunk/src/ifd/ifdhandler.c,
+	  trunk/src/ifd/internal.h, trunk/src/ifd/sys-bsd.c,
+	  trunk/src/ifd/sys-linux.c, trunk/src/ifd/sys-solaris.c,
+	  trunk/src/ifd/usb-descriptors.c, trunk/src/ifd/usb.c: William
+	  Wander: moved usb_open to the system dependant files
+
+2005-05-05 22:31  aj
+
+	* trunk/src/ct/client.c, trunk/src/ct/status.c: William Wanders:
+	  use different paths for sunray support.
+
+2005-05-05 22:30  aj
+
+	* trunk/configure.ac: William Wanders: add configure options for
+	  sunray.
+
+2005-05-05 09:10  aj
+
+	* trunk/aclocal/pkg.m4: avoids a warning from aclocal >= 1.8 when
+	  bootstrapping. (Ville Skytta)
+	* trunk/configure.ac, trunk/src/tools/Makefile.am,
+	  trunk/src/tools/openct-tool.1.in: -man.patch contains a very
+	  rudimentary manual page for openct-tool. I intend to expand it
+	  somewhat in the future, and create manual pages for other tools
+	  in OpenCT as well. (Ville Skytta)
+
+2005-05-05 09:08  aj
+
+	* trunk/src/ifd/ifdhandler.c, trunk/src/ifd/ifdproxy.c:
+	  -usage.patch prints the usage to stdout if there's no error.
+	  This was mainly inspired so that one can use help2man on the
+	  OpenCT tools, but I think it's ok to have anyway. (Ville Skytta)
+	* trunk/src/tools/openct-control.c, trunk/src/tools/openct-tool.c:
+	  usage.patch prints the usage to stdout if there's no error. This
+	  was mainly inspired so that one can use help2man on the OpenCT
+	  tools, but I think it's ok to have anyway. Also carries one
+	  trivial grammar fix. (Ville Skytta)
+
+2005-04-29 22:10  aj
+
+	* trunk/src/ifd/ifdhandler.c: Ville Skytta: adds docs for "-i" to
+	  "ifdhandler -h".
+	* trunk/etc/openct.conf.in: Ville Skytta: add a sample commented
+	  out config snippet for gempc.
+
+2005-04-26 19:43  aj
+
+	* trunk/etc/openct.conf.in: Ville Skytta: an example cm4000
+	  configuration snippet, commented out by default due to the
+	  driver not being quite ready for real use yet.
+	* trunk/src/ifd/ifd-cardman.c, trunk/src/ifd/ifd-cm4000.c: Ville
+	  Skytta: cardman-strings.patch contains various cosmetic comment
+	  and string improvements to the cardman and cm4000 drivers.
+
+2005-04-26 19:42  aj
+
+	* trunk/etc/Info.plist, trunk/etc/openct.conf.in,
+	  trunk/etc/openct.usermap: Ville Skytta: comments out the orignal
+	  "cardman" driver entries in the default configs. It also adds
+	  CardMan 3121 and 5121 strings to Info.plist which enables
+	  pcsc-lite hotplug for them.
+
+2005-04-26 09:11  aj
+
+	* trunk/NEWS: 0.6.4 was released yesterday, add changes we did to
+	  0.6.5 do far.
+
+2005-04-25 21:01  aj
+
+	* trunk/configure.ac: move back to "WIP" for the snapshot script.
+
+2005-04-25 20:52  aj
+
+	* trunk/etc/openct.conf.in, trunk/src/ifd/Makefile.am,
+	  trunk/src/ifd/cardman.h, trunk/src/ifd/ifd-cm4000.c,
+	  trunk/src/ifd/init.c: add cardman support.
+
+2005-04-25 20:50  aj
+
+	* trunk/src/ifd/device.c, trunk/src/ifd/pcmcia.c: add pcmcia
+	  support (by Harald Welte)
+
+2005-04-25 20:49  aj
+
+	* trunk/src/ifd/ifd-ccid.c, trunk/src/include/openct/device.h:
+	  make usb endpoint configureable (by Harald Welte)
+
+2005-04-25 20:44  aj
+
+	* trunk/configure.ac: create new release candidate.
+
+2005-04-25 20:19  aj
+
+	* trunk/ANNOUNCE, trunk/configure.ac: New version of openct: 0.6.4.
+
+2005-04-17 20:15  aj
+
+	* trunk/configure.ac: change back to "WIP" for the snapshot script.
+
+2005-04-17 20:05  aj
+
+	* trunk/NEWS, trunk/configure.ac: create new release candidate
+	  with the libtool fix from ville.
+
+2005-04-17 20:03  aj
+
+	* trunk/macos/libtool-bundle: Description by ville.skytta@iki.fi:
+	  Cosmetic: Installing the lib contained in the bundle as
+	  "openct-ifd" without the usual shared library suffix is slightly
+	  misleading. Will attach a patch which preserves the filename and
+	  installs it as "openct-ifd.so" (on Linux) which is what I'd
+	  expect a shared lib / loadable module to be named like.
+
+2005-04-12 20:45  aj
+
+	* trunk/configure.ac: set the version to "WIP" (work in progress)
+	  for the snapshot script.
+
+2005-04-07 07:12  aj
+
+	* trunk/Makefile.am, trunk/NEWS: Add solaris/ files to relase tar
+	  file. (via main makefile.am, because of solaris/Makefile)
+
+2005-04-07 07:05  aj
+
+	* trunk/configure.ac: create a second rc without the proto t=1
+	  changes.
+
+2005-04-07 07:04  aj
+
+	* trunk/src/ifd/proto-t1.c: reverse proto-t1 changes for now, will
+	  be added once we have this release out of the door.
+
+2005-03-29 07:28  aj
+
+	* trunk/solaris, trunk/solaris/Makefile, trunk/solaris/README,
+	  trunk/solaris/checkinstall.in,
+	  trunk/solaris/devices-openct-fabric.xml-dist,
+	  trunk/solaris/openct-fabric-dist,
+	  trunk/solaris/openct-hotplug-dist,
+	  trunk/solaris/openct.conf-dist, trunk/solaris/pkginfo.in,
+	  trunk/solaris/postinstall, trunk/solaris/preremove,
+	  trunk/solaris/proto: Add files to make using openct on solaris
+	  easier.
+
+2005-03-22 09:23  aj
+
+	* trunk/NEWS, trunk/configure.ac: document changes in news,
+	  increase library version.
+
+2005-03-22 08:39  aj
+
+	* trunk/etc/Makefile.am: only gnu sed spits the file to stdout.
+	  *bsd sed wants < file I think.
+
+2005-03-22 08:16  aj
+
+	* trunk/src/ifd/ifd-ccid.c: From: William Wanders
+	  <william@wanders.org> The first patch fixes an alignment problem
+	  I encountered with the SUN C Pro compiler and ifd-ccid.c.
+
+2005-03-22 08:15  aj
+
+	* trunk/NEWS, trunk/src/ifd/sys-solaris.c: From: William Wanders
+	  <william@wanders.org> The second patch enhances the
+	  sys-solaris.c with support for bulk and interrupt endpoint
+	  transfers. Well just enough to get the CCID driver going.
+
+2005-03-22 08:11  aj
+
+	* trunk/NEWS, trunk/src/ifd/sys-bsd.c: Attached is a patch for
+	  sys-bsd.c which should add enough bulk and interrupt endpoint
+	  support for the CCID driver. Hotplugging doesn't really work
+	  that well. Polling the existence of a device through thru the
+	  ugen driver doesn't seem to have the aimed effect.
+
+2005-03-22 08:10  aj
+
+	* trunk/src/ifd/Attic: remove the Attic directory with files left
+	  from the cvs2svn conversion.
+
+2005-03-22 08:09  aj
+
+	* trunk/debian: remove old debian files, so eric can add the
+	  current version (which is complete independend, so a diff'ed
+	  merge wouldn't be of any help).
+
+2005-03-22 08:08  aj
+
+	* trunk/.cvsignore, trunk/aclocal/.cvsignore,
+	  trunk/doc/.cvsignore, trunk/etc/.cvsignore,
+	  trunk/macos/.cvsignore, trunk/src/.cvsignore,
+	  trunk/src/ct/.cvsignore, trunk/src/ctapi/.cvsignore,
+	  trunk/src/ifd/.cvsignore, trunk/src/include/.cvsignore,
+	  trunk/src/include/openct/.cvsignore, trunk/src/pcsc/.cvsignore,
+	  trunk/src/scdl/.cvsignore, trunk/src/tools/.cvsignore: remove
+	  .cvsignore files.
+
+2005-03-22 08:07  aj
+
+	* trunk/ANNOUNCE, trunk/NEWS, trunk/QUICKSTART, trunk/TODO,
+	  trunk/configure.ac: merge changes from 0.6.3 release.
+
+2005-03-07 10:52  aet
+
+	* trunk/configure.ac: - Merge with opensc
+
+2005-02-11 20:43  aet
+
+	* trunk/configure.ac: - Merge between opensc / openct
+
+2005-01-29 10:51  aet
+
+	* trunk/configure.ac: - Show package version when configure is
+	  finished
+
+2005-01-29 10:43  aet
+
+	* trunk/src/ifd/ifd-ccid.c: - ccid update by Chaskiel M Grundman
+	  <cg2v@andrew.cmu.edu> with some cleanups
+
+2005-01-29 09:12  aet
+
+	* trunk/Makefile.am: - Require automake 1.5 or later
+
+2005-01-23 10:14  aet
+
+	* trunk/aclocal/Makefile.am, trunk/aclocal/pkg.m4: - Add pkg.m4
+	  for pkg-config depencies
+
+2005-01-16 19:21  aet
+
+	* trunk/TODO: - Update
+
+2005-01-16 19:20  aet
+
+	* trunk/src/ifd/internal.h: - Add void *dev to complement
+	  ifd_device and future driver support.
+
+2005-01-16 15:44  aet
+
+	* trunk/src/ct/socket.c, trunk/src/ct/status.c: - Silence harmless
+	  error/debug messages
+
+2004-12-15 18:18  aet
+
+	* trunk/configure.ac: - Merge with opensc
+
+2004-12-15 13:57  aet
+
+	* trunk/ANNOUNCE, trunk/NEWS, trunk/QUICKSTART: - Preparations for
+	  the next release
+
+2004-12-15 13:52  aet
+
+	* trunk/src/ctapi/ctapi.c: - C++ build fix
+
+2004-12-15 10:58  aet
+
+	* trunk/src/ctapi/ctapi.c, trunk/src/ifd/ifdproxy.c,
+	  trunk/src/ifd/process.c: - Fix compiler warnings
+
+2004-12-05 17:47  aj
+
+	* trunk/configure.ac, trunk/src/ifd/ifdhandler.c,
+	  trunk/src/ifd/ifdproxy.c, trunk/src/tools/openct-control.c,
+	  trunk/src/tools/openct-tool.c: add version to tools.
+
+2004-11-11 19:52  aj
+
+	* trunk/src/ifd/device.c, trunk/src/ifd/ifd-smartboard.c,
+	  trunk/src/ifd/ifdproxy.c, trunk/src/ifd/internal.h,
+	  trunk/src/ifd/ria-device.c, trunk/src/ifd/ria-server.c,
+	  trunk/src/ifd/ria.c, trunk/src/ifd/ria.h,
+	  trunk/src/ifd/serial.c, trunk/src/include/openct/device.h: Priit
+	  Randla writes: A couple of fixes, an additional RIA command and
+	  an API change to specify time for sending break. As
+	  ifd_serial_send_break was used in ifd-smartboard.c, I had to
+	  make a change there too.
+
+2004-11-10 09:43  aj
+
+	* trunk/src/ct/socket.c: slen needs to be set, else getpeername
+	  cannot work.
+
+2004-11-08 23:07  aj
+
+	* trunk/src/ctapi/ctapi.c: Improved command checking by Priit
+	  Randla.
+
+2004-11-05 18:28  aj
+
+	* trunk/src/ifd/reader.c: bug fix by Priit Randla.
+
+2004-11-04 22:19  aj
+
+	* trunk/src/ct/client.c, trunk/src/ctapi/ctapi.c,
+	  trunk/src/ctapi/ctapi.h, trunk/src/ifd/process.c,
+	  trunk/src/include/openct/openct.h,
+	  trunk/src/include/openct/protocol.h, trunk/src/pcsc/pcsc.c:
+	  implement protocol selection. by Priit Randla
+
+2004-10-31 15:33  aj
+
+	* trunk/src/ifd/ifd-egate.c: allow 4 bytes commands as well.
+
+2004-10-31 11:27  aj
+
+	* trunk/etc/hotplug.openct.in: fix test command.
+
+2004-10-25 06:41  aj
+
+	* trunk/src/ifd/atr.c: Allow TA4, bug found by Priit Randla.
+
+2004-10-17 21:43  aj
+
+	* trunk/src/ifd/ifd-egate.c, trunk/src/ifd/process.c: increase
+	  reply buffer to 258 bytes and add proper error handling to
+	  ifd-egate. both by Chaskiel M Grundman.
+
+2004-08-31 20:44  aj
+
+	* trunk/etc/Info.plist: Here's a simple patch to make eToken (the
+	  older one) hotplug work with pcsc-lite using OpenCT's driver
+	  bundle. (Ville Skytt&#65533;)
+
+2004-08-06 07:18  nils
+
+	* trunk/src/ifd/usb-descriptors.c: add missing host endian
+	  conversion patch supplied by William Wanders
+	  <william@wanders.org>
+
+2004-08-06 07:15  nils
+
+	* trunk/src/ifd/ifd-kaan.c: fix compiler warning patch supplied by
+	  William Wanders <william@wanders.org>
+
+2004-07-20 21:03  aj
+
+	* trunk/Makefile.am, trunk/QUICKSTART: Add some minimal text
+	  documentation for now.
+
+2004-07-20 20:48  aj
+
+	* trunk/ANNOUNCE, trunk/LICENSE, trunk/NEWS, trunk/TODO: updated
+	  text files.
+
+2004-07-20 00:47  aj
+
+	* trunk/src/ifd/proto-t1.c, trunk/src/include/openct/ifd.h: t=1
+	  protocol improvements by ludovic rousseau
+
+2004-07-20 00:46  aj
+
+	* trunk/configure.ac: Better placement of info text for old
+	  configure test.
+
+2004-07-20 00:43  aj
+
+	* trunk/src/ifd/ifdhandler.c: check if a full packet has been
+	  received or not (i.e. differ return code 0 / 1, not only < 0).
+
+2004-07-20 00:19  aj
+
+	* trunk/src/ct/socket.c: fix protocol bug triggered by egate. for
+	  some reason the ifdhandler sends two responses, first an ok,
+	  then an error. we ignore the second one, because the xid does
+	  not match.
+
+2004-07-19 21:12  aj
+
+	* trunk/src/ifd/internal.h: fix type difference source / header.
+
+2004-07-19 21:05  aj
+
+	* trunk/etc/Makefile.am: change init script and hotplug script to
+	  mode 755. install hotplug files only if target directory is
+	  writeable.
+
+2004-07-19 21:02  aj
+
+	* trunk/configure.ac, trunk/src/ifd/Makefile.am,
+	  trunk/src/pcsc/Makefile.am: Try pkg-config detection, fall back
+	  to conventional code.
+
+2004-07-15 06:16  aet
+
+	* trunk/src/include/openct/Makefile.am: - Fixed the previous commit
+
+2004-07-14 21:54  aj
+
+	* trunk/etc/init-script.in: remove status file in the init script
+	  on stop.
+
+2004-07-14 21:26  aj
+
+	* trunk/src/include/openct/Makefile.am: Do not include types.h in
+	  distribution tar file, as it is generated by configure.
+	* trunk/doc/openct.html: get html documentation in sync with xml
+	  source.
+
+2004-07-09 21:09  aj
+
+	* trunk/etc/openct.usermap: Ville Skytt&#65533;: Remove duplicate CardMan
+	  2020 entry.
+	* trunk/doc/openct.xml: Ville Skytt&#65533;: import new openct.conf
+
+2004-07-09 21:08  aj
+
+	* trunk/src/pcsc/Makefile.am: Ville Skytt&#65533;: Create bundle dir
+	  before trying to install into it, do not mask installation
+	  failure.
+
+2004-07-09 19:25  aj
+
+	* trunk/src/ctapi/ctapi.c: This patch introduces host files to
+	  CTAPI. The implementation is not complete, but enough to compile
+	  and run code to read out German health insurance cards. It
+	  should not break existing code, but of course testing is
+	  encouraged. (fix by Michael Haardt)
+
+2004-06-30 21:06  aj
+
+	* trunk/doc/openct.html: html file update.
+
+2004-06-30 06:54  aj
+
+	* trunk/etc/hotplug.openct.in: Only start ifdhandler if already
+	  initialized / status file exists.
+
+2004-06-28 22:45  aj
+
+	* trunk/etc/openct.usermap: update usermap for usb hotplugging,
+	  too.
+
+2004-06-28 22:44  aj
+
+	* trunk/etc/openct.conf.in: additional id's found by Ville Skytt&#65533;
+
+2004-06-28 22:43  aj
+
+	* trunk/doc/openct.xml: small fixed by Ville Skytt&#65533;.
+
+2004-03-14 18:42  aet
+
+	* trunk/src/ifd/sys-bsd.c, trunk/src/ifd/sys-linux.c,
+	  trunk/src/ifd/sys-null.c, trunk/src/ifd/sys-solaris.c: -
+	  ifd_sysdep_usb_poll_presence cleanups
+
+2004-03-14 14:39  aet
+
+	* trunk/src/ifd/sys-bsd.c, trunk/src/ifd/sys-linux.c,
+	  trunk/src/ifd/sys-null.c, trunk/src/ifd/sys-solaris.c,
+	  trunk/src/ifd/usb.c: - Some merging and polishing before
+	  rewriting the USB layer - Add missing functions for BSD port -
+	  Fix incorrect return values
+
+2004-03-14 10:47  aet
+
+	* trunk/src/ifd/sys-bsd.c: - Untested build fixes for FreeBSD 5.2
+
+2004-03-04 10:08  aj
+
+	* trunk/src/ifd/ifd-kaan.c: small fix by Michael Haardt
+	  <michael@moria.de>
+
+2004-02-26 10:37  aj
+
+	* trunk/debian/README.Debian, trunk/debian/changelog,
+	  trunk/debian/control, trunk/debian/copyright,
+	  trunk/debian/libopenct0-dev.install,
+	  trunk/debian/libopenct0.install, trunk/debian/libopenct0.shlibs,
+	  trunk/debian/openct-dev.dirs, trunk/debian/openct-dev.files,
+	  trunk/debian/openct.README.Debian, trunk/debian/openct.dirs,
+	  trunk/debian/openct.doc-base.manual, trunk/debian/openct.docs,
+	  trunk/debian/openct.files, trunk/debian/openct.install,
+	  trunk/debian/openct.postinst, trunk/debian/rules: switch to eric
+	  dorlands debian/ files, those are used in the official debian
+	  packages. however a changelog for a current cvs snapshot was
+	  added, and maintainer set to Andreas Jellinghaus
+	  <aj@dungeon.inka.de>, so eric is not bothered with bugs in the
+	  cvs snapshot.
+
+2004-02-26 10:32  aj
+
+	* trunk/doc/openct.html: minimal update for changes in openct.xml.
+
+2004-01-27 09:06  okir
+
+	* trunk/src/ifd/process.c: - Patch to fix use of
+	  ifd_{read,write}_memory (Michael Haardt)
+
+2004-01-22 08:37  okir
+
+	* trunk/src/ifd/atr.c, trunk/src/ifd/ifd-ccid.c: - new CCID
+	  patches from Chaskiel
+
+2004-01-21 10:05  okir
+
+	* trunk/src/ct/error.c, trunk/src/include/openct/error.h: - added
+	  IFD_ERROR_INVALID_ATR
+
+2004-01-21 09:43  okir
+
+	* trunk/src/ifd/Makefile.am, trunk/src/ifd/atr.c,
+	  trunk/src/ifd/atr.h, trunk/src/ifd/protocol.c: - added code for
+	  ATR parsing and PTS string handling
+
+2004-01-20 12:43  aet
+
+	* trunk/src/ifd/ifd-ccid.c, trunk/src/ifd/ria-server.c,
+	  trunk/src/ifd/usb-descriptors.c,
+	  trunk/src/ifd/usb-descriptors.h, trunk/src/ifd/utils.c: - Minor
+	  warning fixes - Portability fixes
+
+2004-01-20 09:57  okir
+
+	* trunk/doc/openct.xml: - Added author notice on CCID driver
+
+2004-01-20 09:56  okir
+
+	* trunk/etc/openct.conf.in, trunk/etc/openct.usermap,
+	  trunk/src/ifd/Makefile.am, trunk/src/ifd/ifd-ccid.c,
+	  trunk/src/ifd/init.c, trunk/src/ifd/internal.h,
+	  trunk/src/ifd/sys-linux.c, trunk/src/ifd/usb-descriptors.c,
+	  trunk/src/ifd/usb-descriptors.h: - merged CCID driver from
+	  Chaskiel Grundmann
+
+2004-01-20 08:51  okir
+
+	* trunk/src/ifd/ifd-egate.c: - patch from Chaskiel to use symbolic
+	  names for constants
+	* trunk/src/ifd/protocol.c: - added ifd_debug() call
+
+2004-01-19 19:54  aet
+
+	* trunk/src/ifd/sys-bsd.c: - Add USB rewrite for FreeBSD by
+	  William Wanders
+
+2004-01-19 19:52  aet
+
+	* trunk/src/ifd/Makefile.am: - Revert previous patch
+
+2004-01-19 18:51  aj
+
+	* trunk/src/ifd/Makefile.am: make libifd not standalone, i.e. all
+	  tools and libs will link it staticaly.
+
+2004-01-19 18:50  aj
+
+	* trunk/debian/changelog: new debian packages...
+
+2004-01-14 21:41  aj
+
+	* trunk/src/ct/libopenct.pc.in: library dependencies for linking
+	  where missing from the pkgconfig file.
+
+2004-01-14 20:13  aj
+
+	* trunk/debian/changelog: recompiled debian packages.
+
+2004-01-11 12:47  aet
+
+	* trunk/src/ctapi/Makefile.am: - Revert previous patch
+
+2004-01-10 20:24  aet
+
+	* trunk/src/ctapi/Makefile.am: - Add versioning
+
+2004-01-10 19:49  aet
+
+	* trunk/configure.ac: - Move the variable substitution of
+	  exec_prefix and sysincludedir to make-level (Lars T. Mikkelsen)
+
+2004-01-08 23:25  aet
+
+	* trunk/src/ifd/sys-solaris.c: - Minor cleanups and a build fix
+	  for Sun's native compiler for Solaris, yet untested.
+
+2004-01-08 19:13  aj
+
+	* trunk/debian/openct.postinst, trunk/debian/openct.postrm,
+	  trunk/debian/openct.prerm, trunk/debian/rules: remove post/pre
+	  rm/inst scripts, as debhelper will create them. dh_initinstall
+	  --init-script=../etc/init-script -name openct does not work, so
+	  the script is copied to debian/openct.init and removed in clean.
+
+2004-01-08 12:37  aj
+
+	* trunk/doc/openct.html: thanks to William Wanders for
+	  contributing Solaris support.
+
+2004-01-08 12:36  aj
+
+	* trunk/debian/files, trunk/debian/openct-dev.substvars,
+	  trunk/debian/openct.postinst.debhelper,
+	  trunk/debian/openct.postrm.debhelper,
+	  trunk/debian/openct.substvars: oops. these are temporary files
+	  created by debian and removed by debian/rules clean. they
+	  shouldn't be in the cvs.
+
+2004-01-08 11:00  okir
+
+	* trunk/doc/openct.xml: - added william wanders as author of
+	  sys-solaris.c
+
+2004-01-08 10:53  okir
+
+	* trunk/src/ifd/internal.h, trunk/src/ifd/sys-linux.c,
+	  trunk/src/ifd/sys-null.c, trunk/src/ifd/usb.c: - created
+	  ifd_sysdep_usb_poll_presence and moved poll functionality there
+
+2004-01-08 10:52  okir
+
+	* trunk/src/ifd/Makefile.am, trunk/src/ifd/sys-solaris.c: -
+	  Solaris support from William Wanders
+
+2004-01-08 10:43  aj
+
+	* trunk/doc/openct.html: rendered with new docbook stylesheet.
+
+2004-01-08 10:20  aj
+
+	* trunk/debian, trunk/debian/README.Debian,
+	  trunk/debian/changelog, trunk/debian/compat,
+	  trunk/debian/control, trunk/debian/copyright,
+	  trunk/debian/files, trunk/debian/openct-dev.dirs,
+	  trunk/debian/openct-dev.files,
+	  trunk/debian/openct-dev.substvars, trunk/debian/openct.dirs,
+	  trunk/debian/openct.docs, trunk/debian/openct.files,
+	  trunk/debian/openct.postinst,
+	  trunk/debian/openct.postinst.debhelper,
+	  trunk/debian/openct.postrm,
+	  trunk/debian/openct.postrm.debhelper, trunk/debian/openct.prerm,
+	  trunk/debian/openct.substvars, trunk/debian/rules: files for
+	  creating debian packages. Unofficial versions.
+
+2004-01-06 12:59  okir
+
+	* trunk/src/ifd/ifd-cardman.c, trunk/src/ifd/internal.h,
+	  trunk/src/ifd/sys-linux.c, trunk/src/ifd/sys-null.c,
+	  trunk/src/ifd/usb.c, trunk/src/include/openct/device.h: - Merged
+	  USB enhancements from Chaskiel
+
+2004-01-06 12:39  okir
+
+	* trunk/src/ifd/ria-device.c, trunk/src/ifd/ria.c,
+	  trunk/src/ifd/ria.h: - fixed ria timeout handling
+
+2004-01-06 12:38  okir
+
+	* trunk/src/ifd/ifdproxy.c: - Fixed gcc warning
+
+2003-12-18 18:57  okir
+
+	* trunk/src/ifd/ifd-ikey2k.c: - yet another answer to card reset
+
+2003-12-12 09:32  aet
+
+	* trunk/src/pcsc/Makefile.am: - Minor bundle handling fixes
+
+2003-12-10 14:52  aet
+
+	* trunk/configure.ac, trunk/src/ifd/ifd-gempc.c: - Minor naming
+	  convention harmonisation for pc/sc and ct-api related things
+
+2003-12-09 19:37  aet
+
+	* trunk/aclocal/acx_pthread.m4: - Probe for -lpthread before
+	  -pthread, as we did in the previous version.
+
+2003-12-09 12:38  okir
+
+	* trunk/src/ifd/ifd-gempc.c, trunk/src/ifd/proto-gbp.c: - Merged
+	  patches from Chaskiel
+
+2003-12-09 12:13  okir
+
+	* trunk/src/ifd/ifdproxy.c: - added chroot support
+
+2003-12-09 12:12  okir
+
+	* trunk/src/ct/error.c: - chroot support - open syslog as early as
+	  possible; later may be too late
+
+2003-12-06 18:14  aet
+
+	* trunk/configure.ac, trunk/src/ifd/sys-linux.c: - Build fix
+	  against latest broken glibc usb headers
+
+2003-12-03 10:56  aet
+
+	* trunk/configure.ac: - Add AM_MAINTAINER_MODE
+
+2003-11-30 17:19  aet
+
+	* trunk/ChangeLog: - Fixed an embarrassing typo from the ChangeLog
+	  URL
+
+2003-11-27 09:51  okir
+
+	* trunk/src/ifd/ifdproxy.c, trunk/src/ifd/internal.h,
+	  trunk/src/ifd/utils.c: - moved daemon() to utils.c
+
+2003-11-27 09:45  okir
+
+	* trunk/src/ct/socket.c: - updated setsockopt(IPV6_IPV6ONLY)
+
+2003-11-26 21:22  aet
+
+	* trunk/configure.ac, trunk/src/ifd/ifdproxy.c: - Check for
+	  daemon(), add wrapper code
+
+2003-11-26 21:16  aet
+
+	* trunk/src/ifd/ria-server.c: - Remove duplicate #include
+	  openct/ifd.h
+
+2003-11-26 20:26  aet
+
+	* trunk/configure.ac, trunk/src/ct/socket.c,
+	  trunk/src/ifd/ria-device.c, trunk/src/ifd/ria.c,
+	  trunk/src/ifd/ria.h, trunk/src/include/openct/socket.h: - Some
+	  portability changes to the new socket code - Warning fixes
+
+2003-11-26 17:16  okir
+
+	* trunk/src/ct/socket.c: - dont use IPV6_V6ONLY if not defined
+
+2003-11-26 16:24  okir
+
+	* trunk/etc/openct.conf.in: - added section for ifdproxy
+
+2003-11-26 16:21  okir
+
+	* trunk/src/ifd/ifd-kaan.c, trunk/src/ifd/init.c,
+	  trunk/src/ifd/internal.h, trunk/src/ifd/proto-sync.c,
+	  trunk/src/include/openct/ifd.h: - Replace all phone card
+	  specific protocols with the eurochip protocol (patch from
+	  Michael Haardt)
+
+2003-11-26 16:17  okir
+
+	* trunk/src/ct/socket.c: - Endianness fix
+
+2003-11-26 16:11  okir
+
+	* trunk/src/pcsc/Makefile.am: - leftover patch from I don't know
+	  whom
+
+2003-11-26 16:10  okir
+
+	* trunk/src/ifd, trunk/src/ifd/.cvsignore,
+	  trunk/src/ifd/Makefile.am, trunk/src/ifd/device.c,
+	  trunk/src/ifd/ifdhandler.c, trunk/src/ifd/ifdproxy.c,
+	  trunk/src/ifd/internal.h, trunk/src/ifd/reader.c,
+	  trunk/src/ifd/ria-device.c, trunk/src/ifd/ria-server.c,
+	  trunk/src/ifd/ria.c, trunk/src/ifd/ria.h,
+	  trunk/src/ifd/serial.c: - Some changes in socket behavior -
+	  Added remote access to devices (for debugging)
+
+2003-11-26 16:09  okir
+
+	* trunk/src/ct/client.c, trunk/src/ct/mainloop.c,
+	  trunk/src/ct/socket.c, trunk/src/include/openct/server.h,
+	  trunk/src/include/openct/socket.h: - massive socket rewrite
+
+2003-11-26 15:59  okir
+
+	* trunk/src/include/openct/device.h: - added ifd_device_reset
+
+2003-11-26 15:57  okir
+
+	* trunk/src/ct/error.c, trunk/src/include/openct/error.h: - more
+	  error codes
+	* trunk/src/ct/buffer.c: - Added ct_buf_push - ct_buf_put now
+	  compacts the buffer if needed
+
+2003-11-26 15:56  okir
+
+	* trunk/src/include/openct/buffer.h: - added ct_buf_push
+
+2003-11-26 15:55  okir
+
+	* trunk/src/ifd/ifd-towitoko.c: - fixed typo - better return codes
+
+2003-11-25 13:38  aet
+
+	* trunk/ANNOUNCE: - Fixed a typo
+
+2003-11-24 18:05  aet
+
+	* trunk/NEWS: - Set release date
+
+2003-11-23 20:57  aet
+
+	* trunk/src/ifd/Makefile.am: - Add prefix ifd- for all actual
+	  reader driver source files
+
+2003-11-23 20:36  aet
+
+	* trunk/src/ifd/ifdhandler.h: - OPENCT_ -> IFD_
+
+2003-11-23 15:36  aet
+
+	* trunk/aclocal/Makefile.am: - Add missing m4 files to
+	  distribution tarball
+
+2003-11-23 14:52  aet
+
+	* trunk/etc/Makefile.am: - Replace the hardcoded path /etc with
+	  $(sysconfdir)
+
+2003-11-23 13:26  aet
+
+	* trunk/TODO: - Update TODO status
+
+2003-11-23 12:53  aet
+
+	* trunk/doc/openct.html, trunk/doc/openct.xml,
+	  trunk/etc/openct.conf.in: - Fixed a typo in sample configuration
+	  syntax
+
+2003-11-23 12:45  aet
+
+	* trunk/AUTHORS, trunk/doc/openct.html, trunk/doc/openct.xml,
+	  trunk/etc/openct.conf.in: - Documentation updates
+
+2003-11-22 18:09  aet
+
+	* trunk/ANNOUNCE, trunk/NEWS, trunk/README: - More documentation
+	  updates for the upcoming release
+
+2003-11-22 17:39  aet
+
+	* trunk/doc/openct.html, trunk/doc/openct.xml: - Add minor
+	  documentation updates
+
+2003-11-22 14:12  aet
+
+	* trunk/src/ifd/ifd-ikey2k.c: - Fixed a typo
+
+2003-11-21 21:57  okir
+
+	* trunk/src/ifd/ifd-gempc.c: - small update
+
+2003-11-21 15:17  aet
+
+	* trunk/src/ifd/ifd-gempc.c, trunk/src/ifd/internal.h: - Minor
+	  warning fixes
+
+2003-11-21 14:24  okir
+
+	* trunk/src/ifd/ifd-kaan.c: - more kaan patches from mhaardt
+
+2003-11-21 13:21  okir
+
+	* trunk/etc/Makefile.am, trunk/etc/openct.usermap: - Install
+	  targets for hotplug script and usermap
+
+2003-11-21 13:14  okir
+
+	* trunk/etc/openct.conf.in: - added ID for iKey 2000
+
+2003-11-21 13:05  okir
+
+	* trunk/src/ifd/driver.c, trunk/src/ifd/ifdhandler.c,
+	  trunk/src/ifd/internal.h, trunk/src/ifd/protocol.c: -
+	  implemented "ifdhandler -i" to display list of configured
+	  drivers and protocols.
+	* trunk/src/ifd/ifd-ikey2k.c: - fixed warning
+
+2003-11-21 12:45  okir
+
+	* trunk/src/ifd/Makefile.am, trunk/src/ifd/ifd-ikey2k.c,
+	  trunk/src/ifd/init.c: - merged ikey2k driver from Andreas
+	  Jellinghaus
+
+2003-11-21 12:44  okir
+
+	* trunk/src/ifd/Makefile.am, trunk/src/ifd/ifd-gempc.c,
+	  trunk/src/ifd/init.c, trunk/src/ifd/internal.h: - added initial
+	  support for gempc readers, untested
+
+2003-11-21 09:40  okir
+
+	* trunk/src/ifd/ifd-towitoko.c: - fixed typo
+
+2003-11-21 07:16  okir
+
+	* trunk/src/ifd/Makefile.am, trunk/src/ifd/init.c,
+	  trunk/src/ifd/internal.h, trunk/src/ifd/proto-gbp.c: - first
+	  stab at Gemplus Block Protocol (GBP)
+
+2003-11-20 21:15  aet
+
+	* trunk/src/ifd/process.c: - Warning fix
+	* trunk/src/ifd/init.c: - Disable ikey2k init for now
+
+2003-11-20 20:37  aet
+
+	* trunk/aclocal/acx_pthread.m4: - Replace the patched file with a
+	  new upstream version
+
+2003-11-20 09:51  aet
+
+	* trunk/src/ifd/Makefile.am: - snapshot build fix
+
+2003-11-17 16:09  okir
+
+	* trunk/src/ifd/ifd-kaan.c: - More Kaan patches from Michael Haardt
+
+2003-11-17 16:03  okir
+
+	* trunk/src/ifd/protocol.c: - dont crash if ops->init == NULL
+
+2003-11-17 15:51  okir
+
+	* trunk/src/ifd/Makefile.am, trunk/src/ifd/ifd-kaan.c,
+	  trunk/src/ifd/init.c, trunk/src/ifd/internal.h,
+	  trunk/src/ifd/proto-sync.c: - removed mem size probing for sync
+	  cards (ugly hack). Patch by mhaardt
+
+2003-11-13 21:13  okir
+
+	* trunk/src/tools/openct-tool.c: - fix help message (mhaardt)
+
+2003-11-11 22:42  aet
+
+	* trunk/src/scdl/Makefile.am: - Remove Makefile.mak
+
+2003-11-11 22:30  aet
+
+	* trunk/configure.ac, trunk/src/Makefile.am,
+	  trunk/src/ifd/Makefile.am, trunk/src/ifd/modules.c,
+	  trunk/src/scdl, trunk/src/scdl/.cvsignore,
+	  trunk/src/scdl/Makefile.am, trunk/src/scdl/scdl.c,
+	  trunk/src/scdl/scdl.h: - Merge scdl functions from OpenSC
+
+2003-11-11 21:12  aet
+
+	* trunk/src/pcsc/pcsc.c: - Add some handling for pcscd's different
+	  channel numbering scheme for hotplug devices
+
+2003-11-11 20:56  aet
+
+	* trunk/src/pcsc/pcsc.c: - Indent lines
+
+2003-10-30 12:42  okir
+
+	* trunk/src/ct/client.c, trunk/src/ct/socket.c,
+	  trunk/src/tools/openct-tool.c: - fixed several resource leaks
+	  (patches by Kevin Stefanik)
+
+2003-10-30 12:32  okir
+
+	* trunk/doc/openct.xml: - Added some instructions on building, and
+	  explain --prefix and --sysconfdir - Be a little more specific on
+	  where openct.conf is installed, based on the configure options.
+
+2003-10-19 20:28  aet
+
+	* trunk/src/ifd/conf.c, trunk/src/ifd/ifd-towitoko.c,
+	  trunk/src/ifd/serial.c, trunk/src/include/openct/conf.h: -
+	  Rename hush_errors to suppress_errors, similar to OpenSC.
+
+2003-10-19 13:49  aet
+
+	* trunk/src/ifd/utils.c, trunk/src/include/openct/ifd.h: - Add
+	  somewhat working ifd_debug() for non-gcc compilers
+
+2003-10-19 13:14  aet
+
+	* trunk/src/ct/buffer.c, trunk/src/ct/client.c,
+	  trunk/src/ct/error.c, trunk/src/ct/tlv.c,
+	  trunk/src/ctapi/ctapi.c, trunk/src/ifd/device.c,
+	  trunk/src/ifd/ifd-kaan.c, trunk/src/ifd/ifd-smartboard.c,
+	  trunk/src/ifd/ifd-towitoko.c, trunk/src/ifd/ifdhandler.c,
+	  trunk/src/ifd/process.c, trunk/src/ifd/proto-sync.c,
+	  trunk/src/ifd/reader.c, trunk/src/ifd/sys-linux.c,
+	  trunk/src/ifd/utils.c, trunk/src/include/openct/apdu.h,
+	  trunk/src/include/openct/buffer.h,
+	  trunk/src/include/openct/conf.h,
+	  trunk/src/include/openct/device.h,
+	  trunk/src/include/openct/driver.h,
+	  trunk/src/include/openct/error.h,
+	  trunk/src/include/openct/ifd.h,
+	  trunk/src/include/openct/logging.h,
+	  trunk/src/include/openct/openct.h,
+	  trunk/src/include/openct/protocol.h,
+	  trunk/src/include/openct/server.h,
+	  trunk/src/include/openct/socket.h,
+	  trunk/src/include/openct/tlv.h,
+	  trunk/src/tools/openct-control.c, trunk/src/tools/openct-tool.c:
+	  - C++ warning fixes and additions to public headers - Move
+	  ct_hexdump from libifd to libopenct
+
+2003-10-19 12:59  aet
+
+	* trunk/src/ifd/Makefile.am, trunk/src/ifd/confparse.c: - Remove
+	  empty file confparse.c
+
+2003-10-18 21:09  aet
+
+	* trunk/src/ifd/device.c, trunk/src/ifd/internal.h,
+	  trunk/src/ifd/sys-bsd.c, trunk/src/ifd/sys-linux.c,
+	  trunk/src/ifd/sys-null.c, trunk/src/ifd/usb.c,
+	  trunk/src/include/openct/device.h: - Remove obsolete
+	  ifd_device_open_channel / ifd_sysdep_channel_to_name - Some
+	  polishing for sysdep usb layer, as not all usb api
+	  implementations work on top of a file descriptor
+
+2003-10-18 21:05  aet
+
+	* trunk/src/ct/error.c: - Rename syslog identification string from
+	  ifdd to ifdhandler
+
+2003-10-16 20:59  aet
+
+	* trunk/etc/Makefile.am, trunk/src/pcsc/Makefile.am: - Move
+	  additional Info.plist from src/pcsc/ to etc/ instead
+
+2003-10-16 20:40  aet
+
+	* trunk/configure.ac, trunk/etc/Info.plist,
+	  trunk/macos/libtool-bundle, trunk/src/pcsc/Makefile.am: -
+	  Preliminary support for installing USB bundle package for
+	  pcsc-lite, should work for any platform with pcsc-lite 1.2.0-rc3
+	  or later. TODO: Add all supported vendor/device IDs and
+	  friendlynames to src/pcsc/Info.plist
+
+2003-10-16 16:59  aet
+
+	* trunk/src/ctapi/Makefile.am: - Don't link with libifd
+
+2003-10-16 15:51  aet
+
+	* trunk/Makefile.am, trunk/configure.ac, trunk/macos,
+	  trunk/macos/.cvsignore, trunk/macos/Makefile.am,
+	  trunk/macos/libtool-bundle: - Merge bundle installation script
+	  from OpenSC
+
+2003-10-16 14:16  aet
+
+	* trunk/src/ctapi/Makefile.am: - PC/SC IFD installation fix for
+	  MacOS X
+
+2003-10-16 14:00  aet
+
+	* trunk/src/ifd/ifd-kaan.c: - Add missing sys/poll.h, any reason
+	  not to use usleep instead?
+
+2003-10-16 13:29  aet
+
+	* trunk/src/pcsc/Makefile.am: - Oops, include order is important
+	  in some environments
+
+2003-10-16 13:15  aet
+
+	* trunk/src/tools, trunk/src/tools/.cvsignore: - Add openct-control
+	* trunk/configure.ac, trunk/src/Makefile.am,
+	  trunk/src/tools/Makefile.am: - Move openct-control from
+	  src/control to src/tools
+
+2003-10-16 12:59  aet
+
+	* trunk/src/ifd/Makefile.am, trunk/src/ifd/sys-bsd.c,
+	  trunk/src/ifd/sys-linux.c, trunk/src/ifd/sys-null.c,
+	  trunk/src/ifd/utils.c, trunk/src/include/openct/ifd.h,
+	  trunk/src/tools/openct-control.c: - Start renewing the USB
+	  layer, move all OS specific functions to ifd/sys-*.c - Rename
+	  mgr_scan_usb to ifd_scan_usb, temporary - Move
+	  mgr_spawn_ifdhandler to libifd and rename it as
+	  ifd_spawn_handler - Add sys-null.c for platforms that don't have
+	  USB layer implemented yet, therefore provides support for using
+	  serial devices only
+
+2003-10-16 11:34  okir
+
+	* trunk/src/ifd/proto-sync.c: - disable probing of card length for
+	  now
+
+2003-10-16 10:50  aet
+
+	* trunk/src/pcsc/Makefile.am, trunk/src/pcsc/pcsc.c: - New PC/SC
+	  IFD handler implementation. Incomplete, but works.
+
+2003-10-15 10:50  okir
+
+	* trunk/src/ifd/ifd-kaan.c: - clarified kaan TLV encoding
+
+2003-10-15 10:12  okir
+
+	* trunk/src/ifd/ifd-kaan.c: - new B1 patch from Michael Haardt
+
+2003-10-15 10:07  okir
+
+	* trunk/src/include/openct/ifd.h: - added IFD_PROTOCOL_4401ff
+	  (mhaardt)
+
+2003-10-13 16:04  aet
+
+	* trunk/aclocal/acx_pthread.m4, trunk/configure.ac,
+	  trunk/src/pcsc/Makefile.am: - Merge PC/SC changes and pthread
+	  support from OpenSC
+
+2003-10-12 19:24  aet
+
+	* trunk/src/pcsc/ifdhandler.h: Merge ifdhandler.h from pcsc-lite
+	  1.2.0
+
+2003-10-09 19:08  okir
+
+	* trunk/src/ifd/ifd-kaan.c: - merge some more diffs from Michael
+	  Haardt
+
+2003-10-09 18:38  okir
+
+	* trunk/src/ifd/proto-t1.c: - force a device flush in resynchronize
+
+2003-10-08 11:56  aet
+
+	* trunk/src/ctapi/ctapi.h, trunk/src/include/openct/apdu.h,
+	  trunk/src/include/openct/openct.h,
+	  trunk/src/include/openct/protocol.h,
+	  trunk/src/include/openct/server.h,
+	  trunk/src/include/openct/socket.h,
+	  trunk/src/include/openct/tlv.h: While at it, unify the copyright
+	  header a bit.
+
+2003-10-08 11:33  okir
+
+	* trunk/src/ctapi/Makefile.am: - install ctapi.h
+
+2003-10-08 11:28  okir
+
+	* trunk/src/ctapi/ctapi.h: - Patch from Michael Haardt: removed
+	  useless PORT_* macros, added ERR_HOST
+
+2003-10-07 18:21  aet
+
+	* trunk/src/ifd/ifd-smartboard.c, trunk/src/ifd/serial.c,
+	  trunk/src/include/openct/device.h: Minor warnings / portability
+	  fixes
+
+2003-10-07 13:41  okir
+
+	* trunk/src/ifd/Makefile.am, trunk/src/ifd/ifd-smartboard.c,
+	  trunk/src/ifd/init.c: - First implementation of Cherry
+	  Smartboard Driver
+
+2003-10-07 13:40  okir
+
+	* trunk/src/ifd/serial.c: - Added code to turn on detect parity
+	  errors on input (req'd by Smartboard) - Added
+	  ifd_serial_send_break - Fixed compiler warning
+
+2003-10-07 13:38  okir
+
+	* trunk/src/ifd/ifdhandler.c: - fixed uninitialized variable
+	* trunk/src/ifd/proto-t0.c, trunk/src/ifd/proto-t1.c,
+	  trunk/src/include/openct/ifd.h: - Add support for "block
+	  oriented" devices, such as the Cherry Smartboard, that will send
+	  T=0 and T=1 commands in one frame.
+
+2003-10-07 13:36  okir
+
+	* trunk/src/include/openct/device.h: - added check_parity field to
+	  device_params
+
+2003-10-02 08:47  aet
+
+	* trunk/src/ctapi/ctapi.c: Add bugfix update from Michael Haardt
+
+2003-10-01 09:00  aet
+
+	* trunk/src/ctapi/Makefile.am, trunk/src/pcsc/Makefile.am: -
+	  Backout @libdir@/openct installation - Rename openct-ctapi back
+	  to libopenctapi as requested by Michael Haardt
+
+2003-09-28 15:06  aet
+
+	* trunk/src/ctapi/Makefile.am, trunk/src/pcsc/Makefile.am: Fix
+	  openct-ctapi / openct-ifd linking
+
+2003-09-28 14:44  aet
+
+	* trunk/src/ctapi/Makefile.am: Rename libopenctapi.so back to
+	  openct-ctapi.so
+
+2003-09-25 15:03  aet
+
+	* trunk/src/tools/openct-tool.c: Fix hardcoded ifd.conf path into
+	  use of OPENCT_CONF_PATH
+
+2003-09-24 10:17  aet
+
+	* trunk/ChangeLog: Remove old ChangeLog, add URL to the new
+	  location.
+
+2003-09-18 18:08  aet
+
+	* trunk/src/include/openct/ifd.h: - Minor cleanups - Add temporary
+	  hack for ifd_debug to make it work with non-gcc compilers, needs
+	  a rewrite some other day.
+
+2003-09-18 17:59  aet
+
+	* trunk/src/ifd/process.c: Rewrite cmd_name handling to make it
+	  work with non-gcc compilers
+
+2003-09-12 06:49  aet
+
+	* trunk/configure.ac: Minor merge with OpenSC
+
+2003-09-10 10:02  aet
+
+	* trunk/configure.ac: Replace overly complex and old configure
+	  magic for connect() and friends, just check for socket() in
+	  libsocket.
+
+2003-09-05 12:33  aet
+
+	* trunk/src/ct/socket.c: Fix for the previous commit
+
+2003-09-05 11:52  aet
+
+	* trunk/src/ct/socket.c, trunk/src/ifd/conf.c,
+	  trunk/src/ifd/ifd-cardman.c, trunk/src/ifd/ifd-egate.c,
+	  trunk/src/ifd/ifd-etoken.c, trunk/src/ifd/ifd-eutron.c,
+	  trunk/src/ifd/ifd-ikey3k.c, trunk/src/ifd/ifd-kaan.c,
+	  trunk/src/ifd/ifd-towitoko.c, trunk/src/ifd/init.c,
+	  trunk/src/ifd/internal.h, trunk/src/ifd/proto-sync.c,
+	  trunk/src/ifd/proto-t0.c, trunk/src/ifd/proto-t1.c,
+	  trunk/src/ifd/proto-trans.c, trunk/src/ifd/serial.c,
+	  trunk/src/ifd/usb.c, trunk/src/include/openct/openct.h: Build
+	  fixes for non-gcc compilers, untested.
+
+2003-09-05 10:40  aet
+
+	* trunk/src/ct/error.c: Rewrite ct_strerror to make it work with
+	  non-gcc compilers
+
+2003-09-04 13:54  okir
+
+	* trunk/src/ifd/ifd-egate.c: - Patch from Chaskiel: prevent USB
+	  stall
+
+2003-09-04 08:37  aet
+
+	* trunk/Makefile.am, trunk/configure.ac, trunk/src/Makefile.am,
+	  trunk/src/ifd/Makefile.am: Renaming / moving things update
+
+2003-09-03 20:38  okir
+
+	* trunk/src/ifd/ifd-kaan.c: - Merged patch from Michael Haardt to
+	  support Siemens B1
+
+2003-09-03 15:22  aet
+
+	* trunk/configure.ac: Build fix for MacOS X + fink
+
+2003-09-03 12:32  aet
+
+	* trunk/src/ct/client.c, trunk/src/ct/status.c,
+	  trunk/src/ifd/conf.c, trunk/src/ifd/ifd-kaan.c,
+	  trunk/src/ifd/serial.c, trunk/src/include/openct/driver.h,
+	  trunk/src/tools/openct-control.c, trunk/src/tools/openct-tool.c:
+	  Build / warning fixes
+
+2003-09-03 11:50  aet
+
+	* trunk/configure.ac, trunk/src/ct/libopenct.pc.in,
+	  trunk/src/ifd/checksum.c, trunk/src/ifd/internal.h,
+	  trunk/src/ifd/modules.c, trunk/src/ifd/utils.c,
+	  trunk/src/include/openct, trunk/src/include/openct/.cvsignore,
+	  trunk/src/include/openct/Makefile.am,
+	  trunk/src/include/openct/socket.h: - Fix the ifdhandler path for
+	  OPENCT_IFDHANDLER_PATH - Generate system depended openct/types.h
+	  for portability, install it to exec_prefix/include - Build fixes
+
+2003-09-03 11:46  aet
+
+	* trunk/aclocal/ac_compile_check_sizeof.m4,
+	  trunk/aclocal/ac_create_stdint_h.m4: Add 3rdparty M4 macros
+
+2003-09-02 05:25  okir
+
+	* trunk/src/ctapi/ctapi.c: - bugfix update from Michael Haardt
+
+2003-08-26 12:22  aet
+
+	* trunk/src/ct/Makefile.am, trunk/src/ifd/Makefile.am: Add
+	  versioning to libopenct and libifd
+
+2003-08-26 12:16  aet
+
+	* trunk/Makefile.am, trunk/configure.ac, trunk/doc/Makefile.am,
+	  trunk/etc/Makefile.am, trunk/src/Makefile.am,
+	  trunk/src/ct/Makefile.am, trunk/src/ctapi/Makefile.am,
+	  trunk/src/ifd/Makefile.am, trunk/src/include/Makefile.am,
+	  trunk/src/include/openct/Makefile.am,
+	  trunk/src/pcsc/Makefile.am, trunk/src/pcsc/ifdhandler.h,
+	  trunk/src/pcsc/pcsc.c, trunk/src/tools/Makefile.am: Generic
+	  build cleanups PC/SC IFD build fixes
+
+2003-08-26 11:17  aet
+
+	* trunk/src/ifd/ifd-cardman.c, trunk/src/ifd/internal.h,
+	  trunk/src/ifd/proto-sync.c, trunk/src/ifd/proto-t0.c,
+	  trunk/src/ifd/proto-t1.c, trunk/src/ifd/proto-trans.c,
+	  trunk/src/ifd/serial.c, trunk/src/ifd/sys-bsd.c,
+	  trunk/src/ifd/sys-linux.c, trunk/src/ifd/utils.c: Move
+	  sys/time.h include to internal.h, it needs to be included there
+	  anyway because of ifd_time_elapsed() function prototype.
+
+2003-08-26 10:54  aet
+
+	* trunk/configure.ac, trunk/src/ct/buffer.c,
+	  trunk/src/ct/client.c, trunk/src/ct/error.c,
+	  trunk/src/ct/mainloop.c, trunk/src/ct/socket.c,
+	  trunk/src/ct/status.c, trunk/src/ct/tlv.c,
+	  trunk/src/ctapi/ctapi.c, trunk/src/ifd/apdu.c,
+	  trunk/src/ifd/conf.c, trunk/src/ifd/confparse.c,
+	  trunk/src/ifd/ctbcs.c, trunk/src/ifd/device.c,
+	  trunk/src/ifd/driver.c, trunk/src/ifd/ifd-cardman.c,
+	  trunk/src/ifd/ifd-egate.c, trunk/src/ifd/ifd-etoken.c,
+	  trunk/src/ifd/ifd-eutron.c, trunk/src/ifd/ifd-ikey3k.c,
+	  trunk/src/ifd/ifd-kaan.c, trunk/src/ifd/ifd-towitoko.c,
+	  trunk/src/ifd/ifdhandler.c, trunk/src/ifd/init.c,
+	  trunk/src/ifd/internal.h, trunk/src/ifd/locks.c,
+	  trunk/src/ifd/manager.c, trunk/src/ifd/modules.c,
+	  trunk/src/ifd/process.c, trunk/src/ifd/proto-sync.c,
+	  trunk/src/ifd/proto-t0.c, trunk/src/ifd/proto-t1.c,
+	  trunk/src/ifd/proto-trans.c, trunk/src/ifd/protocol.c,
+	  trunk/src/ifd/reader.c, trunk/src/ifd/serial.c,
+	  trunk/src/ifd/sys-bsd.c, trunk/src/ifd/sys-linux.c,
+	  trunk/src/ifd/usb.c, trunk/src/ifd/utils.c,
+	  trunk/src/include/openct/Makefile.am,
+	  trunk/src/include/openct/conf.h,
+	  trunk/src/include/openct/pathnames.h, trunk/src/pcsc/pcsc.c,
+	  trunk/src/tools/openct-control.c, trunk/src/tools/openct-tool.c:
+	  - Remove openct/pathnames.h, use autoconf + config.h instead -
+	  Include config.h in sources - Add minor portability fixes, many
+	  more to come
+
+2003-08-25 10:24  aet
+
+	* trunk/configure.ac: More merging with OpenSC
+
+2003-08-22 19:13  aet
+
+	* trunk/configure.ac: More OpenSC configure merges, now OpenCT
+	  ./configure at least runs on other operating systems than Linux.
+
+2003-08-22 14:40  okir
+
+	* trunk/src/ifd/proto-t0.c, trunk/src/ifd/proto-trans.c: - fixed
+	  t=0 and trans protocol handlers
+
+2003-08-22 14:15  aet
+
+	* trunk/etc/Makefile.am: Build fix
+
+2003-08-22 13:48  aet
+
+	* trunk/configure.ac: Merge PC/SC stuff from OpenSC. From now on,
+	  -lpcsclite won't be part of LIBS, so you may need to update
+	  other Makefiles.
+
+2003-08-22 13:25  aj
+
+	* trunk/src/ifd/sys-bsd.c: No, I'm not working at suse. Only a
+	  typo.
+
+2003-08-22 13:01  aet
+
+	* trunk/src/ifd/sys-bsd.c: Typo fixes
+
+2003-08-22 11:46  aet
+
+	* trunk/Makefile.am, trunk/aclocal/Makefile.am, trunk/bootstrap,
+	  trunk/configure.ac: - Merge configure stuff with OpenSC - Remove
+	  tools/, add aclocal/
+
+2003-08-22 11:43  aet
+
+	* trunk, trunk/.cvsignore, trunk/aclocal,
+	  trunk/aclocal/.cvsignore, trunk/doc, trunk/doc/.cvsignore,
+	  trunk/etc, trunk/etc/.cvsignore, trunk/src,
+	  trunk/src/.cvsignore, trunk/src/ct, trunk/src/ct/.cvsignore,
+	  trunk/src/ctapi, trunk/src/ctapi/.cvsignore, trunk/src/ifd,
+	  trunk/src/ifd/.cvsignore, trunk/src/include,
+	  trunk/src/include/.cvsignore, trunk/src/include/openct,
+	  trunk/src/include/openct/.cvsignore, trunk/src/pcsc,
+	  trunk/src/pcsc/.cvsignore, trunk/src/tools,
+	  trunk/src/tools/.cvsignore: Add .cvsignore files
+
+2003-08-20 09:54  aj
+
+	* trunk/doc/openct.html, trunk/doc/openct.xml: Improvements and
+	  spelling fixes by Ville Skytt&#65533;&#65533;. Note: The HTMl changes are
+	  quite big, as someone else has a slightly different toolchain,
+	  with slightly different results, I guess. things like moving
+	  </a> to a new line. If you know hoe we can avoid this, please
+	  let me know.
+
+2003-08-18 12:31  okir
+
+	* trunk/src/ifd/ifd-kaan.c: - support for sync ICCs
+	* trunk/src/ifd/proto-sync.c: - allow ifd_sync_detect_icc to be
+	  called with NULL atr ptr
+	* trunk/src/ifd/internal.h: - made ifd_sync_probe_memory_size
+	  public
+
+2003-08-18 06:14  aj
+
+	* trunk/configure.ac: restore tools/ subdir, as the change to
+	  remove it was incomplete and broke the build process.
+
+2003-08-15 11:51  aet
+
+	* trunk/Makefile.am: Add ANNOUNCE to distribution tarball
+
+2003-08-15 11:11  okir
+
+	* trunk/src/ctapi/Makefile.am, trunk/src/ctapi/ctapi.c: - New
+	  CTAPI implementation from Michael Haardt
+
+2003-08-15 10:53  okir
+
+	* trunk/src/ifd/ifd-kaan.c, trunk/src/ifd/internal.h,
+	  trunk/src/ifd/proto-t1.c, trunk/src/ifd/protocol.c,
+	  trunk/src/include/openct/driver.h,
+	  trunk/src/include/openct/ifd.h: - use ifd_protocol_resynchronize
+	  to request t=1 resync
+
+2003-08-15 10:11  okir
+
+	* trunk/src/tools/openct-tool.c: - previous changes broke printing
+	  async ATRs
+
+2003-08-13 09:55  okir
+
+	* trunk/configure.ac, trunk/src/ct/client.c,
+	  trunk/src/ifd/Makefile.am, trunk/src/ifd/ifd-kaan.c,
+	  trunk/src/ifd/ifd-towitoko.c, trunk/src/ifd/init.c,
+	  trunk/src/ifd/internal.h, trunk/src/ifd/process.c,
+	  trunk/src/ifd/proto-sync.c, trunk/src/ifd/protocol.c,
+	  trunk/src/ifd/reader.c, trunk/src/include/openct/driver.h,
+	  trunk/src/include/openct/ifd.h,
+	  trunk/src/include/openct/openct.h,
+	  trunk/src/include/openct/protocol.h: - initial support for
+	  synchronous ICCs
+
+2003-08-13 09:50  okir
+
+	* trunk/src/tools/openct-tool.c: - added command to dump sync ICCs
+
+2003-08-13 09:49  okir
+
+	* trunk/src/ct/socket.c, trunk/src/ifd/ifdhandler.c: - increased
+	  default socket buffer size
+
+2003-08-13 09:48  okir
+
+	* trunk/src/include/openct/socket.h: - allow to TLV encode more
+	  than 255 bytes of data - specify default socket buffer size
+
+2003-08-13 09:47  okir
+
+	* trunk/src/ct/tlv.c, trunk/src/include/openct/tlv.h: - allow to
+	  TLV encode more than 255 bytes of data
+
+2003-08-13 09:45  okir
+
+	* trunk/src/ifd/serial.c: - added some debugging output
+
+2003-08-13 09:44  okir
+
+	* trunk/src/ifd/proto-t1.c: - Perform a resynch if the initial
+	  state is RESYNCH
+
+2003-08-13 08:37  okir
+
+	* trunk/src/ct/error.c: - fixed typo in previous patch
+
+2003-08-13 06:54  okir
+
+	* trunk/src/ct/error.c: - implemented ct_strerror
+	* trunk/src/include/openct/error.h: - additional error code
+
+2003-08-12 16:13  okir
+
+	* trunk/src/ifd/ifd-eutron.c, trunk/src/ifd/sys-linux.c: - fixed a
+	  few compiler warnings
+
+2003-08-11 21:03  aj
+
+	* trunk/src/ifd/conf.c: fix END_OF_FILE comparison on ppc.
+
+2003-08-08 20:46  okir
+
+	* trunk/ANNOUNCE: - Added announcement
+
+2003-08-07 18:13  aj
+
+	* trunk/etc/hotplug.openct.in: fix hotplug script. assume it is
+	  always called for usb devices.
+
+2003-08-05 15:36  aj
+
+	* trunk/src/ifd/ifd-eutron.c: Sleep between retries for 0.1 s key
+	  generation completed so far within 20 seconds.
+
+2003-08-05 15:35  aj
+
+	* trunk/src/ifd/proto-t0.c: increase timeout, as generating keys
+	  can take more than 40 seconds.
+
+2003-08-01 12:53  okir
+
+	* trunk/src/ifd/proto-t1.c: - Fixed size_t vs unsigned int mixup
+	  (barfs on 64bit archs)
+
+2003-08-01 10:58  aj
+
+	* trunk/configure.ac, trunk/src/ifd/sys-linux.c: autoconf test for
+	  new / old linux usb structures.
+
+2003-08-01 08:26  aj
+
+	* trunk/src/include/openct/ifd.h: undo a bogus change.
+
+2003-08-01 07:11  aj
+
+	* trunk/src/include/openct/apdu.h,
+	  trunk/src/include/openct/buffer.h,
+	  trunk/src/include/openct/conf.h,
+	  trunk/src/include/openct/device.h,
+	  trunk/src/include/openct/driver.h,
+	  trunk/src/include/openct/error.h,
+	  trunk/src/include/openct/ifd.h,
+	  trunk/src/include/openct/logging.h,
+	  trunk/src/include/openct/openct.h,
+	  trunk/src/include/openct/pathnames.h,
+	  trunk/src/include/openct/protocol.h,
+	  trunk/src/include/openct/socket.h,
+	  trunk/src/include/openct/tlv.h: defines in headerfiles should
+	  reflect the filename. i.e. #include a/b.h -> #ifndef A_B_H ...
+
+2003-07-31 19:27  aj
+
+	* trunk/src/ifd/sys-linux.c: looks like that change was done in
+	  2.5.2
+	  http://www.kernel.org/pub/linux/kernel/people/gregkh/usb/2.5/usb-devrequest-2.5.2-pre9.patch
+
+2003-07-31 18:29  aj
+
+	* trunk/src/ifd/sys-linux.c: My debian unstable headers are 2.4.20
+	  and have the old structure - off by one I guess.
+
+2003-07-31 12:51  okir
+
+	* trunk/doc/Makefile.am: - build fix for systems that dont have
+	  docbook.xsl
+
+2003-07-31 11:55  okir
+
+	* trunk/src/ifd/sys-linux.c: - make it build on 2.4.21
+
+2003-07-27 16:38  aj
+
+	* trunk/src/ifd/proto-t1.c: further cleanup of t1 / error / resync
+	  handling.
+
+2003-07-23 19:15  aj
+
+	* trunk/src/tools/openct-tool.c: add "rwait" command to wait for a
+	  reader. useful for hot plugging.
+
+2003-07-23 15:27  aj
+
+	* trunk/configure.ac: fix usb / openct-control / cold plugging.
+	  this time realy.
+
+2003-07-23 15:05  aj
+
+	* trunk/src/tools/openct-control.c: #include "config.h" is
+	  required, as #ifdef HAVE_LIBUSB is used.
+
+2003-07-23 14:58  aj
+
+	* trunk/Makefile.am: remove config.status on "make distclean".
+
+2003-07-22 21:39  aj
+
+	* trunk/etc/hotplug.openct.in: changes $1 to $TYPE, as at least
+	  mandrake does not pass a first argument. Also we could change it
+	  to "usb" since our hotplug currently is only called for usb
+	  devices.
+
+2003-07-22 15:42  aj
+
+	* trunk/doc/openct.html, trunk/doc/openct.xml,
+	  trunk/etc/Makefile.am: Do not install openct.conf, so we don't
+	  overwrite valuable configuration. Do not install init script, so
+	  we don't overwrite valuable configuration. Add documentation how
+	  to install these files.
+
+2003-07-22 14:50  aj
+
+	* trunk/src/tools/openct-tool.c: fix usage text: main folder is
+	  selected by "mf" argument.
+
+2003-07-22 14:49  aj
+
+	* trunk/etc/Makefile.am: allways install openct.conf in /etc, as
+	  openct will always look for it in /etc.
+
+2003-07-22 14:44  aj
+
+	* trunk/etc/init-script.in: fixed .../sbin/sbin/... issue.
+
+2003-07-21 12:59  aj
+
+	* trunk/doc/openct.html, trunk/doc/openct.xml: add missing id, fix
+	  typo.
+
+2003-07-21 12:52  aj
+
+	* trunk/doc/openct.html, trunk/doc/openct.xml: small updates,
+	  mostly adding id's, removed print-atr, added Eutron
+	  CryptoIdendity IT-Sec documentation.
+
+2003-07-21 11:11  aj
+
+	* trunk/src/ifd/ifd-egate.c, trunk/src/ifd/ifd-etoken.c,
+	  trunk/src/ifd/ifd-ikey3k.c, trunk/src/ifd/serial.c,
+	  trunk/src/include/openct/device.h: add cts detection to serial
+	  device handler. the drivers return the atr length in the reset
+	  function. make that obvious.
+
+2003-07-21 11:10  aj
+
+	* trunk/src/ifd/ifd-eutron.c: Eutron driver is now working with
+	  these changes.
+	* trunk/src/ifd/proto-t1.c: new fixed and clean resync handling.
+
+2003-07-21 11:09  aj
+
+	* trunk/doc/openct.html, trunk/doc/openct.xml: markus friedl
+	  helped with the bsd port.
+
+2003-07-21 11:08  aj
+
+	* trunk/etc/openct.conf.in: change the config file, so people do
+	  not need to edit it.
+
+2003-07-19 16:28  aj
+
+	* trunk/Makefile.am: Include LICENSE in tar file. (*party*
+	  *finaly* *we*have*a*license* :-)
+
+2003-07-19 16:06  okir
+
+	* trunk/LICENSE: - Added license
+
+2003-07-19 10:48  aj
+
+	* trunk/Makefile.am, trunk/README, trunk/bootstrap,
+	  trunk/configure.ac: Set automake option via Makefile.am remove
+	  requirement for automake, remove requirement comments from
+	  bootstrap, add pointer to docs/opensc.html to README.
+
+2003-07-17 13:16  aj
+
+	* trunk/src/ct/socket.c, trunk/src/ifd/modules.c,
+	  trunk/src/ifd/serial.c, trunk/src/ifd/sys-bsd.c: Improvements
+	  for the *BSD port.
+
+2003-07-17 10:55  aj
+
+	* trunk/configure.ac: forgot )
+
+2003-07-17 10:47  aj
+
+	* trunk/src/tools/openct-control.c: Disable coldplugging unless
+	  libusb is available.
+
+2003-07-17 10:45  aj
+
+	* trunk/configure.ac: add HAVE_LIBUSB if it is available.
+
+2003-07-17 10:38  aj
+
+	* trunk/configure.ac: fix order.
+
+2003-07-17 10:36  aj
+
+	* trunk/configure.ac: 1.5.* does not support new style automake
+	  init.
+
+2003-07-17 10:32  aj
+
+	* trunk/bootstrap: use only autoreconf, no need to call libtoolize
+	  etc.
+
+2003-07-16 20:29  aj
+
+	* trunk/src/ifd/proto-t1.c: RESYNC code is buggy. now it works,
+	  but is very ugly.
+
+2003-07-15 09:40  aj
+
+	* trunk/src/ifd/ifd-eutron.c: Add driver for Eutron Crypto
+	  Idendity (IT-Sec, maybe others). Still work in progress, not
+	  working :-(
+
+2003-07-15 09:13  aj
+
+	* trunk/src/ifd/Makefile.am, trunk/src/ifd/init.c: Initial eutron
+	  support (defunct)
+
+2003-07-15 09:11  aj
+
+	* trunk/src/tools/openct-control.c: make coldplugging optional. -n
+	  will disable it.
+
+2003-07-15 08:22  aj
+
+	* trunk/src/ifd/sys-bsd.c: Initial BSD support (still incomplete /
+	  not working).
+
+2003-07-15 08:21  aj
+
+	* trunk/src/ifd/Makefile.am: Initial BSD support (still incomplete)
+
+2003-07-15 08:17  aj
+
+	* trunk/src/ifd/internal.h, trunk/src/ifd/sys-linux.c,
+	  trunk/src/ifd/usb.c, trunk/src/include/openct/device.h: all
+	  parameters of the usb control request are unsigned.
+
+2003-07-15 08:14  aj
+
+	* trunk/bootstrap, trunk/configure.ac, trunk/etc/Makefile.am:
+	  configure/makefile fixes: - require autoconf 2.57 - require
+	  automake 2.7.6 - test for lib dl (not required on *bsd) - test
+	  for lib usb (but code currently does not stop if it is not
+	  found. currently libusb is necessary, but could be changed.)
+
+2003-07-12 17:05  aj
+
+	* trunk/Makefile.am: Include bootstrap in distribution tar file.
+
+2003-07-10 10:34  aj
+
+	* trunk/configure.ac: updates configure to new init syntax. set
+	  automake strictness to foreign
+
+2003-07-05 15:46  aj
+
+	* trunk/doc/openct.html, trunk/doc/openct.xml: Even more
+	  documentation updates.
+
+2003-07-05 15:30  aj
+
+	* trunk/doc/openct.html, trunk/doc/openct.xml: Documentation
+	  update: - list all drivers, try to give a status. - add missing
+	  section on installation with hotplug utils (it somehow got lost,
+	  usbtoken had more detailed instructions).
+
+2003-07-03 19:46  aj
+
+	* trunk/doc/Makefile.am: Fix typo in makefile (s/sc/ct/g)
+
+2003-07-03 19:24  aj
+
+	* trunk/doc/openct.html, trunk/doc/openct.xml: how could cvs mess
+	  this up? the last version was very, very buggy.
+
+2003-07-03 19:13  aj
+
+	* trunk/doc/Makefile.am, trunk/doc/openct.css,
+	  trunk/doc/openct.html, trunk/doc/openct.xml,
+	  trunk/doc/openct.xsl: Improved documentation: - integrated what
+	  I had already documented for usbtoken. - deleted duplicates,
+	  improved some small parts.
+
+2003-07-02 15:01  aj
+
+	* trunk/doc/openct.html, trunk/doc/openct.xml: added some
+	  documentation on security and troubleshooting. still very
+	  incomplete :-(
+
+2003-06-26 16:49  aj
+
+	* trunk/doc/Makefile.am, trunk/doc/openct.html: run tidy on html
+	  files (ignore if tidy is not available). tidy html file, so it
+	  is human readable.
+
+2003-06-25 08:20  aj
+
+	* trunk/src/ifd/sys-linux.c: reference to usb.h is never used.
+
+2003-06-25 08:16  aj
+
+	* trunk/doc/Makefile.am, trunk/doc/openct.html: Ease the pain for
+	  developers: add the html document to cvs. I will always update
+	  both, so even other developers don't need to have docbook dtd,
+	  tools, stylesheets installed.
+
+2003-06-25 08:06  aj
+
+	* trunk/src/ifd/Makefile.am: libusb is not used here at all, no
+	  need to link with it.
+	* trunk/src/ifd/Makefile.am: Don't forget the header files,
+	  without them in the dist tarball it will not compile. added
+	  ctbcs.h
+
+2003-06-25 08:05  aj
+
+	* trunk/src/ifd/sys-linux.c: return the number of bytes send or
+	  received, not len.
+
+2003-06-23 12:50  okir
+
+	* trunk/src/ct/client.c, trunk/src/ifd/Makefile.am,
+	  trunk/src/ifd/ctbcs.c, trunk/src/ifd/ctbcs.h,
+	  trunk/src/ifd/ifd-ikey3k.c, trunk/src/ifd/ifd-kaan.c,
+	  trunk/src/ifd/process.c, trunk/src/ifd/reader.c,
+	  trunk/src/include/openct/driver.h,
+	  trunk/src/include/openct/ifd.h,
+	  trunk/src/include/openct/openct.h,
+	  trunk/src/include/openct/protocol.h: - added PERFORM VERIFY stuff
+	* trunk/src/ct/buffer.c, trunk/src/include/openct/buffer.h: -
+	  added deferred overrun check
+
+2003-06-23 12:49  okir
+
+	* trunk/src/ifd/proto-t1.c: - attempt at better WTX handling
+
+2003-06-23 12:48  okir
+
+	* trunk/src/include/openct/error.h: - more error codes
+
+2003-06-16 11:32  okir
+
+	* trunk/src/ifd/sys-linux.c: - fixed return value of usb_control
+
+2003-06-15 12:38  okir
+
+	* trunk/src/include/openct/device.h: - added
+	  ifd_serial_get_{dsr,dtr}
+
+2003-06-15 12:37  okir
+
+	* trunk/src/ifd/ifd-cardman.c, trunk/src/ifd/ifd-egate.c,
+	  trunk/src/ifd/ifd-kaan.c, trunk/src/ifd/reader.c,
+	  trunk/src/ifd/sys-linux.c: - get rid of compiler wwarnings
+
+2003-06-15 12:36  okir
+
+	* trunk/src/ifd/proto-t1.c: - resync after t1 error and retry
+	  command
+
+2003-06-14 19:53  okir
+
+	* trunk/src/ifd/reader.c: - minor cosmetic changes
+	* trunk/src/ifd/ifd-cardman.c: - some T=0 stuff already working
+	* trunk/src/tools/openct-tool.c: - cryptoflex needs special class
+	  byte in select file
+
+2003-06-14 17:19  okir
+
+	* trunk/etc/openct.conf.in: - added entry for omnikey cardman 2020
+
+2003-06-14 17:17  okir
+
+	* trunk/src/tools/openct-tool.c: - fixed usage message
+
+2003-06-14 17:16  okir
+
+	* trunk/src/ifd/ifd-egate.c, trunk/src/ifd/ifd-etoken.c,
+	  trunk/src/ifd/ifd-ikey3k.c, trunk/src/ifd/init.c,
+	  trunk/src/ifd/internal.h, trunk/src/ifd/proto-t0.c,
+	  trunk/src/ifd/serial.c, trunk/src/ifd/sys-linux.c,
+	  trunk/src/ifd/usb.c, trunk/src/ifd/utils.c: - redid usb_control
+	  handling
+	* trunk/src/ifd/Makefile.am, trunk/src/ifd/ifd-cardman.c: - added
+	  cardman 2020 driver
+
+2003-06-14 17:14  okir
+
+	* trunk/src/include/openct/device.h: - redid usb_control stuff
+	* trunk/src/ifd/reader.c, trunk/src/include/openct/ifd.h: - added
+	  ifd_atr_complete
+
+2003-06-14 17:13  okir
+
+	* trunk/src/ct/mainloop.c: - properly initialize socket list head
+
+2003-06-02 21:23  okir
+
+	* trunk/src/ifd/ifd-kaan.c: - more effective polling card_status
+	  polling (use FREEZE command)
+
+2003-06-02 21:22  okir
+
+	* trunk/src/ifd/serial.c: - Added ifd_serial_get_{dsr,dtr}
+
+2003-05-27 15:27  aj
+
+	* trunk/src/pcsc/Makefile.am: smaller ifdef context does not
+	  change anything, but makes older automake versions happy.
+
+2003-05-26 09:31  aj
+
+	* trunk/Makefile.am, trunk/configure.ac: move autoconf helper
+	  files to tools/ subdirectory.
+
+2003-05-24 19:28  aj
+
+	* trunk/etc/Makefile.am, trunk/etc/hotplug.openct,
+	  trunk/etc/hotplug.openct.in, trunk/etc/init-script,
+	  trunk/etc/init-script.in, trunk/etc/openct.conf,
+	  trunk/etc/openct.conf.in: replaces files with .in files:
+	  Makefile will substitute SBINDIR for the sbin dir.
+
+2003-05-23 10:03  okir
+
+	* trunk/src/ifd/proto-t0.c: - inserted a usleep(10msec) when
+	  receiving a wait extension character
+
+2003-05-22 20:56  okir
+
+	* trunk/src/ifd/ifd-egate.c: - fix for APDUs with 4 bytes
+	  (Chaskiel)
+
+2003-05-19 15:48  okir
+
+	* trunk/src/ifd/proto-t1.c: - properly retry operation if recv
+	  and/or checksum failed
+
+2003-05-19 15:45  okir
+
+	* trunk/src/ifd/proto-t1.c: - resynch after all t1 errors
+
+2003-05-19 14:45  okir
+
+	* trunk/src/ifd/ifdhandler.c: - updated usage message
+
+2003-05-19 14:44  okir
+
+	* trunk/src/ifd/proto-t1.c: - change max recv buffer handling in
+	  t1_xcv
+
+2003-05-19 14:16  okir
+
+	* trunk/src/ct/tlv.c: - avoid gcc warnings
+
+2003-05-19 12:42  aj
+
+	* trunk/TODO: openct-control is noisy.
+	* trunk/src/ifd/Makefile.am, trunk/src/ifd/device.c,
+	  trunk/src/ifd/ifd-egate.c, trunk/src/ifd/ifd-etoken.c,
+	  trunk/src/ifd/ifd-ikey3k.c, trunk/src/ifd/ifd-kaan.c,
+	  trunk/src/ifd/ifd-towitoko.c, trunk/src/ifd/init.c,
+	  trunk/src/ifd/internal.h, trunk/src/ifd/serial.c,
+	  trunk/src/ifd/usb.c, trunk/src/ifd/utils.c: new driver ikey3k.
+	  changed send/recv buffer to unsigned char*. improved logging in
+	  usb.c
+
+2003-05-19 12:41  aj
+
+	* trunk/src/include/openct/device.h,
+	  trunk/src/include/openct/driver.h: send and recv should have a
+	  unsigned char* buffer, not void* buffer.
+	* trunk/etc/init-script, trunk/etc/openct.conf: new init script.
+	  new ikey3k in openct.conf put openct.conf entries in order.
+
+2003-05-16 16:08  aj
+
+	* trunk/Makefile.am, trunk/configure.ac, trunk/doc,
+	  trunk/doc/Makefile.am, trunk/doc/openct.xml,
+	  trunk/etc/Makefile.am, trunk/src/pcsc/Makefile.am: Added
+	  documentation. src/pcsc: fix rename in Makefile.am
+
+2003-05-15 21:17  aj
+
+	* trunk/etc/hotplug.openct: add demo hotplug script.
+
+2003-05-15 21:16  aj
+
+	* trunk/etc/Makefile.am: added demo hotplug script
+
+2003-05-14 18:57  okir
+
+	* trunk/src/tools/openct-control.c: - added status command
+
+2003-05-14 06:51  okir
+
+	* trunk/src/ctapi/Makefile.am, trunk/src/ifd/Makefile.am,
+	  trunk/src/pcsc/Makefile.am: - fixed botched build changes
+
+2003-05-12 09:09  okir
+
+	* trunk/src/pcsc/Makefile.am: - renamed module as suggested by aj
+
+2003-05-12 09:06  okir
+
+	* trunk/src/ct/libopenct.pc.in: - fixed cflags
+
+2003-05-12 09:05  okir
+
+	* trunk/src/ct/Makefile.am: - added pkgconfig target
+	* trunk/etc/openct.conf: - another etoken ID
+
+2003-05-12 09:04  okir
+
+	* trunk/src/ifd/Makefile.am: - moved ifdhandler to /sbin
+
+2003-05-12 08:29  okir
+
+	* trunk/src/ctapi/Makefile.am: - renamed module as suggested by aj
+
+2003-05-12 08:26  okir
+
+	* trunk/src/ifd/Makefile.am, trunk/src/ifd/print-atr.c: - nixed
+	  print-atr
+
+2003-05-08 11:40  aj
+
+	* trunk/src/include/Makefile.am, trunk/src/pcsc/Makefile.am:
+	  remove generated files in "make maintainer-clean".
+
+2003-05-08 11:01  okir
+
+	* trunk/src/pcsc/ifdhandler.h: - missing header, required
+
+2003-05-08 10:59  okir
+
+	* trunk/configure.ac, trunk/src/ct/libopenct.pc.in: - automakefied
+	  thanks to Andreas Jellinghaus
+
+2003-05-08 10:49  okir
+
+	* trunk/AUTHORS, trunk/Makefile, trunk/Makefile.am, trunk/NEWS,
+	  trunk/bootstrap, trunk/etc/Makefile.am, trunk/src/Makefile,
+	  trunk/src/Makefile.am, trunk/src/ct/Makefile,
+	  trunk/src/ct/Makefile.am, trunk/src/ctapi/Makefile,
+	  trunk/src/ctapi/Makefile.am, trunk/src/ifd/Makefile,
+	  trunk/src/ifd/Makefile.am, trunk/src/include/Makefile,
+	  trunk/src/include/Makefile.am,
+	  trunk/src/include/openct/Makefile,
+	  trunk/src/include/openct/Makefile.am, trunk/src/pcsc/Makefile,
+	  trunk/src/pcsc/Makefile.am, trunk/src/pcsc/pcsc.c,
+	  trunk/src/tools/Makefile, trunk/src/tools/Makefile.am: -
+	  automakefied thanks to Andreas Jellinghaus
+
+2003-04-17 18:02  okir
+
+	* trunk/src/ifd/proto-t1.c: - t=1: fixed handling of S-block
+	  requests
+
+2003-04-16 11:04  okir
+
+	* trunk/src/ifd/proto-t0.c: - give slow operations a little more
+	  leeway
+
+2003-04-12 21:26  okir
+
+	* trunk/README, trunk/etc/openct.conf, trunk/src/ifd/Makefile,
+	  trunk/src/ifd/ifd-egate.c, trunk/src/ifd/init.c: - Merged egate
+	  driver from Chaskiel M Grundman
+
+2003-04-11 15:31  okir
+
+	* trunk/TODO: Update
+
+2003-04-11 15:30  okir
+
+	* trunk/src/include/openct/error.h: - added IFD_ERROR_NOT_CONNECTED
+
+2003-04-11 15:29  okir
+
+	* trunk/src/ct/socket.c: - SIGPIPE protection when writing to
+	  socket
+
+2003-04-11 13:22  okir
+
+	* trunk/src/ifd/ifdhandler.c, trunk/src/ifd/reader.c,
+	  trunk/src/include/openct/ifd.h: - don't poll for card status
+	  while client is talking to card (slows things down too much)
+
+2003-04-11 13:21  okir
+
+	* trunk/src/ifd/proto-t1.c: - fix for linux usb
+
+2003-04-10 18:40  okir
+
+	* trunk/src/ct/error.c, trunk/src/ct/status.c,
+	  trunk/src/include/openct/Makefile: - build fixes for newer gcc
+
+2003-04-10 14:15  okir
+
+	* trunk/TODO, trunk/src/ct/client.c, trunk/src/ifd/process.c,
+	  trunk/src/ifd/reader.c, trunk/src/include/openct/ifd.h,
+	  trunk/src/include/openct/protocol.h: - added a bunch of
+	  functions to ifd protocol
+
+2003-04-10 13:50  okir
+
+	* trunk/TODO, trunk/src/ifd/reader.c,
+	  trunk/src/include/openct/driver.h: - added card_eject
+
+2003-04-10 13:46  okir
+
+	* trunk/TODO: Update
+	* trunk/src/Makefile: - daemon/ moved to control/
+
+2003-04-10 13:45  okir
+
+	* trunk/src/ifd/ifdhandler.c: - clean status file slot on exit
+	* trunk/src/ct/client.c: - added ct_reader_info
+	* trunk/src/tools/openct-tool.c: - cleanup; added wait command
+
+2003-04-10 13:28  okir
+
+	* trunk/src/include/openct/ifd.h,
+	  trunk/src/include/openct/openct.h,
+	  trunk/src/include/openct/pathnames.h: Update
+
+2003-04-10 13:24  okir
+
+	* trunk/src/tools/Makefile: - updated install target
+
+2003-04-10 13:20  okir
+
+	* trunk/src/tools/openct-control.c: - ifdmaster becomes
+	  openct-control
+
+2003-04-10 13:19  okir
+
+	* trunk/src/ifd/locks.c: - use ifd_debug instead of ct_debug
+	* trunk/src/ifd/ifdhandler.c: - become a daemon
+
+2003-04-10 13:18  okir
+
+	* trunk/src/ct/status.c: - use lock file while allocating slot in
+	  status file
+
+2003-04-10 11:53  okir
+
+	* trunk/src/tools/Makefile: - openct-control obsolete
+
+2003-04-10 11:51  okir
+
+	* trunk/src/ifd/manager.c, trunk/src/tools/openct-tool.c: -
+	  renamed IFD_MAX_READERS -> OPENCT_MAX_READERS
+	* trunk/src/tools/openct-control.c: - another day, another rewrite
+
+2003-04-10 11:49  okir
+
+	* trunk/src/ifd/ifdhandler.c: - poll for card status
+	* trunk/src/ifd/ifd-kaan.c: - renamed IFD_MAX_SLOTS ->
+	  OPENCT_MAX_SLOTS
+
+2003-04-10 11:48  okir
+
+	* trunk/src/ifd/reader.c: - removed pid field from ifd_reader_t
+	* trunk/src/ifd/ifd-towitoko.c: - activate reader prior to reset
+
+2003-04-10 11:47  okir
+
+	* trunk/src/ct/Makefile, trunk/src/ct/client.c,
+	  trunk/src/ct/status.c: - Put reader and slot status into public
+	  status file
+
+2003-04-09 17:20  okir
+
+	* trunk/src/ifd/Makefile: - install ifdhandler, too
+
+2003-04-09 15:40  okir
+
+	* trunk/Makefile, trunk/src/Makefile, trunk/src/ct/Makefile,
+	  trunk/src/ctapi/Makefile, trunk/src/ifd/Makefile,
+	  trunk/src/include/Makefile, trunk/src/include/openct/Makefile,
+	  trunk/src/pcsc/Makefile, trunk/src/tools/Makefile: - added
+	  install target
+
+2003-04-09 15:30  okir
+
+	* trunk/src/ct/client.c, trunk/src/ct/socket.c,
+	  trunk/src/ifd/conf.c, trunk/src/ifd/internal.h,
+	  trunk/src/include/openct/Makefile: - moved around include files
+
+2003-04-09 15:15  okir
+
+	* trunk/README: Update
+
+2003-04-09 15:10  okir
+
+	* trunk/src/ifd/ifd.conf: obsolete
+
+2003-04-09 15:04  okir
+
+	* trunk/etc/openct.conf, trunk/etc/opensc.conf: - check in right
+	  config file
+
+2003-04-09 15:00  okir
+
+	* trunk/src/ct/Makefile, trunk/src/ct/mainloop.c,
+	  trunk/src/ct/socket.c, trunk/src/ifd/Makefile,
+	  trunk/src/ifd/conf.c, trunk/src/ifd/device.c,
+	  trunk/src/ifd/driver.c, trunk/src/ifd/hotplug.c,
+	  trunk/src/ifd/ifd-etoken.c, trunk/src/ifd/ifd-kaan.c,
+	  trunk/src/ifd/ifd-towitoko.c, trunk/src/ifd/ifdhandler.c,
+	  trunk/src/ifd/ifdhandler.h, trunk/src/ifd/init.c,
+	  trunk/src/ifd/internal.h, trunk/src/ifd/locks.c,
+	  trunk/src/ifd/process.c, trunk/src/ifd/reader.c,
+	  trunk/src/ifd/sys-linux.c, trunk/src/include/openct/conf.h,
+	  trunk/src/include/openct/device.h,
+	  trunk/src/include/openct/driver.h,
+	  trunk/src/include/openct/ifd.h,
+	  trunk/src/include/openct/pathnames.h,
+	  trunk/src/include/openct/server.h,
+	  trunk/src/tools/openct-control.c: - another major butchery for
+	  hotplug support
+
+2003-04-09 12:36  okir
+
+	* trunk/src/tools/Makefile: - added openct-control
+
+2003-04-09 12:33  okir
+
+	* trunk/src/ct/mainloop.c, trunk/src/ifd/ifdhandler.c,
+	  trunk/src/tools/openct-control.c: - Restructuring for hotplug
+
+2003-04-09 12:32  okir
+
+	* trunk/src/ifd/device.c, trunk/src/ifd/hotplug.c,
+	  trunk/src/ifd/internal.h, trunk/src/ifd/manager.c,
+	  trunk/src/ifd/reader.c, trunk/src/include/openct/device.h,
+	  trunk/src/include/openct/ifd.h: - USB hotplug related changes
+
+2003-04-09 12:31  okir
+
+	* trunk/src/ct/socket.c, trunk/src/include/openct/socket.h: -
+	  added socket permission parameter to ct_socket_listen - added
+	  puts/gets style functions for sending/receiving strings -
+	  ct_socket_flsbuf(..., 2) does a shutdown(SEND)
+
+2003-04-09 12:30  okir
+
+	* trunk/src/include/openct/error.h: - ERROR_NO_MEMORY
+	* trunk/src/ct/error.c, trunk/src/include/openct/logging.h: -
+	  support logging to syslog
+
+2003-04-09 12:29  okir
+
+	* trunk/src/ct/client.c, trunk/src/include/openct/openct.h: -
+	  added ct_master_control
+	* trunk/src/ct/buffer.c, trunk/src/include/openct/buffer.h: -
+	  added gets/puts functions
+
+2003-04-08 18:52  okir
+
+	* trunk/src/tools/openct-control.c: - started on hotplug support
+
+2003-04-08 18:51  okir
+
+	* trunk/src/ifd/internal.h, trunk/src/ifd/manager.c,
+	  trunk/src/ifd/usb.c: - added usb_poll_presence
+	* trunk/src/ct/socket.c, trunk/src/include/openct/socket.h: -
+	  socket cleanup
+
+2003-04-08 18:12  okir
+
+	* trunk/src/ifd/internal.h, trunk/src/ifd/serial.c,
+	  trunk/src/ifd/usb.c: - added fd to ifd_device_t; got rid of
+	  special types ifd_serial_t and ifd_usb_t
+
+2003-04-08 15:27  okir
+
+	* trunk/TODO: - update
+
+2003-04-08 15:13  okir
+
+	* trunk/etc, trunk/etc/opensc.conf: - added sample config file
+
+2003-04-08 15:12  okir
+
+	* trunk/src/ifd/Makefile, trunk/src/ifd/conf.c,
+	  trunk/src/ifd/confparse.c, trunk/src/ifd/hotplug.c,
+	  trunk/src/ifd/init.c, trunk/src/ifd/internal.h,
+	  trunk/src/ifd/print-atr.c, trunk/src/ifd/reader.c,
+	  trunk/src/ifd/sys-linux.c, trunk/src/include/openct/conf.h,
+	  trunk/src/include/openct/ifd.h,
+	  trunk/src/tools/openct-control.c, trunk/src/tools/openct-tool.c:
+	  - changed config file handling and format
+
+2003-04-08 14:17  okir
+
+	* trunk/src/ct/Makefile, trunk/src/ct/client.c,
+	  trunk/src/ct/error.c: - moved conf.c back to libifd
+
+2003-04-08 14:14  okir
+
+	* trunk/src/ct/error.c, trunk/src/ifd/conf.c: - cleanup
+	* trunk/src/ct/client.c: - use hard-coded socket dir
+
+2003-04-08 10:54  okir
+
+	* trunk/TODO: - added TODO list
+
+2003-04-08 10:45  okir
+
+	* trunk/src/ctapi/ctapi.c, trunk/src/ifd/apdu.c,
+	  trunk/src/ifd/ifd-kaan.c, trunk/src/ifd/internal.h,
+	  trunk/src/ifd/print-atr.c, trunk/src/ifd/process.c,
+	  trunk/src/ifd/proto-t0.c, trunk/src/ifd/proto-t1.c,
+	  trunk/src/ifd/proto-trans.c, trunk/src/ifd/protocol.c,
+	  trunk/src/ifd/reader.c, trunk/src/include/openct/apdu.h,
+	  trunk/src/include/openct/driver.h,
+	  trunk/src/include/openct/error.h,
+	  trunk/src/include/openct/ifd.h, trunk/src/pcsc/pcsc.c: - removed
+	  last traces of ifd_apdu_t
+
+2003-04-08 09:00  okir
+
+	* trunk/src/ifd/protocol.c, trunk/src/include/openct/ifd.h: -
+	  added ifd_protocol_get_parameter
+	* trunk/src/ifd/proto-t1.c: - Fixed S-Block and error block
+	  handling
+
+2003-04-08 08:59  okir
+
+	* trunk/src/ifd/ifd-kaan.c: - misc Kaan fixes
+
+2003-04-07 21:15  okir
+
+	* trunk/src/ifd/ifd-kaan.c: - fix display command
+
+2003-04-07 15:38  okir
+
+	* trunk/src/pcsc/pcsc.c: - core.h -> ifd.h rename
+	* trunk/src/ctapi/ctapi.c: - apdu changes
+
+2003-04-07 15:31  okir
+
+	* trunk/src/ct/error.c, trunk/src/include/openct/logging.h: -
+	  added ct_strerror
+
+2003-04-07 15:30  okir
+
+	* trunk/src/ifd/proto-t0.c: - renamed t0_data -> t0_state
+	* trunk/src/ifd/confparse.c, trunk/src/ifd/driver.c,
+	  trunk/src/ifd/ifd-etoken.c, trunk/src/ifd/ifd-kaan.c,
+	  trunk/src/ifd/ifd-towitoko.c, trunk/src/ifd/internal.h,
+	  trunk/src/ifd/manager.c, trunk/src/ifd/proto-t0.c,
+	  trunk/src/ifd/proto-t1.c, trunk/src/ifd/protocol.c,
+	  trunk/src/ifd/usb.c: - debugging fixes
+
+2003-04-07 15:05  okir
+
+	* trunk/src/ct/client.c: - bugfix for ct_transact
+	* trunk/src/ifd/apdu.c, trunk/src/ifd/device.c,
+	  trunk/src/ifd/ifd-kaan.c, trunk/src/ifd/ifd-towitoko.c,
+	  trunk/src/ifd/internal.h, trunk/src/ifd/print-atr.c,
+	  trunk/src/ifd/proto-t0.c, trunk/src/ifd/proto-t1.c,
+	  trunk/src/ifd/protocol.c, trunk/src/include/openct/apdu.h,
+	  trunk/src/include/openct/device.h,
+	  trunk/src/include/openct/ifd.h: - first steps to get rid of
+	  ct_apdu_t
+	* trunk/src/ifd/usb.c: - minor debug fix
+	* trunk/src/ifd/utils.c: - ct_hexdump: return empty string for
+	  len=0
+
+2003-04-07 12:03  okir
+
+	* trunk/src/ifd/internal.h, trunk/src/ifd/process.c,
+	  trunk/src/tools/openct-control.c: - renamed core.h -> ifd.h
+	* trunk/src/ifd/ifd-etoken.c, trunk/src/ifd/ifd-kaan.c,
+	  trunk/src/ifd/ifd-towitoko.c, trunk/src/ifd/internal.h,
+	  trunk/src/include/openct/device.h: - renamed core.h -> ifd.h
+
+2003-04-07 11:55  okir
+
+	* trunk/src/ct/buffer.c, trunk/src/ct/client.c,
+	  trunk/src/ct/error.c, trunk/src/ct/socket.c, trunk/src/ct/tlv.c,
+	  trunk/src/ctapi/ctapi.c, trunk/src/ifd/conf.c,
+	  trunk/src/ifd/confparse.c, trunk/src/ifd/driver.c,
+	  trunk/src/ifd/hotplug.c, trunk/src/ifd/ifd-etoken.c,
+	  trunk/src/ifd/ifd-kaan.c, trunk/src/ifd/ifd-towitoko.c,
+	  trunk/src/ifd/internal.h, trunk/src/ifd/locks.c,
+	  trunk/src/ifd/manager.c, trunk/src/ifd/modules.c,
+	  trunk/src/ifd/print-atr.c, trunk/src/ifd/process.c,
+	  trunk/src/ifd/proto-t0.c, trunk/src/ifd/proto-t1.c,
+	  trunk/src/ifd/proto-trans.c, trunk/src/ifd/protocol.c,
+	  trunk/src/ifd/reader.c, trunk/src/ifd/serial.c,
+	  trunk/src/ifd/sys-linux.c, trunk/src/ifd/usb.c,
+	  trunk/src/ifd/utils.c, trunk/src/include/openct/buffer.h,
+	  trunk/src/include/openct/conf.h,
+	  trunk/src/include/openct/error.h,
+	  trunk/src/include/openct/logging.h,
+	  trunk/src/include/openct/openct.h,
+	  trunk/src/include/openct/protocol.h,
+	  trunk/src/include/openct/socket.h,
+	  trunk/src/include/openct/tlv.h,
+	  trunk/src/tools/openct-control.c, trunk/src/tools/openct-tool.c:
+	  - the great rename, part 2
+
+2003-04-07 11:43  okir
+
+	* trunk/src/ct/Makefile, trunk/src/ct/buffer.c,
+	  trunk/src/ct/client.c, trunk/src/ct/error.c,
+	  trunk/src/ct/socket.c, trunk/src/ct/tlv.c,
+	  trunk/src/ctapi/ctapi.c, trunk/src/ifd/Makefile,
+	  trunk/src/ifd/conf.c, trunk/src/ifd/ifd-etoken.c,
+	  trunk/src/ifd/ifd-kaan.c, trunk/src/ifd/ifd-towitoko.c,
+	  trunk/src/ifd/internal.h, trunk/src/ifd/locks.c,
+	  trunk/src/ifd/print-atr.c, trunk/src/ifd/process.c,
+	  trunk/src/include/Makefile, trunk/src/include/openct/Makefile,
+	  trunk/src/include/openct/device.h,
+	  trunk/src/include/openct/ifd.h,
+	  trunk/src/include/openct/socket.h,
+	  trunk/src/include/openct/tlv.h, trunk/src/pcsc/pcsc.c,
+	  trunk/src/tools/Makefile, trunk/src/tools/openct-control.c,
+	  trunk/src/tools/openct-tool.c: - the great rename, part 1
+
+2003-04-07 11:39  okir
+
+	* trunk/README: - Update
+
+2003-04-07 11:30  okir
+
+	* trunk/src/ifd/process.c: - always activate reader before getting
+	  card status (is that right?)
+
+2003-04-07 11:29  okir
+
+	* trunk/src/ifd/ifd-towitoko.c: - debug fixes
+	* trunk/src/ifd/device.c: - flush serial device before transaction
+	* trunk/src/ct/socket.c: - implemented socket credentials
+
+2003-04-07 11:03  okir
+
+	* trunk/src/ctapi/Makefile, trunk/src/pcsc/Makefile: - build fixes
+	* trunk/src/Makefile: - subdir rename
+	* trunk/src/tools/openct-tool.c: - update
+	* trunk/src/ifd/locks.c, trunk/src/ifd/process.c,
+	  trunk/src/tools/openct-control.c: - implemented new functions
+
+2003-04-07 11:02  okir
+
+	* trunk/src/ifd/conf.c, trunk/src/include/openct/pathnames.h: -
+	  IFD_FOO -> OPENCT_FOO renames
+	* trunk/src/ct/socket.c, trunk/src/include/openct/socket.h: -
+	  added close callback
+	* trunk/src/include/openct/openct.h,
+	  trunk/src/include/openct/protocol.h: - locking related additions
+
+2003-04-07 11:01  okir
+
+	* trunk/src/include/openct/error.h: - added a few error codes
+	* trunk/src/ct/client.c: - new commands
+	* trunk/src/include/openct/buffer.h: - compile fix
+
+2003-04-07 11:00  okir
+
+	* trunk/src/ifd/internal.h, trunk/src/ifd/reader.c,
+	  trunk/src/include/openct/ifd.h: - remember whether reader was
+	  activated or not
+	* trunk/src/ifd/confparse.c: - use OPENCT_CONFIG_PATH instead of
+	  hard-coded path
+
+2003-04-07 06:42  okir
+
+	* trunk/src/ctapi/Makefile, trunk/src/pcsc/Makefile,
+	  trunk/src/tools/Makefile: - Makefile fixes
+
+2003-04-06 20:39  okir
+
+	* trunk/src/Makefile: - added tools subdir
+
+2003-04-06 20:37  okir
+
+	* trunk/src/ct/Makefile, trunk/src/ct/client.c,
+	  trunk/src/ct/socket.c, trunk/src/ct/tlv.c,
+	  trunk/src/ifd/ifd.conf, trunk/src/ifd/process.c,
+	  trunk/src/include/openct/ifd.h,
+	  trunk/src/include/openct/openct.h,
+	  trunk/src/include/openct/protocol.h,
+	  trunk/src/include/openct/socket.h,
+	  trunk/src/include/openct/tlv.h,
+	  trunk/src/tools/openct-control.c, trunk/src/tools/openct-tool.c:
+	  - changes for OpenCT resource manager
+	* trunk/src/ifd/proto-t1.c: - minor cleanup
+
+2003-04-04 15:55  okir
+
+	* trunk/src/ct/Makefile, trunk/src/ct/tlv.c,
+	  trunk/src/include/openct/protocol.h,
+	  trunk/src/include/openct/tlv.h: - added TLV functions
+
+2003-04-04 14:43  okir
+
+	* trunk/src/tools/openct-control.c: - forgot to call the server
+	  loop
+
+2003-04-04 14:34  okir
+
+	* trunk/src/include/openct/Makefile,
+	  trunk/src/include/openct/protocol.h: - added
+
+2003-04-04 14:29  okir
+
+	* trunk/src/include/Makefile: fixed
+	* trunk/Makefile: - mkdir lib
+
+2003-04-04 14:28  okir
+
+	* trunk/src/Makefile, trunk/src/ct/Makefile,
+	  trunk/src/ct/buffer.c, trunk/src/ct/error.c,
+	  trunk/src/ifd/conf.c, trunk/src/ifd/process.c,
+	  trunk/src/include/openct/buffer.h,
+	  trunk/src/include/openct/conf.h,
+	  trunk/src/include/openct/error.h,
+	  trunk/src/include/openct/socket.h, trunk/src/tools,
+	  trunk/src/tools/openct-control.c: - added resource manager code
+
+2003-04-04 12:18  okir
+
+	* trunk/src/ifd/Makefile, trunk/src/ifd/confparse.c,
+	  trunk/src/ifd/internal.h, trunk/src/include/openct/pathnames.h:
+	  - added config.h
+
+2003-04-04 12:02  okir
+
+	* trunk/src/ct/Makefile, trunk/src/ct/socket.c,
+	  trunk/src/include/openct/socket.h: - added
+
+2003-04-04 12:01  okir
+
+	* trunk/src/ct/buffer.c, trunk/src/include/openct/buffer.h: -
+	  added ifd_buf_compact
+
+2003-04-04 08:35  okir
+
+	* trunk/src/ifd/ifd-kaan.c: - fixed handling of 6100 response -
+	  use ifd_iso_apdu_t instead of kaan_apdu_t
+
+2003-04-04 08:25  okir
+
+	* trunk/src/Makefile: - added pcsc subdir
+	* trunk/src/ifd/Makefile: - fixed LDFLAGS
+
+2003-04-03 19:27  okir
+
+	* trunk/src/pcsc, trunk/src/pcsc/Makefile, trunk/src/pcsc/pcsc.c:
+	  - first stab at a PCSC ifd handler
+
+2003-04-03 15:38  okir
+
+	* trunk/src/ifd/print-atr.c: - fix compile warning
+
+2003-04-03 15:35  okir
+
+	* trunk/src/Makefile: - forgot makefile
+
+2003-04-03 14:53  okir
+
+	* trunk/src/ifd/manager.c, trunk/src/include/openct/ifd.h: - added
+	  ifd_reader_count to support reader enumeration
+
+2003-04-03 14:52  okir
+
+	* trunk/src/ifd/print-atr.c: - list command to list readers
+
+2003-04-03 12:23  okir
+
+	* trunk/src/ifd/sys-linux.c, trunk/src/ifd/usb.c: - moved
+	  ifd_sysdep_usb_scan
+
+2003-04-03 12:04  okir
+
+	* trunk/src/include/Makefile: - libifd directory moved
+
+2003-04-03 12:02  okir
+
+	* trunk/src/ifd/hotplug.c, trunk/src/ifd/ifd.conf,
+	  trunk/src/ifd/internal.h, trunk/src/ifd/print-atr.c,
+	  trunk/src/ifd/usb.c, trunk/src/include/openct/device.h,
+	  trunk/src/include/openct/ifd.h: - added hotplug scan on startup
+	* trunk/src/ifd/conf.c, trunk/src/ifd/confparse.c,
+	  trunk/src/include/openct/conf.h: - added hotplug_scan_on_startup
+	* trunk/src/ifd/Makefile: - build fixes
+
+2003-04-03 11:35  okir
+
+	* trunk/README: - added README
+
+2003-04-03 11:23  okir
+
+	* trunk/src/ifd/ifd-etoken.c: - got rid of silly warning
+
+2003-04-03 11:22  okir
+
+	* trunk/src/ctapi/Makefile, trunk/src/ctapi/ctapi.c,
+	  trunk/src/ifd/Makefile, trunk/src/ifd/driver.c,
+	  trunk/src/ifd/ifd-etoken.c, trunk/src/ifd/ifd-kaan.c,
+	  trunk/src/ifd/ifd-towitoko.c, trunk/src/ifd/init.c,
+	  trunk/src/ifd/internal.h, trunk/src/ifd/print-atr.c,
+	  trunk/src/ifd/proto-t0.c, trunk/src/ifd/protocol.c,
+	  trunk/src/ifd/reader.c, trunk/src/include/openct/buffer.h,
+	  trunk/src/include/openct/conf.h, trunk/src/include/openct/ifd.h:
+	  - The great restructuring
+	* trunk/src/ifd/Makefile, trunk/src/ifd/conf.c,
+	  trunk/src/ifd/confparse.c, trunk/src/ifd/device.c,
+	  trunk/src/ifd/hotplug.c, trunk/src/ifd/ifd.conf,
+	  trunk/src/ifd/manager.c, trunk/src/ifd/sys-linux.c,
+	  trunk/src/ifd/usb.c, trunk/src/include/openct/device.h,
+	  trunk/src/include/openct/driver.h: - added hotplug, rewrote USB
+	  handling
+
+2003-04-02 22:01  okir
+
+	* trunk/src/ct/buffer.c, trunk/src/ifd/conf.c,
+	  trunk/src/ifd/confparse.c, trunk/src/ifd/driver.c,
+	  trunk/src/ifd/ifd.conf, trunk/src/ifd/internal.h,
+	  trunk/src/ifd/manager.c, trunk/src/ifd/print-atr.c,
+	  trunk/src/ifd/sys-linux.c, trunk/src/ifd/usb.c: - added config
+	  file parsing; reader registration stuff
+
+2003-04-02 22:00  okir
+
+	* trunk/src/include/openct/ifd.h: - added
+	  ifd_reader_by_{handle,index}
+
+2003-04-02 17:03  okir
+
+	* trunk/src/ct/error.c, trunk/src/ifd/conf.c,
+	  trunk/src/ifd/confparse.c, trunk/src/ifd/manager.c,
+	  trunk/src/ifd/reader.c, trunk/src/ifd/usb.c,
+	  trunk/src/ifd/utils.c, trunk/src/include/openct/conf.h,
+	  trunk/src/include/openct/device.h,
+	  trunk/src/include/openct/error.h: - added copyright message
+
+2003-04-02 17:00  okir
+
+	* trunk/src/ifd/apdu.c, trunk/src/ifd/print-atr.c: - fix compiler
+	  warnings
+
+2003-04-02 16:23  okir
+
+	* trunk/src/ctapi/ctapi.c, trunk/src/ifd/reader.c,
+	  trunk/src/include/openct/driver.h,
+	  trunk/src/include/openct/ifd.h: - added request_icc
+	  functionality to framework
+	* trunk/src/ifd/apdu.c: - fixed le=0 case
+
+2003-04-02 16:22  okir
+
+	* trunk/src/ifd/Makefile: - fixed clean target
+
+2003-04-02 15:20  okir
+
+	* trunk/src/ctapi/ctapi.c, trunk/src/ifd/Attic/drivers/ctapi.c,
+	  trunk/src/ifd/internal.h: - renamed
+	  s/ifd_reader_ctbcs/ifd_ctapi_control/
+
+2003-04-02 15:11  okir
+
+	* trunk/src/ifd/pcsc.c: - dead
+	* trunk/src/ctapi/ctapi.c, trunk/src/ctapi/ctapi.h,
+	  trunk/src/ifd/Attic/drivers/Makefile,
+	  trunk/src/ifd/Attic/drivers/ctapi.c: - CTAPI fixes
+
+2003-04-02 15:10  okir
+
+	* trunk/src/ifd/pcsc.c: - blah
+	* trunk/src/ifd/apdu.c: - added facilities to handle ISO apdus
+
+2003-04-02 15:09  okir
+
+	* trunk/src/ifd/reader.c: - renamed ifd_shutdown to ifd_close
+	* trunk/src/ifd/conf.c, trunk/src/ifd/confparse.c: - added .debug
+	* trunk/src/ifd/proto-t0.c: - return number of bytes received
+
+2003-04-01 07:09  okir
+
+	* trunk/src/ctapi/ctapi.h, trunk/src/ifd/Attic/drivers/ctapi.c,
+	  trunk/src/ifd/Makefile, trunk/src/ifd/apdu.c,
+	  trunk/src/ifd/internal.h, trunk/src/include/openct/apdu.h,
+	  trunk/src/include/openct/ifd.h: - ctapi work
+
+2003-03-28 22:52  okir
+
+	* trunk/src/ifd/Attic/drivers/Makefile,
+	  trunk/src/ifd/ifd-etoken.c: - fixed compiler warning
+
+2003-03-28 22:48  okir
+
+	* trunk/src/ifd/t1.c: - obsolete
+
+2003-03-28 17:06  okir
+
+	* trunk/src/ctapi/ctapi.c, trunk/src/ifd/Makefile: - added ctapi.c
+
+2003-03-28 16:59  okir
+
+	* trunk/src/ctapi, trunk/src/ctapi/ctapi.h,
+	  trunk/src/ifd/Attic/drivers/Makefile,
+	  trunk/src/ifd/Attic/drivers/ctapi.c, trunk/src/ifd/pcsc.c,
+	  trunk/src/include/openct/ifd.h: - added missing prototype for
+	  ifd_close
+
+2003-03-28 16:20  okir
+
+	* trunk/src/ifd/print-atr.c, trunk/src/ifd/reader.c,
+	  trunk/src/include/openct/ifd.h: - renamed ifd_icc_command to
+	  ifd_card_command
+
+2003-03-28 16:13  okir
+
+	* trunk/src/ifd/device.c, trunk/src/ifd/sys-linux.c,
+	  trunk/src/include/openct/device.h: - added
+	  ifd_device_open_channel
+
+2003-03-28 16:02  okir
+
+	* trunk/src/ifd/ifd-etoken.c, trunk/src/ifd/ifd-kaan.c,
+	  trunk/src/ifd/internal.h, trunk/src/ifd/protocol.c,
+	  trunk/src/include/openct/driver.h,
+	  trunk/src/include/openct/ifd.h: - fixed most compiler warnings
+
+2003-03-26 22:45  okir
+
+	* trunk/src/ifd/ifd-kaan.c: - display a string when initializing CT
+
+2003-03-26 21:42  okir
+
+	* trunk/src/ifd/internal.h, trunk/src/ifd/proto-t0.c,
+	  trunk/src/ifd/proto-t1.c, trunk/src/ifd/proto-trans.c,
+	  trunk/src/ifd/protocol.c: - changed DAD handling
+	* trunk/src/ifd/ifd-kaan.c: - select MF works now
+
+2003-03-26 09:49  okir
+
+	* trunk/src/ifd/internal.h, trunk/src/ifd/protocol.c,
+	  trunk/src/ifd/reader.c, trunk/src/include/openct/driver.h: -
+	  allow drivers to handle ICC commands directly
+	* trunk/src/ifd/proto-t1.c: - t1_transceive returns # of bytes
+	  received
+
+2003-03-26 09:48  okir
+
+	* trunk/src/ifd/ifd-kaan.c: - almost works now
+
+2003-03-26 09:47  okir
+
+	* trunk/src/include/openct/ifd.h: - changed IFD_APDU_CASE macros
+
+2003-03-26 09:46  okir
+
+	* trunk/src/ifd/print-atr.c: - misc fixes
+
+2003-03-26 09:45  okir
+
+	* trunk/src/ifd/Makefile, trunk/src/ifd/proto-trans.c: - added
+	  proto-trans
+
+2003-03-25 00:28  okir
+
+	* trunk/src/ifd/Attic/drivers/Makefile, trunk/src/ifd/ifd-kaan.c:
+	  - added some code for Kobil Kaan
+	* trunk/src/ifd/serial.c: - iflags fixes
+	* trunk/src/ifd/protocol.c: - ifd_protocol_set_parameter
+
+2003-03-25 00:27  okir
+
+	* trunk/src/ifd/proto-t1.c: - added IFD_PROTOCOL_T1_RESYNCH
+	* trunk/src/include/openct/ifd.h: - added driver data
+
+2003-03-24 22:58  okir
+
+	* trunk/src/ifd/protocol.c: - fix compile warning
+
+2003-03-24 21:09  okir
+
+	* trunk/src/ifd/usb.c: - added debugging code
+	* trunk/src/ifd/proto-t1.c: - fixed T=1
+
+2003-03-24 21:08  okir
+
+	* trunk/src/ifd/ifd-etoken.c: - copied some magic stuff from
+	  Andreas etoken driver
+	* trunk/src/include/openct/ifd.h: - added
+	  IFD_PROTOCOL_T1_CHECKSUM_{L,C}RC
+
+2003-03-24 21:07  okir
+
+	* trunk/src/ifd/print-atr.c: - better dump function
+
+2003-03-21 11:28  okir
+
+	* trunk/src/ifd/protocol.c: - minor fix in ATR parsing for
+	  protocol select
+
+2003-03-20 21:45  okir
+
+	* trunk/src/ifd/ifd-etoken.c, trunk/src/ifd/proto-t1.c: - still
+	  struggling to get t=1 and etoken to work
+
+2003-03-20 13:40  okir
+
+	* trunk/src/ifd/reader.c: - Cleanup
+
+2003-03-20 13:27  okir
+
+	* trunk/src/ifd/ifd-etoken.c: - initial stuff to get etoken working
+	* trunk/src/ifd/usb.c: - added usb_control - misc fixes for
+	  scanning/opening
+
+2003-03-20 13:26  okir
+
+	* trunk/src/include/openct/device.h: - Added struct ifd_usb_cmsg
+	* trunk/src/ifd/device.c: - ifd_device_open now recognizes devices
+	  types in the name
+
+2003-03-20 12:27  okir
+
+	* trunk/src/ifd/device.c, trunk/src/ifd/internal.h,
+	  trunk/src/include/openct/device.h: - added device control
+	  messages
+
+2003-03-20 12:03  okir
+
+	* trunk/src/ifd/Makefile, trunk/src/ifd/usb.c: - started to work
+	  on usb support
+	* trunk/src/ifd/Attic/drivers/Makefile,
+	  trunk/src/ifd/ifd-etoken.c: - started to work on etoken
+
+2003-03-20 12:02  okir
+
+	* trunk/src/include/openct/ifd.h: - add per slot reader data
+	* trunk/src/ifd/ifd-towitoko.c: - don't report default_protocol
+
+2003-03-20 11:21  okir
+
+	* trunk/src/ifd/Attic/drivers/Makefile, trunk/src/ifd/Makefile,
+	  trunk/src/ifd/device.c, trunk/src/ifd/ifd-towitoko.c,
+	  trunk/src/ifd/print-atr.c, trunk/src/ifd/reader.c,
+	  trunk/src/ifd/sys-linux.c, trunk/src/include/openct/device.h,
+	  trunk/src/include/openct/driver.h: - generic ifd_open() function
+	  added
+
+2003-03-20 10:48  okir
+
+	* trunk/src/ifd/protocol.c, trunk/src/ifd/reader.c: - fixed ATR
+	  handling
+
+2003-03-19 19:36  okir
+
+	* trunk/src/ifd/proto-t0.c: - warning fixes
+
+2003-03-19 19:35  okir
+
+	* trunk/src/ct/buffer.c, trunk/src/ifd/ifd-towitoko.c,
+	  trunk/src/ifd/internal.h, trunk/src/ifd/print-atr.c,
+	  trunk/src/ifd/proto-t0.c, trunk/src/ifd/proto-t1.c,
+	  trunk/src/ifd/protocol.c, trunk/src/ifd/reader.c,
+	  trunk/src/include/openct/driver.h,
+	  trunk/src/include/openct/ifd.h: - new function ifd_buf_set
+	* trunk/src/ifd/apdu.c: - return correct Le for case 4 apdus
+
+2003-03-19 19:34  okir
+
+	* trunk/src/ifd/Makefile: - clean also zaps application objects
+
+2003-03-19 14:46  okir
+
+	* trunk/src/ifd/internal.h, trunk/src/ifd/proto-t0.c,
+	  trunk/src/ifd/proto-t1.c, trunk/src/ifd/protocol.c,
+	  trunk/src/include/openct/ifd.h: - changed signature of protocol
+	  ops
+
+2003-03-19 14:31  okir
+
+	* trunk/src/ct/buffer.c, trunk/src/ifd/ifd-towitoko.c,
+	  trunk/src/ifd/proto-t0.c, trunk/src/ifd/proto-t1.c,
+	  trunk/src/ifd/reader.c, trunk/src/ifd/serial.c: - fix misc
+	  compiler warnings
+
+2003-03-19 12:37  okir
+
+	* trunk/src/ifd/proto-t0.c: - more T=0 changes
+	* trunk/src/ifd/Makefile, trunk/src/ifd/apdu.c,
+	  trunk/src/include/openct/ifd.h: - added ifd_apdu_case
+
+2003-03-19 10:25  okir
+
+	* trunk/src/ifd/proto-t0.c: - t0 now compiles
+	* trunk/src/ct/buffer.c, trunk/src/ifd/internal.h: - added
+	  ifd_buf_{head,tail}
+
+2003-03-18 20:31  okir
+
+	* trunk/src/ifd/Makefile, trunk/src/ifd/proto-t0.c,
+	  trunk/src/ifd/proto-t1.c: - rough outline for T=0
+
+2003-03-18 19:41  okir
+
+	* trunk/src/ifd/Attic, trunk/src/ifd/Attic/drivers,
+	  trunk/src/ifd/Attic/drivers/Makefile: - added Makefile
+
+2003-03-18 18:36  okir
+
+	* trunk/src/ifd/ifd-towitoko.c, trunk/src/ifd/reader.c,
+	  trunk/src/include/openct/ifd.h: - added slot fields to
+	  ifd_reader_t
+
+2003-03-18 18:35  okir
+
+	* trunk/src/ct/error.c: - dont print debug messages unconditionally
+
+2003-03-18 17:42  okir
+
+	* trunk/src/ct/buffer.c, trunk/src/ct/error.c,
+	  trunk/src/ifd/Makefile, trunk/src/ifd/conf.c,
+	  trunk/src/ifd/confparse.c, trunk/src/ifd/device.c,
+	  trunk/src/ifd/driver.c, trunk/src/ifd/ifd-towitoko.c,
+	  trunk/src/ifd/internal.h, trunk/src/ifd/manager.c,
+	  trunk/src/ifd/modules.c, trunk/src/ifd/print-atr.c,
+	  trunk/src/ifd/proto-t1.c, trunk/src/ifd/protocol.c,
+	  trunk/src/ifd/reader.c, trunk/src/ifd/serial.c,
+	  trunk/src/ifd/usb.c, trunk/src/ifd/utils.c,
+	  trunk/src/include/openct/conf.h,
+	  trunk/src/include/openct/device.h,
+	  trunk/src/include/openct/driver.h,
+	  trunk/src/include/openct/error.h,
+	  trunk/src/include/openct/ifd.h,
+	  trunk/src/include/openct/logging.h: - we now get the ATR from
+	  the towitoko
+
+2003-03-17 19:01  okir
+
+	* trunk/src/ct, trunk/src/ct/buffer.c, trunk/src/ifd/Makefile,
+	  trunk/src/ifd/internal.h, trunk/src/ifd/proto-t1.c,
+	  trunk/src/include/openct/ifd.h: - T=1 implementation
+
+2003-03-17 14:15  okir
+
+	* trunk/Makefile, trunk/src/include/Makefile: - new makefiles
+
+2003-03-17 10:03  okir
+
+	* trunk/src, trunk/src/ifd, trunk/src/ifd/Makefile,
+	  trunk/src/ifd/checksum.c, trunk/src/ifd/device.c,
+	  trunk/src/ifd/internal.h, trunk/src/ifd/manager.c,
+	  trunk/src/ifd/proto-t1.c, trunk/src/ifd/reader.c,
+	  trunk/src/ifd/t1.c, trunk/src/include, trunk/src/include/openct,
+	  trunk/src/include/openct/ifd.h: Initial revision
+
+2003-03-17 10:03  
+
+	* branches, releases, trunk: New repository initialized by cvs2svn.
+

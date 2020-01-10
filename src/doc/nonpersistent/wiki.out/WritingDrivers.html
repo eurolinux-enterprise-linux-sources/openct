@@ -1,0 +1,241 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:html="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>
+      WritingDrivers – OpenCT
+    </title><style type="text/css">
+           @import url(trac.css);
+          </style></head><body><div id="content" class="wiki">
+      <div class="wikipage searchable">
+        
+          <h1 id="WritingasimplecardreaderdriverforOpenCT">Writing a simple card reader driver for OpenCT</h1>
+<p>
+Using an editor like anjuta, kdevelop or similar is handy since it allows you to quickly inspect data types definitions wherever they are defined in a project. It is beyond the intent of this document to show you how to do it, but I remember that using the import functionalities of the editor allowed me to get up to speed quickly.
+</p>
+<p>
+Download an openct release, openct-0.6.6 in the rest of this document, and unpack it:
+</p>
+<pre class="wiki" xml:space="preserve">tar -xzvf openct-0.6.6.tar.gz
+</pre><p>
+Set a shell environment variable to be the directory. In my case:
+</p>
+<pre class="wiki" xml:space="preserve">export OPENCT_SRC = $HOME/src/openct-0.6.6
+</pre><p>
+Go to the directory where all other card reader drivers are:
+</p>
+<pre class="wiki" xml:space="preserve">cd $OPENCT_SRC/src/ifd
+</pre><p>
+Create the file that will hold the driver source code with your editor
+of choice:
+</p>
+<pre class="wiki" xml:space="preserve">emacs ifd-wbeiuu.c
+</pre><p>
+And add what follows:
+</p>
+<pre class="wiki" xml:space="preserve">#include "internal.h"
+
+static int wbeiuu_open(ifd_reader_t * reader, const char *device_name)
+{ 
+   ifd_device_t *dev;
+   ifd_debug(1, "%s:%d wbeiuu_open()", __FILE__, __LINE__);
+
+   reader-&gt;name = "Test driver. For illustration purposes only";
+   reader-&gt;nslots = 1;
+   if (!(dev = ifd_device_open(device_name)))
+	return -1;
+
+   if (ifd_device_type(dev) != IFD_DEVICE_TYPE_USB) {
+	ct_error("test driver: device %s is not a USB device", device_name);
+	ifd_device_close(dev);
+	return -1;
+   }
+
+   reader-&gt;device = dev;
+   dev-&gt;timeout = 1000;
+
+   ifd_debug(1, "%s:%d Checkpoint", __FILE__, __LINE__);
+   return 0;
+
+}
+
+static int wbeiuu_close(ifd_reader_t * reader)
+{ ifd_debug(1, "%s:%d wbeiuu_close()", __FILE__, __LINE__); return 0; }
+
+static int wbeiuu_activate(ifd_reader_t * reader)
+{ ifd_debug(1, "%s:%d wbeiuu_activate()", __FILE__, __LINE__); return 0; }
+
+static int wbeiuu_deactivate(ifd_reader_t * reader)
+{ ifd_debug(1, "%s:%d wbeiuu_deactivate()", __FILE__, __LINE__); return 0; }
+
+static int wbeiuu_change_parity(ifd_reader_t * reader, int parity)
+{ ifd_debug(1, "%s:%d wbeiuu_change_parity()", __FILE__, __LINE__); return 0; }
+
+static int wbeiuu_change_speed(ifd_reader_t * reader, 
+                               unsigned int speed)
+{ ifd_debug(1, "%s:%d wbeiuu_change_speed()", __FILE__, __LINE__); return 0; }
+
+static int wbeiuu_card_reset(ifd_reader_t * reader, int slot, void *atr, 
+                             size_t atr_len)
+{ ifd_debug(1, "%s:%d wbeiuu_card_reset()", __FILE__, __LINE__); return 0; }
+
+static int wbeiuu_card_status(ifd_reader_t * reader, int slot, 
+                              int *status)
+{ ifd_debug(1, "%s:%d wbeiuu_card_status()", __FILE__, __LINE__); return 0; }
+
+static int wbeiuu_send(ifd_reader_t * reader, unsigned int dad,
+                       const unsigned char *buffer, size_t len)
+{ ifd_debug(1, "%s:%d wbeiuu_send()", __FILE__, __LINE__); return 0; }
+
+static int wbeiuu_recv(ifd_reader_t * reader, unsigned int dad,
+                       unsigned char *buffer, size_t len, long timeout)
+{ ifd_debug(1, "%s:%d wbeiuu_recv()", __FILE__, __LINE__); return 0; }
+
+static struct ifd_driver_ops wbeiuu_driver;
+
+void ifd_wbeiuu_register(void)
+{
+        wbeiuu_driver.open = wbeiuu_open;
+        wbeiuu_driver.close = wbeiuu_close;
+        wbeiuu_driver.activate = wbeiuu_activate;
+        wbeiuu_driver.deactivate = wbeiuu_deactivate;
+        wbeiuu_driver.card_reset = wbeiuu_card_reset;
+        wbeiuu_driver.card_status = wbeiuu_card_status;
+        wbeiuu_driver.change_parity = wbeiuu_change_parity;
+        wbeiuu_driver.change_speed = wbeiuu_change_speed;
+        wbeiuu_driver.send = wbeiuu_send;
+        wbeiuu_driver.recv = wbeiuu_recv;
+        ifd_driver_register("wbeiuu", &amp;wbeiuu_driver);
+}
+
+</pre><p>
+Basically a driver is a structure whose members are the functions you
+need to implement for your card reader. In this case we just added 
+some tracing code that will help us see how the functions are being
+executed. We will see later how to code a function that does actually
+something.
+</p>
+<p>
+Add the driver registration call to $OPENCT_SRC/src/ifd/init.c
+</p>
+<pre class="wiki" xml:space="preserve">        ifd_towitoko_register();
+        ifd_wbeiuu_register();
+        /* ccid last */
+        ifd_ccid_register();
+</pre><p>
+Add the function prototype in $OPENCT_SRC/src/ifd/internal.h in
+order to avoid compiler warnings and errors:
+</p>
+<pre class="wiki" xml:space="preserve">       extern void ifd_towitoko_register(void);
+       extern void ifd_wbeiuu_register(void);
+</pre><p>
+Unless you add the file to be compiled in the proper Makefile.in it
+will be ignored whe building openct. Therefore you must edit
+$OPENCT_SRC/src/ifd/Makefile.am and modify it accordingly:
+</p>
+<pre class="wiki" xml:space="preserve">libifd_la_SOURCES = \
+        apdu.c atr.c checksum.c conf.c ctbcs.c device.c driver.c \
+        init.c locks.c manager.c modules.c pcmcia.c pcmcia-block.c process.c protocol.c \
+        reader.c serial.c usb.c usb-descriptors.c utils.c \
+        \
+        ifd-acr30u.c ifd-cardman.c ifd-ccid.c ifd-cm4000.c ifd-egate.c \
+        ifd-etoken.c ifd-etoken64.c ifd-eutron.c ifd-gempc.c ifd-ikey2k.c \
+        ifd-ikey3k.c ifd-kaan.c ifd-pertosmart1030.c ifd-smartboard.c \
+        ifd-towitoko.c cardman.h \
+        ifd-wbeiuu.c\
+        proto-gbp.c proto-sync.c proto-t0.c proto-t1.c \
+        proto-trans.c \
+        \
+        sys-sunray.c sys-solaris.c sys-bsd.c sys-linux.c sys-null.c \
+        \
+        ria.c
+</pre><p>
+If your card reader is a usb device like the wbeiuu is then you need
+the USB Vendor and Product ID (in my case 0x104f and 0x0004
+respectively). The lsusb -v command comes handy here to get that
+information. This is required in order to add some configuration
+information that will tell openct to react upon plugin the card reader
+in the system. In my case I did so adding the following lines to the
+end of $OPENCT_SRC/etc/openct.conf.in:
+</p>
+<pre class="wiki" xml:space="preserve">driver pertosmart1030 {
+        ids = {
+                usb:072f/0001,
+                usb:072f/8009,
+        };
+};
+driver wbeiuu {
+       ids = {
+               usb:104f/0004,
+       };
+};
+</pre><p>
+Notice that here the string "wbeiuu" must be the same that the first
+parameter of ifd_driver_register() in ifd-wbeiuu.c
+</p>
+<p>
+$OPENCT_SRC/etc/openct.usermap 
+</p>
+<pre class="wiki" xml:space="preserve"> # pertosmart1038
+ openct               0x0003      0x072f   0x9000    0x0000       0x0000       0x00         0x00            0x00            0x0b            0x00               0x00               0x00000000
+ openct               0x0003      0x072f   0x90d0    0x0000       0x0000       0x00         0x00            0x00            0x0b            0x00               0x00               0x00000000
+# wbeiuu
+openct               0x0003      0x104f   0x0004    0x0000       0x0000       0x00         0x00            0x00            0x0b         0x00               0x00               0x00000000
+</pre><p>
+And $OPENCT_SRC/etc/openct.udev
+</p>
+<pre class="wiki" xml:space="preserve">SYSFS{idVendor}=="072f", SYSFS{idProduct}=="9000", RUN+="/etc/hotplug/usb/openct
+SYSFS{idVendor}=="072f", SYSFS{idProduct}=="90d0", RUN+="/etc/hotplug/usb/openct
++# wbeiuu
++SYSFS{idVendor}=="104f", SYSFS{idProduct}=="0004", RUN+="/etc/hotplug/usb/openct
+</pre><p>
+Go back to the base directory, update makefiles, rebuild and install
+(for the latter you will very likely need to be root):
+</p>
+<pre class="wiki" xml:space="preserve">cd $OPENCT_SRC
+aclocal
+autoconf
+automake
+./configure --prefix=/usr/local/openct-0.6.6
+make
+make install 
+</pre><p>
+It is useful to follow the <a href="http://www.opensc-project.org/openct/wiki/QuickStart" shape="rect">QuickStart</a> guidelines for installing openct
+</p>
+<p>
+Let's see if it works. Run:
+</p>
+<pre class="wiki" xml:space="preserve">/etc/init.d/openct start
+/usr/local/openct-0.6.6/sbin/ifdhandler -d -d -d -d -d -H wbeiuu /proc/bus/usb/001/005
+</pre><p>
+Customized for your current usb setup. My configuration above was usb bus 1, device 5 but you should definitely check /proc/bus/usb/devices and the output of lsusb.
+</p>
+<p>
+Which should print something like:
+</p>
+<pre class="wiki" xml:space="preserve">Debug: ifd_open: trying to open wbeiuu@/proc/bus/usb/001/005
+Debug: wbeiuu_open: ifd-wbeiuu.c:6
+Segmentation fault
+</pre><p>
+An wonderfully successful but absolutely useless card reader
+driver. That is, the driver actually works but it lack the logic to
+perform the communication between the usb device and the host (hence the crash).
+</p>
+<p>
+To make it do something useful one must actually implement the
+communication mechanisms between the host computer and the card
+reader. It is quite easy if you know what functions provided by openct
+to use when accessing USB devices.
+</p>
+<pre class="wiki" xml:space="preserve">ifd_device_open(); // grabs USB devices and handles for you.
+
+ifd_usb_control(); // used to send USB control messages to the card reader.
+
+ifd_sysdep_usb_bulk(); // is used for both sending and receiving byte streams to 
+                       // and from the USB devices. The USB endpoint used defines
+                       // the direction in the communication.
+</pre><p>
+Feel free to take a look at the code of the files $OPENCT_SRC/src/ifd/ifd-*.c for further inspiration.
+</p>
+
+        
+        
+      </div>
+    </div><div class="footer"><hr></hr><p><a href="index.html">Back to Index</a></p></div></body></html>

@@ -1,0 +1,39 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:html="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>
+      ccid – OpenCT
+    </title><style type="text/css">
+           @import url(trac.css);
+          </style></head><body><div id="content" class="wiki">
+      <div class="wikipage searchable">
+        
+          <h1 id="USBCCIDReaders">USB CCID Readers</h1>
+<p>
+CCID is the norm for usb smart card readers. Except for some very old readers, all ccid readers
+should work fine with OpenCT.
+</p>
+<h2 id="Testresults">Test results</h2>
+<p>
+If you have tested one of these readers, please add a report here. 
+</p>
+<ul><li>OMNIKEY CardMan 3021 on Fedora Core 5 with OpenCT 0.6.7: success.
+</li><li>OMNIKEY CardMan 3121 on Fedora Core 3 with OpenCT 0.6.5: success.
+</li><li>OMNIKEY CardMan 5121 on Debian with OpenCT 0.6.5: success (only the contact-based part, no RFID)
+</li><li>SCM SCR331
+</li><li>SCM SCR3310
+</li><li>HP SmartCard Keyboard
+</li><li>Cherry Smartboard G83-6744: success (not yet in secure pinpad mode however)
+</li></ul><h2 id="Issues">Issues</h2>
+<ul><li>the ccid parameter setting must be done in 2 passes, one that doesn't set Fi/Di to non-default values (before PTS is performed) 
+and one that does (after we know the card accepts the non-default baudrate)
+</li><li>the pcsc ccid driver does validation of whether the reader supports a given baud rate, rather than blindly assuming that it will
+be able to deal with whatever preferred/maximum baud rate the card's atr specify's. We should do that too.
+</li></ul><h2 id="Alternative">Alternative</h2>
+<p>
+If openct does not work, Ludovic Rousseau has a driver in ifdhandler format for pcsc-lite at
+<a class="ext-link" href="http://pcsclite.alioth.debian.org/ccid.html" shape="rect"><span class="icon"> </span>http://pcsclite.alioth.debian.org/ccid.html</a>
+</p>
+
+        
+        
+      </div>
+    </div><div class="footer"><hr></hr><p><a href="index.html">Back to Index</a></p></div></body></html>

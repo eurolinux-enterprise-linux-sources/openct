@@ -1,0 +1,103 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:html="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>
+      eutron – OpenCT
+    </title><style type="text/css">
+           @import url(trac.css);
+          </style></head><body><div id="content" class="wiki">
+      <div class="wikipage searchable">
+        
+          <h1 id="EutronCryptoIdentityITSEC-P">Eutron <a class="wiki" href="CryptoIdentity.html" shape="rect">CryptoIdentity</a> ITSEC-P</h1>
+<p>
+The ITSEC-P token is supported by the "eutron" driver in OpenCT. Also see the <a class="ext-link" href="https://www.opensc-project.org/opensc/wiki/CryptoIdentityItsec" shape="rect"><span class="icon"> </span>CryptoIdentity IT-SEC page</a> in the OpenSC Wiki. The ITSEC-P contains a G&amp;D Starcos card. Only test versions of these cards are eraseable, the Cards inside the Eutron
+are not eraseable.
+</p>
+<h1 id="EutronCryptoIdentityITSEC-I">Eutron <a class="wiki" href="CryptoIdentity.html" shape="rect">CryptoIdentity</a> ITSEC-I</h1>
+<p>
+(Andreas Jellinghaus:) I had one, wrote a driver for it, it worked fine. However somehow I locked it, and can't unlock
+it, so I can't test anymore. I guess they still work fine, but even for windows there is not unlock/format tool, as far
+as I can see.
+</p>
+<p>
+Note that Eutron has five different <a class="wiki" href="CryptoIdentity.html" shape="rect">CryptoIdentity</a> tokens and the other four were not tested at all and are unsupported.
+</p>
+<p>
+More detailed information on the progress of the Eutron support may be found at the <a class="ext-link" href="https://www.opensc-project.org/opensc/wiki/CryptoIdentityItsec" shape="rect"><span class="icon"> </span>Eutron entry</a> in the opensc Wiki.
+</p>
+<h2 id="Testresults">Test results</h2>
+<p>
+If you have tested one of these readers, please add a report here.
+</p>
+<hr></hr>
+<p>
+Eutron Customer Service comments follows:
+</p>
+<p>
+Please find below the link where you can download a tool to reinit <a class="wiki" href="CryptoIdentity.html" shape="rect">CryptoIdentity</a> ITSEC-I tokens.
+</p>
+<p>
+You must first check which Infineon chip is onboard on <a class="wiki" href="CryptoIdentity.html" shape="rect">CryptoIdentity</a>;
+to check for smartcard ATR run:
+<a class="ext-link" href="http://www.eutroninfosecurity.com/shared/test/CryptoIdentity/testatr2.exe" shape="rect"><span class="icon"> </span>http://www.eutroninfosecurity.com/shared/test/CryptoIdentity/testatr2.exe</a>
+( <a class="ext-link" href="http://www.eutroninfosecurity.com/shared/test/CryptoIdentity/testatr2.zip" shape="rect"><span class="icon"> </span>http://www.eutroninfosecurity.com/shared/test/CryptoIdentity/testatr2.zip</a> )
+- if the ATR is "3b f2 98 00 ff c1 10 31 fe 55 c8 03 15", then the token is based on 320 chip,
+- if the ATR is "3b f2 98 00 ff c1 10 31 fe 55 c8 04 12", then the token is based on 322 chip
+</p>
+<p>
+*** <a class="wiki" href="CryptoIdentity.html" shape="rect">CryptoIdentity</a> ITSEC REINIT TOOLS (Company confidential, please do not redistribute) ***
+</p>
+<p>
+Please find below a link where you can download the tool for reinitialising tokens with inconsistent file systems.  Note that this tool is not meant to be redistributed.  Be
+aware that THIS TOOL WILL DESTROY ALL THE CONTENT OF THE TOKEN and revert it at manufacturing status.
+</p>
+<p>
+<a class="ext-link" href="http://www.eutroninfosecurity.com/outgoing/ci5-itsec/_INTERNALUSEONLY_/unsupported/ReInit32x_2.4.x.zip" shape="rect"><span class="icon"> </span>http://www.eutroninfosecurity.com/outgoing/ci5-itsec/_INTERNALUSEONLY_/unsupported/ReInit32x_2.4.x.zip</a>
+</p>
+<p>
+( To obtain the Username and Password required during the download, please contact Eutron
+at helpdesk@… )
+</p>
+<p>
+To use it, version 2.4.x of the Siemens API *must* be installed (see below for download instructions).
+</p>
+<p>
+To reinitialize the token, follow these steps:
+1 - Unzip the content in a temporary folder
+2 - Shut down the Siemens "SCmon" or "SiSCmon" executable that may have been loaded in memory
+3 - Plug the token into the USB port
+4 - Run one of the batch files available; see txt file for command line instructions
+4.1 - If you token has onboard the Infineon 320 chip you must use "reinit_gdo1.bat"
+4.2 - If you token has onboard the Infineon 322 chip you must use "reinit_gdo2.bat"
+( both will revert the token with Eutron standard manufacturing settings )
+</p>
+<p>
+If required, download the latest release 2.4.0 build 10a of Siemens API from the following link:
+( To obtain the Username and Password required during the download, please contact Eutron
+at helpdesk@… )
+</p>
+<p>
+- Cryptographic API's only:
+<a class="ext-link" href="http://www.eutroninfosecurity.com/outgoing/ci5-itsec/ci5-itsec_API_2.4.0_build10.exe" shape="rect"><span class="icon"> </span>http://www.eutroninfosecurity.com/outgoing/ci5-itsec/ci5-itsec_API_2.4.0_build10.exe</a>
+or (zip format)
+<a class="ext-link" href="http://www.eutroninfosecurity.com/outgoing/ci5-itsec/ci5-itsec_API_2.4.0_build10.zip" shape="rect"><span class="icon"> </span>http://www.eutroninfosecurity.com/outgoing/ci5-itsec/ci5-itsec_API_2.4.0_build10.zip</a>
+</p>
+<p>
+- Cryptographic API's + driver for <a class="wiki" href="CryptoIdentity.html" shape="rect">CryptoIdentity</a> token (official CD image):
+<a class="ext-link" href="http://www.eutroninfosecurity.com/outgoing/ci5-itsec/CD_ci5-itsec.zip" shape="rect"><span class="icon"> </span>http://www.eutroninfosecurity.com/outgoing/ci5-itsec/CD_ci5-itsec.zip</a>
+</p>
+<p>
+The "readme" file contains additional important informations related to API
+installation and known issues:
+<a class="ext-link" href="http://www.eutroninfosecurity.com/outgoing/ci5-itsec/readme.txt" shape="rect"><span class="icon"> </span>http://www.eutroninfosecurity.com/outgoing/ci5-itsec/readme.txt</a>
+</p>
+<p>
+For further technical information please send an email at helpdesk@…
+</p>
+<p>
+Please note, that the Eutron tool initializes the token for the commercial PKI software shipped together with the Eutron Tokens and is not helpful, if you want to initialize your token for PKCS#15/opensc. See further informations on the status of the initialization support for Eutron tokens in
+<a class="ext-link" href="https://www.opensc-project.org/opensc/wiki/CryptoIdentityItsec" shape="rect"><span class="icon"> </span>Eutron entry</a> in the opensc Wiki.
+</p>
+
+        
+        
+      </div>
+    </div><div class="footer"><hr></hr><p><a href="index.html">Back to Index</a></p></div></body></html>
